@@ -2,7 +2,6 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import {
   BarChart3,
   Search,
-  AlertTriangle,
   ListChecks,
   Lightbulb,
   FileText,
@@ -11,7 +10,6 @@ import {
 const navItems = [
   { to: "/", icon: BarChart3, label: "Overview" },
   { to: "/findings", icon: Search, label: "Findings" },
-  { to: "/bottlenecks", icon: AlertTriangle, label: "Bottlenecks" },
   { to: "/action-plan", icon: ListChecks, label: "Action Plan" },
   { to: "/automation-ideas", icon: Lightbulb, label: "Automation Ideas" },
   { to: "/workarounds", icon: FileText, label: "Workaround Catalogue" },

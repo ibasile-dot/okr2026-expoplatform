@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Index from "./pages/Index";
 import FindingsPage from "./pages/FindingsPage";
-import BottlenecksPage from "./pages/BottlenecksPage";
 import ActionPlanPage from "./pages/ActionPlanPage";
 import AutomationIdeasPage from "./pages/AutomationIdeasPage";
 import WorkaroundsPage from "./pages/WorkaroundsPage";
@@ -24,7 +23,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/findings" element={<FindingsPage />} />
-            <Route path="/bottlenecks" element={<BottlenecksPage />} />
             <Route path="/action-plan" element={<ActionPlanPage />} />
             <Route path="/automation-ideas" element={<AutomationIdeasPage />} />
             <Route path="/workarounds" element={<WorkaroundsPage />} />
