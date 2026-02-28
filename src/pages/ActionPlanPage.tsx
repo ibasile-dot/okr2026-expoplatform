@@ -121,7 +121,7 @@ const phases = [
       {
         name: "Finance",
         actions: [
-          "API-based sync via n8n between billing and reporting (~80% manual)",
+          "API-based sync between billing and reporting (~80% manual)",
         ],
       },
       {
