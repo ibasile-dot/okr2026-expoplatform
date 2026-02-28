@@ -22,11 +22,11 @@ const ticketThemes = [
 ];
 
 const COLORS = [
-  "hsl(228, 76%, 45%)",
-  "hsl(44, 96%, 54%)",
-  "hsl(0, 0%, 15%)",
-  "hsl(228, 60%, 65%)",
+  "hsl(230, 82%, 22%)",
+  "hsl(44, 100%, 58%)",
+  "hsl(230, 60%, 40%)",
   "hsl(44, 80%, 72%)",
+  "hsl(230, 40%, 55%)",
 ];
 
 const deptWorkload = [
@@ -47,7 +47,7 @@ const recurringVsNew = [
 const keyFindings = [
   { label: "Primary Constraint", text: "Admin Panel setup & configuration consumes 30–40% of TAM time per event. 64 manual config steps, first-time builds take 36% more effort." },
   { label: "Recurring vs New Customers", text: "Recurring events take ~11 days, new events ~15 days (36% more). Yet recurring events still require significant manual reconfiguration — no smart defaults or cloning." },
-  { label: "Integration Bottleneck", text: "1,044 hours logged in worklogs for manual integrations. No native integrations with common 3rd-party systems. TAMs build siloed API scripts." },
+  { label: "Integration Bottleneck", text: "1,044 hours logged in worklogs for manual integrations. No native integrations with common 3rd-party systems. TAMs build custom CSS & JavaScript workarounds." },
   { label: "Support Trend", text: "JSM tickets trending upward: 164/mo in 2025, rising to 254/mo in Jan–Feb 2026. 40% of TAM support tickets trace back to admin panel issues." },
   { label: "Knowledge Loss", text: "Customer history lives in TAMs' heads, not systems. 5–7 tools per TAM with no unified view. Returning customer context lost when TAMs change." },
   { label: "Training Gaps", text: "72% of repeated questions addressable via self-serve content. 30–40% of live training = troubleshooting. Only 100 of 300 needed how-to videos created." },
@@ -126,7 +126,7 @@ const Index = () => {
                   <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} label={{ value: "Days", angle: -90, position: "insideLeft", fontSize: 11 }} />
                   <Tooltip formatter={(v: number) => `${v} days`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="setup" fill="hsl(228, 76%, 45%)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="setup" fill="hsl(230, 82%, 22%)" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -144,7 +144,7 @@ const Index = () => {
                   <XAxis type="number" tick={{ fontSize: 10 }} unit="%" />
                   <YAxis type="category" dataKey="name" tick={{ fontSize: 10 }} width={110} />
                   <Tooltip formatter={(v: number) => `${v}%`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="pct" fill="hsl(44, 96%, 54%)" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="pct" fill="hsl(44, 100%, 58%)" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
