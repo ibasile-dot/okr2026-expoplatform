@@ -20,7 +20,7 @@ const AppSidebar = () => {
   return (
     <aside className="w-60 min-h-screen bg-sidebar border-r border-sidebar-border flex flex-col shrink-0">
       <div className="px-5 py-6 border-b border-sidebar-border">
-        <img src={epLogo} alt="ExpoPlatform" className="h-7 mb-3 brightness-0 invert" />
+        <img src={epLogo} alt="ExpoPlatform" className="h-14 mb-3 brightness-0 invert" />
         <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-sidebar-foreground mb-1">
           OKR4
         </p>
