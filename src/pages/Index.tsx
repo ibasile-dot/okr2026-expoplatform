@@ -22,11 +22,11 @@ const ticketThemes = [
 ];
 
 const COLORS = [
+  "hsl(228, 76%, 45%)",
+  "hsl(44, 96%, 54%)",
   "hsl(0, 0%, 15%)",
-  "hsl(0, 0%, 35%)",
-  "hsl(0, 0%, 50%)",
-  "hsl(0, 0%, 65%)",
-  "hsl(0, 0%, 80%)",
+  "hsl(228, 60%, 65%)",
+  "hsl(44, 80%, 72%)",
 ];
 
 const deptWorkload = [
@@ -126,7 +126,7 @@ const Index = () => {
                   <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} label={{ value: "Days", angle: -90, position: "insideLeft", fontSize: 11 }} />
                   <Tooltip formatter={(v: number) => `${v} days`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="setup" fill="hsl(0,0%,15%)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="setup" fill="hsl(228, 76%, 45%)" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -144,7 +144,7 @@ const Index = () => {
                   <XAxis type="number" tick={{ fontSize: 10 }} unit="%" />
                   <YAxis type="category" dataKey="name" tick={{ fontSize: 10 }} width={110} />
                   <Tooltip formatter={(v: number) => `${v}%`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="pct" fill="hsl(0,0%,30%)" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="pct" fill="hsl(44, 96%, 54%)" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -202,12 +202,12 @@ const Index = () => {
         <div className="section-card p-5">
           <p className="stat-label mb-2">Back-end Configuration</p>
           <p className="text-lg font-bold text-foreground">Registration, Matchmaking, API</p>
-          <p className="text-xs text-muted-foreground mt-1">Registration conditional logic, matchmaking rules, API configuration, exhibitor setup. Complex pipelines with no guided wizards.</p>
+          <p className="text-xs text-muted-foreground mt-1">Registration conditional logic, matchmaking rules, API configuration, exhibitor setup. Complex pipelines with no guided wizards. Investigating AI agent for automated config.</p>
         </div>
         <div className="section-card p-5">
           <p className="stat-label mb-2">Front-end — Website Builder</p>
           <p className="text-lg font-bold text-foreground">Custom CSS, JS, Block Config</p>
-          <p className="text-xs text-muted-foreground mt-1">Theme setup, custom CSS/JavaScript, block configuration. TAMs use ChatGPT + CSS repos as workarounds. No ready-made templates.</p>
+          <p className="text-xs text-muted-foreground mt-1">Theme setup, custom CSS/JavaScript, block configuration. TAMs use ChatGPT + CSS repos as workarounds. Exploring external AI agent overlay without involving product team.</p>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -219,7 +219,7 @@ const Index = () => {
         <div className="section-card p-5">
           <p className="stat-label mb-2">App Submission</p>
           <p className="text-lg font-bold text-foreground">1.5hrs per event</p>
-          <p className="text-xs text-muted-foreground mt-1">Lengthy Android questionnaire with precise multi-select answers. Fully manual process, no pre-fill or automation.</p>
+          <p className="text-xs text-muted-foreground mt-1">Both Android & iOS questionnaires fully manual. Investigating automated pre-fill and API-based submission to Google Play & App Store Connect.</p>
         </div>
       </div>
     </div>
