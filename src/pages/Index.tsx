@@ -22,11 +22,11 @@ const ticketThemes = [
 ];
 
 const COLORS = [
-  "hsl(230, 82%, 22%)",
+  "hsl(237, 68%, 33%)",
   "hsl(44, 100%, 58%)",
-  "hsl(230, 60%, 40%)",
+  "hsl(237, 45%, 50%)",
   "hsl(44, 80%, 72%)",
-  "hsl(230, 40%, 55%)",
+  "hsl(200, 60%, 45%)",
 ];
 
 const deptWorkload = [
@@ -126,7 +126,7 @@ const Index = () => {
                   <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} label={{ value: "Days", angle: -90, position: "insideLeft", fontSize: 11 }} />
                   <Tooltip formatter={(v: number) => `${v} days`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="setup" fill="hsl(230, 82%, 22%)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="setup" fill="hsl(237, 68%, 33%)" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

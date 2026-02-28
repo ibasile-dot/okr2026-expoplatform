@@ -30,7 +30,7 @@ export const HorizontalBar = ({ label, value, className }: BarProps) => (
     </div>
     <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
       <div
-        className="h-full rounded-full bg-foreground transition-all duration-500"
+        className="h-full rounded-full bg-primary transition-all duration-500"
         style={{ width: `${value}%` }}
       />
     </div>
@@ -38,14 +38,14 @@ export const HorizontalBar = ({ label, value, className }: BarProps) => (
 );
 
 export const SectionTitle = ({ children, className }: { children: ReactNode; className?: string }) => (
-  <h2 className={cn("text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground mb-4", className)}>
+  <h2 className={cn("text-xs font-semibold uppercase tracking-[0.1em] text-primary/60 mb-4", className)}>
     {children}
   </h2>
 );
 
 export const PageHeader = ({ title, description }: { title: string; description?: string }) => (
   <div className="mb-10">
-    <h1 className="text-2xl font-bold tracking-tight text-foreground">{title}</h1>
+    <h1 className="text-2xl font-bold tracking-tight text-primary">{title}</h1>
     {description && <p className="text-sm text-muted-foreground mt-1 max-w-2xl">{description}</p>}
   </div>
 );
