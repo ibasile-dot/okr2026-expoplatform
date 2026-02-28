@@ -8,12 +8,20 @@ const phases = [
     rationale: "The admin panel is the #1 bottleneck (30–40% of TAM time). Solving this first unlocks the most capacity.",
     streams: [
       {
-        name: "Website Builder (Back-end)",
+        name: "Back-end Configuration",
         actions: [
           "Explore API options with Pedro (API team) — scheduled next week",
-          "Investigate AI agent for admin panel configuration",
+          "Investigate AI agent for admin panel configuration (registration, matchmaking, API setup)",
           "Audit 64 manual config steps — identify which can be automated or templated",
+          "Auto-clone environment with smart defaults for repeat events",
+        ],
+      },
+      {
+        name: "Front-end — Website Builder",
+        actions: [
           "Evaluate ready-made website templates (swap colours/fonts, fixed layout)",
+          "Reduce reliance on custom CSS/JavaScript by TAMs",
+          "Standardise block configuration and theme setup",
         ],
       },
       {
@@ -64,9 +72,9 @@ const phases = [
       {
         name: "Internal Tools",
         actions: [
-          "Thompson workloads tracker — already created, iterate",
+          "Claude-powered workloads tracker — iterate on existing tool",
           "Showcase meeting format and cadence",
-          "Newsletter automation potential",
+          "Create newsletter (including videos and implementation updates)",
         ],
       },
       {
@@ -74,16 +82,15 @@ const phases = [
         actions: [
           "Legacy backlog purge — close 178 ghost bugs from 2022–2024",
           "Jira Team field enforcement (400–500 hrs/month recovery)",
-          "Automated bug classification: Production Bug vs Dev Defect",
         ],
       },
     ],
   },
   {
     phase: 3,
-    title: "Non-bottleneck Improvements",
+    title: "Second Priorities",
     timing: "After Phase 1 core bottlenecks resolved",
-    rationale: "Important but not urgent. Only pursue once the key constraints are addressed.",
+    rationale: "Important but not urgent. These are non-bottleneck improvements to pursue once the key constraints are addressed.",
     streams: [
       {
         name: "Sales Team",
@@ -110,7 +117,6 @@ const phases = [
         name: "Product Improvements",
         actions: [
           "Direct client feedback — in-product surveys, NPS",
-          "Auto-clone environment with smart defaults for repeat events",
           "Planhat automated onboarding — welcome materials on deal close",
         ],
       },
@@ -129,7 +135,6 @@ const ActionPlanPage = () => {
       <div className="space-y-12">
         {phases.map((phase) => (
           <div key={phase.phase}>
-            {/* Phase Header */}
             <div className="flex items-center gap-3 mb-2">
               <div className="phase-indicator">{phase.phase}</div>
               <div>
@@ -139,7 +144,6 @@ const ActionPlanPage = () => {
             </div>
             <p className="text-xs text-muted-foreground mb-6 ml-10">{phase.rationale}</p>
 
-            {/* Streams */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ml-10">
               {phase.streams.map((stream) => (
                 <div key={stream.name} className="section-card p-5">
