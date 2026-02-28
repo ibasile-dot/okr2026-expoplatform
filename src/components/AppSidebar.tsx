@@ -6,7 +6,7 @@ import {
   Lightbulb,
   FileText,
 } from "lucide-react";
-import epLogo from "@/assets/ep-logo.png";
+import epLogo from "@/assets/ep-logo-full.png";
 
 const navItems = [
   { to: "/", icon: BarChart3, label: "Overview" },
