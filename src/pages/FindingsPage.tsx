@@ -5,13 +5,13 @@ import {
 } from "recharts";
 
 const CHART_COLORS = [
-  "hsl(228, 76%, 45%)",
-  "hsl(44, 96%, 54%)",
-  "hsl(0, 0%, 15%)",
-  "hsl(228, 60%, 65%)",
+  "hsl(230, 82%, 22%)",
+  "hsl(44, 100%, 58%)",
+  "hsl(230, 60%, 40%)",
   "hsl(44, 80%, 72%)",
-  "hsl(0, 0%, 50%)",
-  "hsl(200, 50%, 55%)",
+  "hsl(230, 40%, 55%)",
+  "hsl(200, 60%, 45%)",
+  "hsl(44, 60%, 48%)",
 ];
 
 const tamTimeBreakdown = [
@@ -72,35 +72,35 @@ const categoryCards = [
     stat: "30–40%",
     statLabel: "of TAM time",
     highlights: ["64 manual config steps per event", "~50% of features unused but all shown", "No feature-based wizard or guided flow"],
-    color: "hsl(228, 76%, 45%)",
+    color: "hsl(230, 82%, 22%)",
   },
   {
     category: "Integrations",
     stat: "1,044h",
     statLabel: "manual hours logged",
-    highlights: ["No native 3rd-party integrations", "TAMs build siloed API scripts", "Self-funded tools bypass eng queue"],
-    color: "hsl(44, 96%, 54%)",
+    highlights: ["No native 3rd-party integrations", "TAMs build custom CSS & JavaScript workarounds", "Self-funded tools bypass eng queue"],
+    color: "hsl(44, 100%, 58%)",
   },
   {
     category: "Support & Tickets",
     stat: "254/mo",
     statLabel: "Jan–Feb 2026",
     highlights: ["Up from 164/mo in 2025", "40% trace to admin panel issues", "JSM adoption still increasing"],
-    color: "hsl(228, 60%, 65%)",
+    color: "hsl(230, 60%, 40%)",
   },
   {
     category: "Engineering",
     stat: "400–500h",
     statLabel: "lost monthly",
     highlights: ["Missing Team field on Jira tasks", "178 ghost bugs from 2022–2024", "44% mobile bug time (target 30%)"],
-    color: "hsl(0, 0%, 15%)",
+    color: "hsl(230, 40%, 55%)",
   },
   {
     category: "Training & Knowledge",
     stat: "72%",
     statLabel: "self-serve addressable",
     highlights: ["Only 100/300 videos created", "30–40% training = troubleshooting", "No role-based learning paths"],
-    color: "hsl(200, 50%, 55%)",
+    color: "hsl(200, 60%, 45%)",
   },
   {
     category: "Knowledge & Tools",
@@ -108,6 +108,7 @@ const categoryCards = [
     statLabel: "tools per TAM",
     highlights: ["Customer history in TAMs' heads", "Context lost when TAMs change", "No unified view across tools"],
     color: "hsl(44, 80%, 72%)",
+
   },
 ];
 
@@ -160,7 +161,7 @@ const FindingsPage = () => {
                   <XAxis dataKey="period" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="tickets" fill="hsl(228, 76%, 45%)" radius={[4, 4, 0, 0]} name="Tickets/Month" />
+                  <Bar dataKey="tickets" fill="hsl(230, 82%, 22%)" radius={[4, 4, 0, 0]} name="Tickets/Month" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -180,7 +181,7 @@ const FindingsPage = () => {
                   <PolarGrid stroke="hsl(0,0%,85%)" />
                   <PolarAngleAxis dataKey="area" tick={{ fontSize: 10 }} />
                   <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 9 }} />
-                  <Radar name="Severity" dataKey="severity" stroke="hsl(228, 76%, 45%)" fill="hsl(228, 76%, 45%)" fillOpacity={0.2} strokeWidth={2} />
+                  <Radar name="Severity" dataKey="severity" stroke="hsl(230, 82%, 22%)" fill="hsl(230, 82%, 22%)" fillOpacity={0.2} strokeWidth={2} />
                 </RadarChart>
               </ResponsiveContainer>
             </div>
@@ -197,8 +198,8 @@ const FindingsPage = () => {
                   <XAxis dataKey="metric" tick={{ fontSize: 10 }} />
                   <YAxis tick={{ fontSize: 10 }} />
                   <Tooltip contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="recurring" fill="hsl(228, 76%, 45%)" radius={[4, 4, 0, 0]} name="Recurring" />
-                  <Bar dataKey="new_cust" fill="hsl(44, 96%, 54%)" radius={[4, 4, 0, 0]} name="New Customer" />
+                   <Bar dataKey="recurring" fill="hsl(230, 82%, 22%)" radius={[4, 4, 0, 0]} name="Recurring" />
+                   <Bar dataKey="new_cust" fill="hsl(44, 100%, 58%)" radius={[4, 4, 0, 0]} name="New Customer" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -219,7 +220,7 @@ const FindingsPage = () => {
                   <XAxis type="number" tick={{ fontSize: 10 }} unit="%" />
                   <YAxis type="category" dataKey="name" tick={{ fontSize: 10 }} width={130} />
                   <Tooltip formatter={(v: number) => `${v}%`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="pct" fill="hsl(44, 96%, 54%)" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="pct" fill="hsl(44, 100%, 58%)" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -243,7 +244,7 @@ const FindingsPage = () => {
                   <p className="text-[10px] text-muted-foreground">Videos needed</p>
                 </div>
                 <div className="text-center flex-1">
-                  <p className="text-2xl font-bold" style={{ color: "hsl(228, 76%, 45%)" }}>33%</p>
+                  <p className="text-2xl font-bold" style={{ color: "hsl(230, 82%, 22%)" }}>33%</p>
                   <p className="text-[10px] text-muted-foreground">Coverage</p>
                 </div>
               </div>
@@ -286,15 +287,15 @@ const FindingsPage = () => {
           </div>
           <div className="flex-1 space-y-2">
             <div className="flex items-center gap-3 text-xs">
-              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(228, 76%, 45%)" }} />
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(230, 82%, 22%)" }} />
               <span className="text-foreground font-medium flex-1">No native 3rd-party integrations</span>
             </div>
             <div className="flex items-center gap-3 text-xs">
-              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(44, 96%, 54%)" }} />
-              <span className="text-foreground font-medium flex-1">TAMs individually build siloed API scripts</span>
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(44, 100%, 58%)" }} />
+              <span className="text-foreground font-medium flex-1">TAMs individually build custom CSS & JavaScript workarounds</span>
             </div>
             <div className="flex items-center gap-3 text-xs">
-              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(0, 0%, 50%)" }} />
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(230, 60%, 40%)" }} />
               <span className="text-foreground font-medium flex-1">Self-funded tools (Cursor AI, Postman) used to bypass engineering queue</span>
             </div>
           </div>

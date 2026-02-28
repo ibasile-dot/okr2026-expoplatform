@@ -6,6 +6,7 @@ import {
   Lightbulb,
   FileText,
 } from "lucide-react";
+import epLogo from "@/assets/expoplatform-logo.png";
 
 const navItems = [
   { to: "/", icon: BarChart3, label: "Overview" },
@@ -19,8 +20,9 @@ const AppSidebar = () => {
   return (
     <aside className="w-60 min-h-screen bg-sidebar border-r border-sidebar-border flex flex-col shrink-0">
       <div className="px-5 py-6 border-b border-sidebar-border">
+        <img src={epLogo} alt="ExpoPlatform" className="h-7 mb-3" />
         <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-muted-foreground mb-1">
-          ExpoPlatform · OKR4
+          OKR4
         </p>
         <h1 className="text-sm font-bold text-foreground leading-snug">
           Operational Efficiency
