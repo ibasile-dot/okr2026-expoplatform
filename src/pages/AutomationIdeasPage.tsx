@@ -85,7 +85,7 @@ const AutomationIdeasPage = () => {
             <TabsTrigger
               key={cat.key}
               value={cat.key}
-              className="text-xs rounded-full data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-none border border-border px-3 py-1"
+              className="text-xs rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none border border-border px-3 py-1"
             >
               {cat.label} ({cat.ideas.length})
             </TabsTrigger>
