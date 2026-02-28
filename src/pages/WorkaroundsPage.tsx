@@ -63,6 +63,7 @@ const WorkaroundsPage = () => {
         <SectionTitle>Active AI Agents & Tools</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
+            { name: "Worklogs Tracker", owner: "Ilaria", team: "Operations", tool: "Claude Artifact" },
             { name: "Feature Request Intake Agent", owner: "Ajay", team: "Product", tool: "Rovo" },
             { name: "Script Building Tool", owner: "Pedro", team: "Operations", tool: "Claude" },
             { name: "AI Legal Review", owner: "Mykyta", team: "Leadership", tool: "Claude Co-Work" },

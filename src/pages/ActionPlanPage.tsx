@@ -11,38 +11,49 @@ const phases = [
         name: "Back-end Configuration",
         actions: [
           "Explore API options with Pedro (API team) — scheduled next week",
-          "Investigate AI agent for admin panel configuration (registration, matchmaking, API setup)",
+          "Investigate AI agent for admin panel configuration (registration conditional logic, matchmaking rules, API setup)",
           "Audit 64 manual config steps — identify which can be automated or templated",
           "Auto-clone environment with smart defaults for repeat events",
+          "Build guided wizard for registration pipeline setup (currently complex and un-user-friendly)",
+          "Create standardised asset collection forms with automated reminders",
+          "Automated pre-launch health checks to replace manual checklists",
         ],
       },
       {
         name: "Front-end — Website Builder",
         actions: [
           "Evaluate ready-made website templates (swap colours/fonts, fixed layout)",
-          "Reduce reliance on custom CSS/JavaScript by TAMs",
+          "Explore external AI agent overlay — add on top of existing builder without involving product team",
+          "Reduce reliance on custom CSS/JavaScript by TAMs (currently using ChatGPT + CSS repos as workaround)",
           "Standardise block configuration and theme setup",
+          "Investigate AI-powered CSS/JS generation integrated into builder workflow",
         ],
       },
       {
         name: "App Submission",
         actions: [
           "Automate Android questionnaire pre-fill (quick win: 1.5hrs saved per event)",
-          "Standardise app submission checklist",
+          "Automate iOS App Store submission questionnaire (currently fully manual)",
+          "Standardise app submission checklist for both platforms",
+          "Investigate API-based submission to Google Play and Apple App Store Connect",
         ],
       },
       {
         name: "App Builder",
         actions: [
           "Address 44% bug-time on mobile team (target: 30%)",
-          "Feature-based admin panel wizard — show only relevant features per event type",
+          "Feature-based admin panel wizard — show only relevant features per event type (~50% unused currently)",
+          "Investigate AI-assisted app configuration based on event type",
+          "Standardise app build templates for common event formats",
+          "Reduce QA manual regression (currently 8–15hrs per release cycle) with automated testing",
         ],
       },
       {
         name: "Support Tickets",
         actions: [
-          "JSM AI triage for neutral sentiment tickets",
+          "JSM AI triage for neutral sentiment tickets — auto-respond, escalate urgent only",
           "Self-serve content for top 6 ticket themes (login, exhibitor, registration, CSS, mobile app, lead retrieval)",
+          "AI Digital Twin — AI replies from TAM email for routine queries, escalates complex",
         ],
       },
     ],
@@ -72,9 +83,9 @@ const phases = [
       {
         name: "Internal Tools",
         actions: [
-          "Claude-powered workloads tracker — iterate on existing tool",
+          "Worklogs Tracker — Claude artifact created by Ilaria, iterate and expand",
           "Showcase meeting format and cadence",
-          "Create newsletter (including videos and implementation updates)",
+          "Create newsletter (including videos, implementation updates, and automation progress)",
         ],
       },
       {
@@ -90,7 +101,7 @@ const phases = [
     phase: 3,
     title: "Second Priorities",
     timing: "After Phase 1 core bottlenecks resolved",
-    rationale: "Important but not urgent. These are non-bottleneck improvements to pursue once the key constraints are addressed.",
+    rationale: "Important but not urgent. Non-bottleneck improvements to pursue once the key constraints are addressed.",
     streams: [
       {
         name: "Sales Team",

@@ -1,15 +1,17 @@
 import { PageHeader, SectionTitle, HorizontalBar } from "@/components/DashboardWidgets";
 import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip,
-  BarChart, Bar, XAxis, YAxis, CartesianGrid
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from "recharts";
 
-const COLORS = [
+const CHART_COLORS = [
+  "hsl(228, 76%, 45%)",
+  "hsl(44, 96%, 54%)",
   "hsl(0, 0%, 15%)",
-  "hsl(0, 0%, 35%)",
+  "hsl(228, 60%, 65%)",
+  "hsl(44, 80%, 72%)",
   "hsl(0, 0%, 50%)",
-  "hsl(0, 0%, 65%)",
-  "hsl(0, 0%, 80%)",
+  "hsl(200, 50%, 55%)",
 ];
 
 const tamTimeBreakdown = [
@@ -20,11 +22,6 @@ const tamTimeBreakdown = [
   { name: "Integrations & API", value: 10 },
   { name: "Internal Coordination", value: 8 },
   { name: "Other", value: 6 },
-];
-
-const TAM_COLORS = [
-  "hsl(0,0%,10%)", "hsl(0,0%,25%)", "hsl(0,0%,38%)", "hsl(0,0%,48%)",
-  "hsl(0,0%,58%)", "hsl(0,0%,70%)", "hsl(0,0%,82%)",
 ];
 
 const ticketTrend = [
@@ -53,78 +50,64 @@ const trainingData = [
   { label: "Training Time = Troubleshooting", value: 35 },
 ];
 
-const integrationHours = [
-  { label: "Total Manual Integration Hours", value: 1044 },
+const painPointRadar = [
+  { area: "Admin Panel", severity: 95 },
+  { area: "Integrations", severity: 75 },
+  { area: "Support", severity: 70 },
+  { area: "Training", severity: 60 },
+  { area: "Knowledge", severity: 65 },
+  { area: "Tools", severity: 55 },
 ];
 
-const findings = [
+const recurringVsNewDetails = [
+  { metric: "Setup Days", recurring: 11, new_cust: 15 },
+  { metric: "Config Steps", recurring: 48, new_cust: 64 },
+  { metric: "Training Hours", recurring: 4, new_cust: 12 },
+  { metric: "Support Tickets", recurring: 12, new_cust: 22 },
+];
+
+const categoryCards = [
   {
     category: "Admin Panel",
-    items: [
-      "30–40% of TAM time consumed by admin panel setup and configuration",
-      "64 manual configuration steps per event",
-      "First-time event builds take 36% more effort than repeat events (15 vs 11 days)",
-      "~50% of features unused per event, but all shown in admin panel",
-      "No feature-based wizard — organisers see everything regardless of event type",
-      "Back-end config (registration, matchmaking, API) is complex with no guided flow",
-      "Front-end website builder relies on custom CSS/JS — TAMs use ChatGPT as workaround",
-    ],
-  },
-  {
-    category: "Recurring vs New Customers",
-    items: [
-      "New customer events average 15 days setup; recurring average 11 days",
-      "Recurring events still require significant manual reconfiguration",
-      "No smart defaults or intelligent cloning for repeat events",
-      "Customer history and preferences not systematically captured",
-      "TAMs manually re-discover returning customer requirements each cycle",
-    ],
-  },
-  {
-    category: "Support & Tickets",
-    items: [
-      "2025 average: 164 tickets/month (18.2 per event). Jan–Feb 2026: 254/month (28.2 per event)",
-      "40% of TAM support tickets map to admin panel issues",
-      "Top themes: Login/password reset (19.3%), exhibitor setup (15.9%), mobile app (8%), registration (4.5%), CSS (2.3%)",
-      "JSM adoption still increasing — ticket volume will rise before stabilising",
-    ],
+    stat: "30–40%",
+    statLabel: "of TAM time",
+    highlights: ["64 manual config steps per event", "~50% of features unused but all shown", "No feature-based wizard or guided flow"],
+    color: "hsl(228, 76%, 45%)",
   },
   {
     category: "Integrations",
-    items: [
-      "1,044 hours total in worklogs for manual integrations",
-      "No native integrations with common 3rd-party systems",
-      "TAMs individually build siloed API scripts",
-      "Self-funded tools (Cursor AI, Postman) used to bypass engineering queue",
-    ],
+    stat: "1,044h",
+    statLabel: "manual hours logged",
+    highlights: ["No native 3rd-party integrations", "TAMs build siloed API scripts", "Self-funded tools bypass eng queue"],
+    color: "hsl(44, 96%, 54%)",
   },
   {
-    category: "Onboarding & Training",
-    items: [
-      "72% of repeated questions addressable via self-serve content",
-      "30–40% of live training time = troubleshooting and re-explaining",
-      "100 of 300 needed how-to videos created (33%)",
-      "Training quality varies by TAM and region. No role-based learning paths",
-      "6 friction points, 5 time sinks, 8 recurring questions identified from Fathom analysis",
-    ],
+    category: "Support & Tickets",
+    stat: "254/mo",
+    statLabel: "Jan–Feb 2026",
+    highlights: ["Up from 164/mo in 2025", "40% trace to admin panel issues", "JSM adoption still increasing"],
+    color: "hsl(228, 60%, 65%)",
   },
   {
     category: "Engineering",
-    items: [
-      "400–500 hrs/month lost due to missing Team field on Jira tasks",
-      "126 tasks without Team field; 650.48h of non-attributed time",
-      "Mobile team: 44% bug time in Jan 2026 (healthy benchmark = 30%)",
-      "178 ghost bugs from 2022–2024 still open in backlog",
-    ],
+    stat: "400–500h",
+    statLabel: "lost monthly",
+    highlights: ["Missing Team field on Jira tasks", "178 ghost bugs from 2022–2024", "44% mobile bug time (target 30%)"],
+    color: "hsl(0, 0%, 15%)",
+  },
+  {
+    category: "Training & Knowledge",
+    stat: "72%",
+    statLabel: "self-serve addressable",
+    highlights: ["Only 100/300 videos created", "30–40% training = troubleshooting", "No role-based learning paths"],
+    color: "hsl(200, 50%, 55%)",
   },
   {
     category: "Knowledge & Tools",
-    items: [
-      "Customer history lives in TAMs' heads, not in systems",
-      "5–7 different tools per TAM with no unified view",
-      "TAMs self-teach API troubleshooting skills",
-      "Returning customer context lost when TAMs change",
-    ],
+    stat: "5–7",
+    statLabel: "tools per TAM",
+    highlights: ["Customer history in TAMs' heads", "Context lost when TAMs change", "No unified view across tools"],
+    color: "hsl(44, 80%, 72%)",
   },
 ];
 
@@ -147,7 +130,7 @@ const FindingsPage = () => {
                   <PieChart>
                     <Pie data={tamTimeBreakdown} cx="50%" cy="50%" innerRadius={38} outerRadius={68} dataKey="value" stroke="none">
                       {tamTimeBreakdown.map((_, i) => (
-                        <Cell key={i} fill={TAM_COLORS[i]} />
+                        <Cell key={i} fill={CHART_COLORS[i]} />
                       ))}
                     </Pie>
                     <Tooltip formatter={(v: number) => `${v}%`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
@@ -157,7 +140,7 @@ const FindingsPage = () => {
               <div className="space-y-1.5 flex-1">
                 {tamTimeBreakdown.map((t, i) => (
                   <div key={t.name} className="flex items-center gap-2 text-xs">
-                    <span className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ background: TAM_COLORS[i] }} />
+                    <span className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ background: CHART_COLORS[i] }} />
                     <span className="text-foreground font-medium flex-1">{t.name}</span>
                     <span className="font-mono text-muted-foreground">{t.value}%</span>
                   </div>
@@ -177,7 +160,7 @@ const FindingsPage = () => {
                   <XAxis dataKey="period" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="tickets" fill="hsl(0,0%,15%)" radius={[4, 4, 0, 0]} name="Tickets/Month" />
+                  <Bar dataKey="tickets" fill="hsl(228, 76%, 45%)" radius={[4, 4, 0, 0]} name="Tickets/Month" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -186,7 +169,45 @@ const FindingsPage = () => {
         </div>
       </div>
 
-      {/* Ticket Themes + Event Setup Comparison */}
+      {/* Pain Point Radar + Recurring vs New Comparison */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div>
+          <SectionTitle>Pain Point Severity by Area</SectionTitle>
+          <div className="section-card p-6">
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <RadarChart data={painPointRadar}>
+                  <PolarGrid stroke="hsl(0,0%,85%)" />
+                  <PolarAngleAxis dataKey="area" tick={{ fontSize: 10 }} />
+                  <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 9 }} />
+                  <Radar name="Severity" dataKey="severity" stroke="hsl(228, 76%, 45%)" fill="hsl(228, 76%, 45%)" fillOpacity={0.2} strokeWidth={2} />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <SectionTitle>Recurring vs New Customer Comparison</SectionTitle>
+          <div className="section-card p-6">
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={recurringVsNewDetails} barCategoryGap="25%">
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(0,0%,91%)" />
+                  <XAxis dataKey="metric" tick={{ fontSize: 10 }} />
+                  <YAxis tick={{ fontSize: 10 }} />
+                  <Tooltip contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
+                  <Bar dataKey="recurring" fill="hsl(228, 76%, 45%)" radius={[4, 4, 0, 0]} name="Recurring" />
+                  <Bar dataKey="new_cust" fill="hsl(44, 96%, 54%)" radius={[4, 4, 0, 0]} name="New Customer" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-2">New customers require 36% more effort across all metrics. Recurring events still lack smart defaults.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Ticket Themes + Training */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         <div>
           <SectionTitle>TAM Support Tickets by Category</SectionTitle>
@@ -198,70 +219,86 @@ const FindingsPage = () => {
                   <XAxis type="number" tick={{ fontSize: 10 }} unit="%" />
                   <YAxis type="category" dataKey="name" tick={{ fontSize: 10 }} width={130} />
                   <Tooltip formatter={(v: number) => `${v}%`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="pct" fill="hsl(0,0%,30%)" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="pct" fill="hsl(44, 96%, 54%)" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
         </div>
 
-        <div>
-          <SectionTitle>Event Setup: New vs Recurring Customers</SectionTitle>
-          <div className="section-card p-6">
-            <div className="h-40">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={eventSetup} barCategoryGap="40%">
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(0,0%,91%)" />
-                  <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-                  <YAxis tick={{ fontSize: 11 }} label={{ value: "Days", angle: -90, position: "insideLeft", fontSize: 11 }} />
-                  <Tooltip formatter={(v: number) => `${v} days`} contentStyle={{ fontSize: 11, borderRadius: 6, border: '1px solid hsl(0,0%,91%)' }} />
-                  <Bar dataKey="days" fill="hsl(0,0%,20%)" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <p className="text-[10px] text-muted-foreground mt-3">36% more effort for first-time events. Recurring events still lack smart defaults or intelligent cloning.</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Training & Integration metrics */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         <div>
           <SectionTitle>Training & Self-serve Readiness</SectionTitle>
           <div className="section-card p-6 space-y-3">
             {trainingData.map((d) => (
               <HorizontalBar key={d.label} label={d.label} value={d.value} />
             ))}
-          </div>
-        </div>
-        <div>
-          <SectionTitle>Integration Overhead</SectionTitle>
-          <div className="section-card p-6">
-            <div className="text-center py-4">
-              <p className="stat-value">1,044h</p>
-              <p className="text-xs text-muted-foreground mt-2">Total hours logged for manual integrations</p>
-              <p className="text-[10px] text-muted-foreground mt-1">No native 3rd-party integrations. TAMs build siloed API scripts individually.</p>
+            <div className="pt-3 border-t border-border mt-3">
+              <div className="flex items-center gap-3">
+                <div className="text-center flex-1">
+                  <p className="text-2xl font-bold text-foreground">100</p>
+                  <p className="text-[10px] text-muted-foreground">Videos created</p>
+                </div>
+                <div className="text-center flex-1">
+                  <p className="text-2xl font-bold text-muted-foreground">300</p>
+                  <p className="text-[10px] text-muted-foreground">Videos needed</p>
+                </div>
+                <div className="text-center flex-1">
+                  <p className="text-2xl font-bold" style={{ color: "hsl(228, 76%, 45%)" }}>33%</p>
+                  <p className="text-[10px] text-muted-foreground">Coverage</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Detailed Findings by Category */}
-      <SectionTitle>Detailed Findings by Category</SectionTitle>
-      <div className="space-y-4">
-        {findings.map((section) => (
-          <div key={section.category} className="section-card p-6">
-            <h3 className="text-sm font-bold text-foreground mb-3">{section.category}</h3>
-            <ul className="space-y-2">
-              {section.items.map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed">
-                  <span className="w-1 h-1 rounded-full bg-foreground mt-1.5 shrink-0" />
-                  {item}
-                </li>
+      {/* Findings by Category — Visual Cards */}
+      <SectionTitle>Findings by Category</SectionTitle>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+        {categoryCards.map((cat) => (
+          <div key={cat.category} className="section-card p-5 border-l-4" style={{ borderLeftColor: cat.color }}>
+            <div className="flex items-start justify-between mb-3">
+              <h3 className="text-xs font-bold text-foreground">{cat.category}</h3>
+              <div className="text-right">
+                <p className="text-xl font-bold text-foreground leading-none">{cat.stat}</p>
+                <p className="text-[10px] text-muted-foreground">{cat.statLabel}</p>
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              {cat.highlights.map((h, i) => (
+                <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-1" style={{ background: cat.color }} />
+                  {h}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         ))}
+      </div>
+
+      {/* Integration Overhead */}
+      <SectionTitle>Integration Overhead</SectionTitle>
+      <div className="section-card p-6 mb-12">
+        <div className="flex items-center gap-8">
+          <div className="text-center">
+            <p className="text-4xl font-bold text-foreground">1,044h</p>
+            <p className="text-xs text-muted-foreground mt-1">Total hours in manual integrations</p>
+          </div>
+          <div className="flex-1 space-y-2">
+            <div className="flex items-center gap-3 text-xs">
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(228, 76%, 45%)" }} />
+              <span className="text-foreground font-medium flex-1">No native 3rd-party integrations</span>
+            </div>
+            <div className="flex items-center gap-3 text-xs">
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(44, 96%, 54%)" }} />
+              <span className="text-foreground font-medium flex-1">TAMs individually build siloed API scripts</span>
+            </div>
+            <div className="flex items-center gap-3 text-xs">
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "hsl(0, 0%, 50%)" }} />
+              <span className="text-foreground font-medium flex-1">Self-funded tools (Cursor AI, Postman) used to bypass engineering queue</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
