@@ -5,11 +5,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Index from "./pages/Index";
-import KeyResultsPage from "./pages/KeyResultsPage";
-import RoadmapPage from "./pages/RoadmapPage";
+import FindingsPage from "./pages/FindingsPage";
+import BottlenecksPage from "./pages/BottlenecksPage";
+import ActionPlanPage from "./pages/ActionPlanPage";
 import AutomationIdeasPage from "./pages/AutomationIdeasPage";
 import WorkaroundsPage from "./pages/WorkaroundsPage";
-import NotesPage from "./pages/NotesPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,11 +23,11 @@ const App = () => (
         <AppLayout>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/key-results" element={<KeyResultsPage />} />
-            <Route path="/roadmap" element={<RoadmapPage />} />
+            <Route path="/findings" element={<FindingsPage />} />
+            <Route path="/bottlenecks" element={<BottlenecksPage />} />
+            <Route path="/action-plan" element={<ActionPlanPage />} />
             <Route path="/automation-ideas" element={<AutomationIdeasPage />} />
             <Route path="/workarounds" element={<WorkaroundsPage />} />
-            <Route path="/notes" element={<NotesPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AppLayout>
