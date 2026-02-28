@@ -18,7 +18,7 @@ const navItems = [
 
 const AppSidebar = () => {
   return (
-    <aside className="w-60 min-h-screen bg-sidebar border-r border-sidebar-border flex flex-col shrink-0">
+    <aside className="w-60 h-screen bg-sidebar border-r border-sidebar-border flex flex-col shrink-0 sticky top-0">
       <div className="px-5 py-6 border-b border-sidebar-border">
         <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-sidebar-foreground mb-1">
           OKR4
