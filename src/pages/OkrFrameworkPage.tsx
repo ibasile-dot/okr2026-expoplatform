@@ -25,7 +25,7 @@ const krData: KRData[] = [
   { department: "Engineering", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "42% of tasks are manual (deployment checks, config updates)" },
   { department: "Eng Management", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "20% of tasks are manual (sprint reporting, resource allocation)" },
   { department: "Sales", measurement: "Manual task volume", tool: "Survey/Meetings", result: "Confirmed 'very manual' — no baseline data yet" },
-  { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "Admin panel setup: 30-40%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" }],
+  { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "Admin panel setup: 30-40%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" }],
 
   connectedFindings: [
   { label: "Bottleneck: Admin Panel Setup", link: "/findings" },
@@ -149,7 +149,7 @@ const OkrFrameworkPage = () => {
 
             {/* Connected findings */}
             <div className="px-5 py-3 bg-secondary/20 border-t border-border flex flex-wrap gap-2 items-center">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mr-1">A80% of tasks are manual (invoicing, reconciliation, reporting)</span>
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mr-1">S80% of tasks are manual (invoicing, reconciliation, reporting)</span>
               {kr.connectedFindings.map((cf, i) =>
             <Link
               key={i}
