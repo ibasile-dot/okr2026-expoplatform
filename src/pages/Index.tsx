@@ -51,7 +51,7 @@ const keyFindings = [
   { label: "Support Trend", text: "JSM tickets trending upward: 164/mo in 2025, rising to 254/mo in Jan–Feb 2026. 40% of TAM support tickets trace back to admin panel issues." },
   { label: "Knowledge Loss", text: "Customer history lives in TAMs' heads, not systems. 5–7 tools per TAM with no unified view. Returning customer context lost when TAMs change." },
   { label: "Training Gaps", text: "72% of repeated questions addressable via self-serve content. 30–40% of live training = troubleshooting. Only 100 of 300 needed how-to videos created." },
-  { label: "Unused Features", text: "~50% of admin panel features unused per event, but all shown. No feature-based wizard — organisers see everything regardless of event type." },
+  { label: "Unused Features", text: "50% of admin panel features unused per event, but all shown. No feature-based wizard — organisers see everything regardless of event type." },
 ];
 
 const Index = () => {
