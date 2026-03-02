@@ -38,7 +38,7 @@ const krData: KRData[] = [
     target: "≥40% reduction in organiser effort",
     icon: <Target className="w-5 h-5" />,
     rows: [
-      { department: "TAM / Training", measurement: "Training session duration (pre vs post video library)", tool: "Fathom", result: "Complex events: 15–23 hrs, Medium: 12–18 hrs, Small: 6–9 hrs total training time" },
+      { department: "TAM / Training", measurement: "Training session duration (pre vs post video library)", tool: "Fathom", result: "Complex (FBF, MEX)= 5-8hrs recorded training + 10-15hrs ad Hoc emails = 15-23hrs Total\nMedium (SNAC, Hyve)= 2-3hrs recorded training + 10-15hrs ad Hoc emails = 12-18hrs Total\nSmall (DLG, FESPA)= 45mins recorded training + 5-8hrs ad Hoc emails = 6-9hrs Total" },
       { department: "Product", measurement: "Organiser time-on-task in admin panel", tool: "Admin Panel", result: "Planned for early 2027 in Product Roadmap" },
       { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Manual", result: "1 hr 15 min with limited results (26 Feb test)" },
     ],
