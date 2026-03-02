@@ -1,5 +1,5 @@
 import { PageHeader, SectionTitle } from "@/components/DashboardWidgets";
-import { Target, TrendingDown, Headphones, UserCheck, Wrench, ArrowRight } from "lucide-react";
+import { Target, TrendingDown, Headphones, UserCheck, Wrench, ArrowRight, Info } from "lucide-react";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,7 @@ interface KRData {
   icon: ReactNode;
   rows: {department: string;measurement: string;tool: string;result: string;}[];
   connectedFindings: {label: string;link: string;}[];
+  note?: string;
 }
 
 const krData: KRData[] = [
@@ -58,7 +59,9 @@ const krData: KRData[] = [
 
   connectedFindings: [
   { label: "Finding: Support Ticket Trends", link: "/findings" },
-  { label: "Action Plan: Support Reduction", link: "/action-plan" }]
+  { label: "Action Plan: Support Reduction", link: "/action-plan" }],
+
+  note: "Considering we are still enforcing the adoption of JSM desk, it is likely the tickets will increase in 2026 rather than decrease (example Jan & Feb 2026 vs the 2025 average)"
 
 },
 {
@@ -125,27 +128,41 @@ const OkrFrameworkPage = () => {
 
             {/* Table */}
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs table-fixed">
+                <colgroup>
+                  <col className="w-[14%]" />
+                  <col className="w-[28%]" />
+                  <col className="w-[10%]" />
+                  <col className="w-[48%]" />
+                </colgroup>
                 <thead>
                   <tr className="border-b border-border bg-muted/30">
-                    <th className="text-left p-3 font-semibold text-muted-foreground w-[120px]">Department</th>
+                    <th className="text-left p-3 font-semibold text-muted-foreground">Department</th>
                     <th className="text-left p-3 font-semibold text-muted-foreground">Measurement</th>
-                    <th className="text-left p-3 font-semibold text-muted-foreground w-[100px]">Tool</th>
+                    <th className="text-left p-3 font-semibold text-muted-foreground">Tool</th>
                     <th className="text-left p-3 font-semibold text-muted-foreground">Q1 Result - Phase 1</th>
                   </tr>
                 </thead>
                 <tbody>
                   {kr.rows.map((r, i) =>
                 <tr key={i} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                      <td className="p-3 font-semibold text-foreground">{r.department}</td>
-                      <td className="p-3 text-muted-foreground">{r.measurement}</td>
-                      <td className="p-3"><span className="tag">{r.tool}</span></td>
-                      <td className="p-3 text-foreground whitespace-pre-line">{r.result}</td>
+                      <td className="p-3 font-semibold text-foreground align-top">{r.department}</td>
+                      <td className="p-3 text-muted-foreground align-top">{r.measurement}</td>
+                      <td className="p-3 align-top"><span className="tag">{r.tool}</span></td>
+                      <td className="p-3 text-foreground whitespace-pre-line align-top">{r.result}</td>
                     </tr>
                 )}
                 </tbody>
               </table>
             </div>
+
+            {/* Note */}
+            {kr.note && (
+              <div className="px-5 py-3 bg-accent/10 border-t border-border flex items-start gap-2">
+                <Info className="w-3.5 h-3.5 text-accent-foreground/60 shrink-0 mt-0.5" />
+                <p className="text-xs text-accent-foreground/80 italic">{kr.note}</p>
+              </div>
+            )}
 
             {/* Connected findings */}
             <div className="px-5 py-3 bg-secondary/20 border-t border-border flex flex-wrap gap-2 items-center">
@@ -154,8 +171,8 @@ const OkrFrameworkPage = () => {
             <Link
               key={i}
               to={cf.link}
-              className="inline-flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 transition-colors">
-              
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-[11px] font-medium text-primary hover:bg-primary/20 transition-colors">
+            
                   {cf.label}
                   <ArrowRight className="w-3 h-3" />
                 </Link>
