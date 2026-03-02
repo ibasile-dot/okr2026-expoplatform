@@ -20,13 +20,13 @@ const krData: KRData[] = [
   target: "≥50% reduction per department",
   icon: <TrendingDown className="w-5 h-5" />,
   rows: [
-  { department: "Finance", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "80% of tasks are manual (invoicing, reconciliation, reporting)" },
-  { department: "HR", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "77% of tasks are manual (onboarding docs, leave tracking, payroll prep)" },
-  { department: "Marketing", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "66% of tasks are manual (campaign setup, lead list building)" },
-  { department: "Engineering", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "42% of tasks are manual (deployment checks, config updates)" },
-  { department: "Eng Management", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "20% of tasks are manual (sprint reporting, resource allocation)" },
+  { department: "Finance", measurement: "Hours/week on top manual tasks", tool: "Survey/ Meetings", result: "80% of tasks are manual (invoicing, reconciliation, reporting)" },
+  { department: "HR", measurement: "Hours/week on top manual tasks", tool: "Survey/ Meetings", result: "77% of tasks are manual (onboarding docs, leave tracking, payroll prep)" },
+  { department: "Marketing", measurement: "Hours/week on top manual tasks", tool: "Survey/ Meetings", result: "66% of tasks are manual (campaign setup, lead list building)" },
+  { department: "Engineering", measurement: "Hours/week on top manual tasks", tool: "Survey/ Meetings", result: "42% of tasks are manual (deployment checks, config updates)" },
+  { department: "Eng Management", measurement: "Hours/week on top manual tasks", tool: "Survey/ Meetings", result: "20% of tasks are manual (sprint reporting, resource allocation)" },
   { department: "Sales", measurement: "Manual task volume", tool: "Survey/Meetings", result: "Confirmed 'very manual' — no baseline data yet" },
-  { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "Admin panel setup: 30-40%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" }],
+  { department: "TAM", measurement: "Time per client/event", tool: "Survey/ Meetings/ Jira", result: "Admin panel setup: 30-40%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" }],
 
   connectedFindings: [
   { label: "Automation Ideas", link: "/automation-ideas" }]
@@ -40,7 +40,7 @@ const krData: KRData[] = [
   rows: [
   { department: "TAM / Training", measurement: "Training session duration (pre vs post video library)", tool: "Fathom", result: "Complex (FBF, MEX)= 5-8hrs recorded training + 10-15hrs ad Hoc emails -> 15-23hrs Total\nMedium (SNAC, Hyve)= 2-3hrs recorded training + 10-15hrs ad Hoc emails -> 12-18hrs Total\nSmall (DLG, FESPA)= 45mins recorded training + 5-8hrs ad Hoc emails -> 6-9hrs Total" },
   { department: "Product", measurement: "How long organisers spend on specific tasks on the admin panel", tool: "Admin Panel", result: "Feature planned for early 2027 in Product Roadmap" },
-  { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Manual", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
+  { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Admin panel (Manual)", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
 
   connectedFindings: []
 
@@ -51,8 +51,8 @@ const krData: KRData[] = [
   target: "≥30% reduction in support tickets",
   icon: <Headphones className="w-5 h-5" />,
   rows: [
-  { department: "Support", measurement: "Total real tickets/month (excl. spam)", tool: "JSM", result: "2025 avg: 164/mo\nJan–Feb 2026: 254/mo" },
-  { department: "Support", measurement: "Tickets per event", tool: "JSM", result: "2025: 18.2/event\nJan–Feb 2026: 28.2/event" }],
+  { department: "Support", measurement: "Total real tickets/month (excl. spam)", tool: "Jira Service Management Desk", result: "2025 avg: 164/mo\nJan–Feb 2026: 254/mo" },
+  { department: "Support", measurement: "Tickets per event", tool: "Jira Service Management Desk", result: "2025: 18.2/event\nJan–Feb 2026: 28.2/event" }],
 
   connectedFindings: [],
   note: "Considering we are still enforcing the adoption of JSM Desk, it is likely the tickets will increase in 2026 rather than decrease (example Jan & Feb 2026 vs the 2025 average)"
@@ -66,7 +66,7 @@ const krData: KRData[] = [
   rows: [
   { department: "TAM / Training", measurement: "Onboarding friction patterns (Fathom call analysis)", tool: "Fathom", result: "6 friction points, 5 time sinks, 8 recurring questions — #1 issue: platform capability confusion" },
   { department: "TAM / Training", measurement: "Training duration (pre vs post video library)", tool: "Fathom", result: "Complex: 15–23 hrs, Medium: 12–18 hrs, Small: 6–9 hrs" },
-  { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Manual", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
+  { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Admin panel (Manual)", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
 
   connectedFindings: []
 
@@ -79,7 +79,7 @@ const krData: KRData[] = [
   rows: [
   { department: "Engineering", measurement: "Worklogs categorised by team (enforce Team field)", tool: "Jira", result: "126 tasks missing Team field; 650 hrs of non-attributed time" },
   { department: "Engineering", measurement: "Bug vs non-bug time ratio per team", tool: "Jira", result: "Mobile team: 44% bug time (Jan 2026) — healthy benchmark is ≤30%" },
-  { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data", result: "Report pending from Yuriy" }],
+  { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data", result: "Full report pending from Yuriy" }],
 
   connectedFindings: []
 
