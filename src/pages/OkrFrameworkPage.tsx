@@ -25,7 +25,7 @@ const krData: KRData[] = [
       { department: "Engineering", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "~42% of tasks are manual (deployment checks, config updates)" },
       { department: "Eng Management", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "~20% of tasks are manual (sprint reporting, resource allocation)" },
       { department: "Sales", measurement: "Manual task volume", tool: "Survey", result: "Confirmed 'very manual' — no baseline data yet" },
-      { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "-Admin panel setup & management (inc. app submission, website builder and CSS, translations, etc.): 30-40% (600-800 hrs/yr per TAM)\n-Client training & comms (WhatsApp, email, Teams, Azure): 15-20%\n-Troubleshooting & bug reporting (inc. workarounds): 10-15%\n-Registration & matchmaking setup: 10-15%\n-Planning & meetings (fragmented tools & duplicated coordination effort, analytics, reporting and manual data work): 10%\n-Knowledge siloing" },
+      { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "Admin panel setup: 30-40%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" },
     ],
     connectedFindings: [
       { label: "Bottleneck: Admin Panel Setup", link: "/findings" },
