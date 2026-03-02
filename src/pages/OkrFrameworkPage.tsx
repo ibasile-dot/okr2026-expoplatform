@@ -1,5 +1,5 @@
 import { PageHeader, SectionTitle } from "@/components/DashboardWidgets";
-import { Target, TrendingDown, Headphones, UserCheck, Wrench, ArrowRight, Info } from "lucide-react";
+import { Target, TrendingDown, Headphones, UserCheck, Wrench, ArrowRight } from "lucide-react";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,6 @@ interface KRData {
   icon: ReactNode;
   rows: {department: string;measurement: string;tool: string;result: string;}[];
   connectedFindings: {label: string;link: string;}[];
-  note?: string;
 }
 
 const krData: KRData[] = [
@@ -25,8 +24,8 @@ const krData: KRData[] = [
   { department: "Marketing", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "66% of tasks are manual (campaign setup, lead list building)" },
   { department: "Engineering", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "42% of tasks are manual (deployment checks, config updates)" },
   { department: "Eng Management", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "20% of tasks are manual (sprint reporting, resource allocation)" },
-  { department: "Sales", measurement: "Manual task volume", tool: "Survey/ Meetings", result: "Confirmed 'very manual' — no baseline data yet" },
-  { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "Client training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" }],
+  { department: "Sales", measurement: "Manual task volume", tool: "Survey/Meetings", result: "Confirmed 'very manual' — no baseline data yet" },
+  { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "Admin panel setup: 30-40%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" }],
 
   connectedFindings: [
   { label: "Bottleneck: Admin Panel Setup", link: "/findings" },
@@ -41,7 +40,7 @@ const krData: KRData[] = [
   rows: [
   { department: "TAM / Training", measurement: "Training session duration (pre vs post video library)", tool: "Fathom", result: "Complex (FBF, MEX)= 5-8hrs recorded training + 10-15hrs ad Hoc emails -> 15-23hrs Total\nMedium (SNAC, Hyve)= 2-3hrs recorded training + 10-15hrs ad Hoc emails -> 12-18hrs Total\nSmall (DLG, FESPA)= 45mins recorded training + 5-8hrs ad Hoc emails -> 6-9hrs Total" },
   { department: "Product", measurement: "How long organisers spend on specific tasks on the admin panel", tool: "Admin Panel", result: "Feature planned for early 2027 in Product Roadmap" },
-  { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Manual", result: "Ongoing: 1 hr 15 min with limited results (26 Feb test)" }],
+  { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Manual", result: "1 hr 15 min with limited results (26 Feb test)" }],
 
   connectedFindings: [
   { label: "Bottleneck: Organiser Onboarding", link: "/findings" },
@@ -59,9 +58,7 @@ const krData: KRData[] = [
 
   connectedFindings: [
   { label: "Finding: Support Ticket Trends", link: "/findings" },
-  { label: "Action Plan: Support Reduction", link: "/action-plan" }],
-
-  note: "Considering we are still enforcing the adoption of JSM desk, it is likely the tickets will increase in 2026 rather than decrease (example Jan & Feb 2026 vs the 2025 average)"
+  { label: "Action Plan: Support Reduction", link: "/action-plan" }]
 
 },
 {
@@ -70,9 +67,9 @@ const krData: KRData[] = [
   target: "≥35% reduction in onboarding time",
   icon: <UserCheck className="w-5 h-5" />,
   rows: [
-  { department: "TAM / Training", measurement: "Onboarding friction patterns (Fathom call analysis)", tool: "Fathom", result: "Baseline result: 6 friction points identified, 5 time sink categories, 8 recurring questions, 5 negative sentiment themes\nTop friction finding: Platform capability confusion is the #1 issue (Hyve example), followed by integration challenges and documentation gaps\nTop time sink finding: 30–40% of live training time is spent on troubleshooting and re-explaining — content a video library could cover" },
-  { department: "TAM / Training", measurement: "Training duration (pre vs post video library)", tool: "Fathom", result: "Complex (FBF, MEX)= 5-8hrs recorded training + 10-15hrs ad Hoc emails -> 15-23hrs Total\nMedium (SNAC, Hyve)= 2-3hrs recorded training + 10-15hrs ad Hoc emails -> 12-18hrs Total\nSmall (DLG, FESPA)= 45mins recorded training + 5-8hrs ad Hoc emails -> 6-9hrs Total" },
-  { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Manual", result: "Ongoing: 1 hr 15 min with limited results (26 Feb test)" }],
+  { department: "TAM / Training", measurement: "Onboarding friction patterns (Fathom call analysis)", tool: "Fathom", result: "6 friction points, 5 time sinks, 8 recurring questions — #1 issue: platform capability confusion" },
+  { department: "TAM / Training", measurement: "Training duration (pre vs post video library)", tool: "Fathom", result: "Complex: 15–23 hrs, Medium: 12–18 hrs, Small: 6–9 hrs" },
+  { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Manual", result: "In progress — validates structural vs documentation issues" }],
 
   connectedFindings: [
   { label: "Finding: Onboarding Friction", link: "/findings" },
@@ -85,9 +82,9 @@ const krData: KRData[] = [
   target: "≥25% reduction in maintenance time",
   icon: <Wrench className="w-5 h-5" />,
   rows: [
-  { department: "Engineering", measurement: "Worklogs categorised by team (enforce Team field)", tool: "Jira", result: "Full report pending from Yuriy\n126 tasks missing Team field; 650 hrs of non-attributed time" },
+  { department: "Engineering", measurement: "Worklogs categorised by team (enforce Team field)", tool: "Jira", result: "126 tasks missing Team field; 650 hrs of non-attributed time" },
   { department: "Engineering", measurement: "Bug vs non-bug time ratio per team", tool: "Jira", result: "Mobile team: 44% bug time (Jan 2026) — healthy benchmark is ≤30%" },
-  { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data", result: "Full report pending from Yuriy" }],
+  { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data", result: "Report pending from Yuriy" }],
 
   connectedFindings: [
   { label: "Finding: Engineering Time Allocation", link: "/findings" },
@@ -128,51 +125,37 @@ const OkrFrameworkPage = () => {
 
             {/* Table */}
             <div className="overflow-x-auto">
-              <table className="w-full text-xs table-fixed">
-                <colgroup>
-                  <col className="w-[14%]" />
-                  <col className="w-[28%]" />
-                  <col className="w-[10%]" />
-                  <col className="w-[48%]" />
-                </colgroup>
+              <table className="w-full text-xs">
                 <thead>
                   <tr className="border-b border-border bg-muted/30">
-                    <th className="text-left p-3 font-semibold text-muted-foreground">Department</th>
+                    <th className="text-left p-3 font-semibold text-muted-foreground w-[120px]">Department</th>
                     <th className="text-left p-3 font-semibold text-muted-foreground">Measurement</th>
-                    <th className="text-left p-3 font-semibold text-muted-foreground">Tool</th>
+                    <th className="text-left p-3 font-semibold text-muted-foreground w-[100px]">Tool</th>
                     <th className="text-left p-3 font-semibold text-muted-foreground">Q1 Result - Phase 1</th>
                   </tr>
                 </thead>
                 <tbody>
                   {kr.rows.map((r, i) =>
                 <tr key={i} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                      <td className="p-3 font-semibold text-foreground align-top">{r.department}</td>
-                      <td className="p-3 text-muted-foreground align-top">{r.measurement}</td>
-                      <td className="p-3 align-top"><span className="tag">{r.tool}</span></td>
-                      <td className="p-3 text-foreground whitespace-pre-line align-top">{r.result}</td>
+                      <td className="p-3 font-semibold text-foreground">{r.department}</td>
+                      <td className="p-3 text-muted-foreground">{r.measurement}</td>
+                      <td className="p-3"><span className="tag">{r.tool}</span></td>
+                      <td className="p-3 text-foreground whitespace-pre-line">{r.result}</td>
                     </tr>
                 )}
                 </tbody>
               </table>
             </div>
 
-            {/* Note */}
-            {kr.note && (
-              <div className="px-5 py-3 bg-accent/10 border-t border-border flex items-start gap-2">
-                <Info className="w-3.5 h-3.5 text-accent-foreground/60 shrink-0 mt-0.5" />
-                <p className="text-xs text-accent-foreground/80 italic">{kr.note}</p>
-              </div>
-            )}
-
             {/* Connected findings */}
             <div className="px-5 py-3 bg-secondary/20 border-t border-border flex flex-wrap gap-2 items-center">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mr-1">Connected:</span>
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mr-1">A80% of tasks are manual (invoicing, reconciliation, reporting)</span>
               {kr.connectedFindings.map((cf, i) =>
             <Link
               key={i}
               to={cf.link}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-[11px] font-medium text-primary hover:bg-primary/20 transition-colors">
-            
+              className="inline-flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 transition-colors">
+              
                   {cf.label}
                   <ArrowRight className="w-3 h-3" />
                 </Link>
