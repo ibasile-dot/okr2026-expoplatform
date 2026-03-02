@@ -125,12 +125,18 @@ const OkrFrameworkPage = () => {
 
             {/* Table */}
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs table-fixed">
+                <colgroup>
+                  <col className="w-[14%]" />
+                  <col className="w-[26%]" />
+                  <col className="w-[12%]" />
+                  <col className="w-[48%]" />
+                </colgroup>
                 <thead>
                   <tr className="border-b border-border bg-muted/30">
-                    <th className="text-left p-3 font-semibold text-muted-foreground w-[120px]">Department</th>
+                    <th className="text-left p-3 font-semibold text-muted-foreground">Department</th>
                     <th className="text-left p-3 font-semibold text-muted-foreground">Measurement</th>
-                    <th className="text-left p-3 font-semibold text-muted-foreground w-[100px]">Tool</th>
+                    <th className="text-left p-3 font-semibold text-muted-foreground">Tool</th>
                     <th className="text-left p-3 font-semibold text-muted-foreground">Q1 Result - Phase 1</th>
                   </tr>
                 </thead>
