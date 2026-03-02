@@ -53,8 +53,8 @@ const krData: KRData[] = [
     target: "≥30% reduction in support tickets",
     icon: <Headphones className="w-5 h-5" />,
     rows: [
-      { department: "Support", measurement: "Total real tickets/month (excl. spam)", tool: "JSM", result: "2025 avg: 164/mo → Jan–Feb 2026: 254/mo (increase due to JSM adoption enforcement)" },
-      { department: "Support", measurement: "Tickets per event", tool: "JSM", result: "2025: 18.2/event → Jan–Feb 2026: 28.2/event" },
+      { department: "Support", measurement: "Total real tickets/month (excl. spam)", tool: "JSM", result: "2025 avg: 164/mo\nJan–Feb 2026: 254/mo" },
+      { department: "Support", measurement: "Tickets per event", tool: "JSM", result: "2025: 18.2/event\nJan–Feb 2026: 28.2/event" },
     ],
     connectedFindings: [
       { label: "Finding: Support Ticket Trends", link: "/findings" },
