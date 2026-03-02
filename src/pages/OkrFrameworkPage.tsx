@@ -10,6 +10,7 @@ interface KRData {
   icon: ReactNode;
   rows: {department: string;measurement: string;tool: string;result: string;}[];
   connectedFindings: {label: string;link: string;}[];
+  note?: string;
 }
 
 const krData: KRData[] = [
@@ -28,7 +29,6 @@ const krData: KRData[] = [
   { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "Admin panel setup: 30-40%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" }],
 
   connectedFindings: [
-  { label: "Bottleneck: Admin Panel Setup", link: "/findings" },
   { label: "Automation Ideas", link: "/automation-ideas" }]
 
 },
@@ -40,11 +40,9 @@ const krData: KRData[] = [
   rows: [
   { department: "TAM / Training", measurement: "Training session duration (pre vs post video library)", tool: "Fathom", result: "Complex (FBF, MEX)= 5-8hrs recorded training + 10-15hrs ad Hoc emails -> 15-23hrs Total\nMedium (SNAC, Hyve)= 2-3hrs recorded training + 10-15hrs ad Hoc emails -> 12-18hrs Total\nSmall (DLG, FESPA)= 45mins recorded training + 5-8hrs ad Hoc emails -> 6-9hrs Total" },
   { department: "Product", measurement: "How long organisers spend on specific tasks on the admin panel", tool: "Admin Panel", result: "Feature planned for early 2027 in Product Roadmap" },
-  { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Manual", result: "1 hr 15 min with limited results (26 Feb test)" }],
+  { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Manual", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
 
-  connectedFindings: [
-  { label: "Bottleneck: Organiser Onboarding", link: "/findings" },
-  { label: "Workaround Catalogue", link: "/workarounds" }]
+  connectedFindings: []
 
 },
 {
@@ -56,9 +54,8 @@ const krData: KRData[] = [
   { department: "Support", measurement: "Total real tickets/month (excl. spam)", tool: "JSM", result: "2025 avg: 164/mo\nJan–Feb 2026: 254/mo" },
   { department: "Support", measurement: "Tickets per event", tool: "JSM", result: "2025: 18.2/event\nJan–Feb 2026: 28.2/event" }],
 
-  connectedFindings: [
-  { label: "Finding: Support Ticket Trends", link: "/findings" },
-  { label: "Action Plan: Support Reduction", link: "/action-plan" }]
+  connectedFindings: [],
+  note: "Considering we are still enforcing the adoption of JSM Desk, it is likely the tickets will increase in 2026 rather than decrease (example Jan & Feb 2026 vs the 2025 average)"
 
 },
 {
@@ -69,11 +66,9 @@ const krData: KRData[] = [
   rows: [
   { department: "TAM / Training", measurement: "Onboarding friction patterns (Fathom call analysis)", tool: "Fathom", result: "6 friction points, 5 time sinks, 8 recurring questions — #1 issue: platform capability confusion" },
   { department: "TAM / Training", measurement: "Training duration (pre vs post video library)", tool: "Fathom", result: "Complex: 15–23 hrs, Medium: 12–18 hrs, Small: 6–9 hrs" },
-  { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Manual", result: "In progress — validates structural vs documentation issues" }],
+  { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Manual", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
 
-  connectedFindings: [
-  { label: "Finding: Onboarding Friction", link: "/findings" },
-  { label: "Action Plan: Self-Serve Content", link: "/action-plan" }]
+  connectedFindings: []
 
 },
 {
@@ -86,9 +81,7 @@ const krData: KRData[] = [
   { department: "Engineering", measurement: "Bug vs non-bug time ratio per team", tool: "Jira", result: "Mobile team: 44% bug time (Jan 2026) — healthy benchmark is ≤30%" },
   { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data", result: "Report pending from Yuriy" }],
 
-  connectedFindings: [
-  { label: "Finding: Engineering Time Allocation", link: "/findings" },
-  { label: "Automation Ideas", link: "/automation-ideas" }]
+  connectedFindings: []
 
 }];
 
@@ -153,20 +146,23 @@ const OkrFrameworkPage = () => {
               </table>
             </div>
 
-            {/* Connected findings */}
+            {/* Connected findings / note */}
+            {(kr.connectedFindings.length > 0 || kr.note) && (
             <div className="px-5 py-3 bg-secondary/20 border-t border-border flex flex-wrap gap-2 items-center">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mr-1">S80% of tasks are manual (invoicing, reconciliation, reporting)</span>
+              {kr.note && (
+                <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">{kr.note}</p>
+              )}
               {kr.connectedFindings.map((cf, i) =>
-            <Link
-              key={i}
-              to={cf.link}
-              className="inline-flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 transition-colors">
-              
+                <Link
+                  key={i}
+                  to={cf.link}
+                  className="inline-flex items-center gap-1 text-[11px] font-medium text-primary hover:text-primary/80 transition-colors">
                   {cf.label}
                   <ArrowRight className="w-3 h-3" />
                 </Link>
-            )}
+              )}
             </div>
+            )}
           </div>
         )}
       </div>
