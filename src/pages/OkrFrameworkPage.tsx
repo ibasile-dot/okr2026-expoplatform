@@ -40,7 +40,7 @@ const krData: KRData[] = [
   rows: [
   { department: "TAM / Training", measurement: "Training session duration (pre vs post video library)", tool: "Fathom", result: "Complex (FBF, MEX)= 5-8hrs recorded training + 10-15hrs ad Hoc emails -> 15-23hrs Total\nMedium (SNAC, Hyve)= 2-3hrs recorded training + 10-15hrs ad Hoc emails -> 12-18hrs Total\nSmall (DLG, FESPA)= 45mins recorded training + 5-8hrs ad Hoc emails -> 6-9hrs Total" },
   { department: "Product", measurement: "How long organisers spend on specific tasks on the admin panel", tool: "Admin Panel", result: "Feature planned for early 2027 in Product Roadmap" },
-  { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Manual", result: "1 hr 15 min with limited results (26 Feb test)" }],
+  { department: "TAM", measurement: "Admin panel proxy baseline test (Ilaria)", tool: "Manual", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
 
   connectedFindings: [
   { label: "Bottleneck: Organiser Onboarding", link: "/findings" },
@@ -67,9 +67,9 @@ const krData: KRData[] = [
   target: "≥35% reduction in onboarding time",
   icon: <UserCheck className="w-5 h-5" />,
   rows: [
-  { department: "TAM / Training", measurement: "Onboarding friction patterns (Fathom call analysis)", tool: "Fathom", result: "6 friction points, 5 time sinks, 8 recurring questions — #1 issue: platform capability confusion" },
-  { department: "TAM / Training", measurement: "Training duration (pre vs post video library)", tool: "Fathom", result: "Complex: 15–23 hrs, Medium: 12–18 hrs, Small: 6–9 hrs" },
-  { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Manual", result: "In progress — validates structural vs documentation issues" }],
+  { department: "TAM / Training", measurement: "Onboarding friction patterns (Fathom call analysis)", tool: "Fathom", result: "Baseline result: 6 friction points identified, 5 time sink categories, 8 recurring questions, 5 negative sentiment themes\nTop friction finding: Platform capability confusion is the #1 issue (Hyve example), followed by integration challenges and documentation gaps\nTop time sink finding: 30–40% of live training time is spent on troubleshooting and re-explaining — content a video library could cover" },
+  { department: "TAM / Training", measurement: "Training duration (pre vs post video library)", tool: "Fathom", result: "Complex (FBF, MEX)= 5-8hrs recorded training + 10-15hrs ad Hoc emails -> 15-23hrs Total\nMedium (SNAC, Hyve)= 2-3hrs recorded training + 10-15hrs ad Hoc emails -> 12-18hrs Total\nSmall (DLG, FESPA)= 45mins recorded training + 5-8hrs ad Hoc emails -> 6-9hrs Total" },
+  { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Manual", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
 
   connectedFindings: [
   { label: "Finding: Onboarding Friction", link: "/findings" },
@@ -82,9 +82,9 @@ const krData: KRData[] = [
   target: "≥25% reduction in maintenance time",
   icon: <Wrench className="w-5 h-5" />,
   rows: [
-  { department: "Engineering", measurement: "Worklogs categorised by team (enforce Team field)", tool: "Jira", result: "126 tasks missing Team field; 650 hrs of non-attributed time" },
+  { department: "Engineering", measurement: "Worklogs categorised by team (enforce Team field)", tool: "Jira", result: "Full report pending from Yuriy\n126 tasks missing Team field; 650 hrs of non-attributed time" },
   { department: "Engineering", measurement: "Bug vs non-bug time ratio per team", tool: "Jira", result: "Mobile team: 44% bug time (Jan 2026) — healthy benchmark is ≤30%" },
-  { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data", result: "Report pending from Yuriy" }],
+  { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data", result: "Full report pending from Yuriy" }],
 
   connectedFindings: [
   { label: "Finding: Engineering Time Allocation", link: "/findings" },
