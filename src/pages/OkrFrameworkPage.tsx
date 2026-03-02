@@ -24,7 +24,7 @@ const krData: KRData[] = [
       { department: "Marketing", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "66% of tasks are manual (campaign setup, lead list building)" },
       { department: "Engineering", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "42% of tasks are manual (deployment checks, config updates)" },
       { department: "Eng Management", measurement: "Hours/week on top manual tasks", tool: "Survey", result: "20% of tasks are manual (sprint reporting, resource allocation)" },
-      { department: "Sales", measurement: "Manual task volume", tool: "Survey", result: "Confirmed 'very manual' — no baseline data yet" },
+      { department: "Sales", measurement: "Manual task volume", tool: "Survey/Meetings", result: "Confirmed 'very manual' — no baseline data yet" },
       { department: "TAM", measurement: "Time per client/event", tool: "Jira", result: "Admin panel setup: 30-40%\nClient training & comms: 15-20%\nTroubleshooting: 10-15%\nRegistration & matchmaking setup: 10-15%\nPlanning & meetings: 10%" },
     ],
     connectedFindings: [
