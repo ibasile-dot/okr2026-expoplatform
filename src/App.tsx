@@ -9,6 +9,7 @@ import FindingsPage from "./pages/FindingsPage";
 import ActionPlanPage from "./pages/ActionPlanPage";
 import AutomationIdeasPage from "./pages/AutomationIdeasPage";
 import WorkaroundsPage from "./pages/WorkaroundsPage";
+import OkrFrameworkPage from "./pages/OkrFrameworkPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
         <AppLayout>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/okr-framework" element={<OkrFrameworkPage />} />
             <Route path="/findings" element={<FindingsPage />} />
             <Route path="/action-plan" element={<ActionPlanPage />} />
             <Route path="/automation-ideas" element={<AutomationIdeasPage />} />

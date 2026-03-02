@@ -5,11 +5,13 @@ import {
   ListChecks,
   Lightbulb,
   FileText,
+  Target,
 } from "lucide-react";
 import epLogo from "@/assets/ep-logo-full.png";
 
 const navItems = [
   { to: "/", icon: BarChart3, label: "Overview" },
+  { to: "/okr-framework", icon: Target, label: "OKR Framework" },
   { to: "/findings", icon: Search, label: "Findings" },
   { to: "/action-plan", icon: ListChecks, label: "Action Plan" },
   { to: "/automation-ideas", icon: Lightbulb, label: "Automation Ideas" },
