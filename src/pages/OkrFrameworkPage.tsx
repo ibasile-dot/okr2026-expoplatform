@@ -64,7 +64,7 @@ const krData: KRData[] = [
   target: "≥35% reduction in onboarding time",
   icon: <UserCheck className="w-5 h-5" />,
   rows: [
-  { department: "TAM / Training", measurement: "Onboarding friction patterns (Fathom call analysis)", tool: "Fathom", result: "6 friction points, 5 time sinks, 8 recurring questions — #1 issue: platform capability confusion" },
+  { department: "TAM / Training", measurement: "Onboarding friction patterns", tool: "Fathom", result: "Baseline result: 6 friction points identified, 5 time sink categories, 8 recurring questions, 5 negative sentiment themes\nTop friction finding: Platform capability confusion is the #1 issue (Hyve example), followed by integration challenges and documentation gaps\nTop time sink finding: 30–40% of live training time is spent on troubleshooting and re-explaining — content a video library could cover" },
   { department: "TAM / Training", measurement: "Training duration (pre vs post video library)", tool: "Fathom", result: "Complex: 15–23 hrs, Medium: 12–18 hrs, Small: 6–9 hrs" },
   { department: "TAM", measurement: "First-hand onboarding test (Ilaria)", tool: "Admin panel (Manual)", result: "In progress: 1 hr 15 min with limited results (26 Feb test)" }],
 
