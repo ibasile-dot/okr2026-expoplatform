@@ -31,6 +31,7 @@ const categories: { label: string; key: string; ideas: Idea[] }[] = [
       { idea: "Direct Client Feedback — in-product surveys, NPS", solves: "Product feedback currently indirect via TAMs", area: "Phase 3 — Second Priorities", priority: "Medium" },
       { idea: "Auto-Clone Environment with Smart Defaults for repeat events", solves: "First-time ~15 days, repeat ~11 days", area: "Phase 1 — Admin Panel", priority: "High" },
       { idea: "Feature-Based Admin Panel Wizard — organiser selects features, UI adapts", solves: "~50% of features unused per event but all shown", area: "Phase 1 — Admin Panel", priority: "High" },
+      { idea: "Automated data validation on import with error flagging", solves: "Manual data checks, inconsistent field formats", area: "Phase 2 — Quick Wins", priority: "Medium" },
     ],
   },
   {
@@ -41,6 +42,7 @@ const categories: { label: string; key: string; ideas: Idea[] }[] = [
       { idea: "Auto data export from backend dashboards for analytics", solves: "TAMs skip washup analytics — manual copy-paste", area: "Phase 3 — Second Priorities", priority: "Low" },
       { idea: "AI Generated marketing videos", solves: "Human needed for all marketing material", area: "Phase 3 — Second Priorities", priority: "Low" },
       { idea: "Automate outbound sales process", solves: "Replaces manual Pipedrive follow-ups", area: "Phase 3 — Second Priorities", priority: "Medium" },
+      { idea: "Centralized asset library with self-service access", solves: "Repeated requests for assets, manual sharing", area: "Phase 3 — Second Priorities", priority: "Low" },
     ],
   },
   {
@@ -49,6 +51,8 @@ const categories: { label: string; key: string; ideas: Idea[] }[] = [
       { idea: "Legacy Backlog Purge — close tickets >18 months without 90-day update", solves: "178 bugs from 2022–2024 still open", area: "Phase 2 — Engineering Quick Wins", priority: "High" },
       { idea: "QA N8N bug context/prioritisation", solves: "Bug triage time", area: "Phase 2 — Engineering Quick Wins", priority: "Medium" },
       { idea: "Automated testing framework (Playwright/Cypress)", solves: "QA runs manual regression 8–15hrs per release cycle", area: "Phase 2 — Engineering Quick Wins", priority: "Medium" },
+      { idea: "Integration monitoring & API health dashboards", solves: "Limited API visibility, manual reconciliation across systems", area: "Phase 2 — Engineering Quick Wins", priority: "Medium" },
+      { idea: "Auto-generated project timelines from kickoff data", solves: "Manual timeline creation for every project", area: "Phase 2 — Engineering Quick Wins", priority: "Low" },
     ],
   },
   {
