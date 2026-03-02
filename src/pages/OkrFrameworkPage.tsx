@@ -79,7 +79,7 @@ const krData: KRData[] = [
   rows: [
   { department: "Engineering", measurement: "Worklogs categorised by team (enforce Team field)", tool: "Jira", result: "Full report pending from Yuriy\n126 tasks missing Team field; 650 hrs of non-attributed time" },
   { department: "Engineering", measurement: "Bug vs non-bug time ratio per team", tool: "Jira", result: "Mobile team: 44% bug time (Jan 2026) — healthy benchmark is ≤30%" },
-  { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data", result: "Full report pending from Yuriy" }],
+  { department: "Engineering", measurement: "Unused platform features audit", tool: "Platform data/ Yuriy Report", result: "Full report pending from Yuriy" }],
 
   connectedFindings: []
 
