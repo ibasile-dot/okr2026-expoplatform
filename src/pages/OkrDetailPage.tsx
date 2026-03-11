@@ -57,15 +57,20 @@ const OkrDetailPage = () => {
           {[
             "Overview", "Metrics", "Roadmap", "Findings", "Action Plan", "New Initiatives",
             ...(okr.id === 4 ? ["Automation Ideas"] : []),
-          ].map((tab) => (
-            <TabsTrigger
-              key={tab}
-              value={tab.toLowerCase().replace(/ /g, "-")}
-              className="rounded-none border-b-[3px] border-transparent data-[state=active]:border-accent data-[state=active]:text-accent data-[state=active]:shadow-none px-5 py-3 text-sm font-semibold text-muted-foreground hover:text-accent transition-colors bg-transparent"
-            >
-              {tab}
-            </TabsTrigger>
-          ))}
+          ].map((tab) => {
+            const tabValue = tab.toLowerCase().replace(/ /g, "-");
+            const isActive = activeTab === tabValue;
+            return (
+              <TabsTrigger
+                key={tab}
+                value={tabValue}
+                className="rounded-none border-b-[3px] border-transparent data-[state=active]:shadow-none px-5 py-3 text-sm font-semibold text-muted-foreground transition-colors bg-transparent"
+                style={isActive ? { borderBottomColor: okr.color, color: okr.color } : undefined}
+              >
+                {tab}
+              </TabsTrigger>
+            );
+          })}
         </TabsList>
 
         {/* Overview Tab */}
