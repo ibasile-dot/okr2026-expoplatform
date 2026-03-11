@@ -92,7 +92,7 @@ export const okrData: OKR[] = [
   {
     id: 5,
     title: "OKR 5 — Data-Driven Company",
-    shortTitle: "Data-Driven",
+    shortTitle: "Data-Driven Company",
     objective: "Make data the default input for every strategic and operational means — transform into a data-driven company",
     owners: ["Mykyta Fastovets"],
     whyItMatters: "This OKR underpins all others — without it, automation, GTM, and product bets are guesswork",
