@@ -34,6 +34,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 21, month: "March", week: "", okr: 4, action: "Collect baseline data about current time spent", owner: "Ilaria, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 22, month: "March", week: "w/c March 2", okr: 5, action: "Collect baseline data about current time spent", owner: "Susan, Bartek, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 23, month: "March", week: "After automation days?", okr: 5, action: "Conduct survey around current state and opportunities", owner: "Susan, Bartek, Olga", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 13, month: "April", week: "", okr: 1, action: "Create automations for easy wins and high value automation targets during Automation Days. Complete any spillover work as needed.", owner: "All Automation Days Participants", defaultStatus: "To Do", defaultNotes: "" },
   { id: 24, month: "April", week: "w/c 1st April", okr: 1, action: "Determine next steps based on analysis", owner: "Susan, Bartek, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 25, month: "April", week: "early to mid-April", okr: 2, action: "Identification of quick wins and longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 26, month: "April", week: "Mid to late-April", okr: 2, action: "Execute on quick wins", owner: "Ilaria, Susan, Bartek", defaultStatus: "To Do", defaultNotes: "" },
