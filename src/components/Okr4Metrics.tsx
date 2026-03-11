@@ -211,7 +211,7 @@ export const Okr4Metrics = () => {
               </thead>
               <tbody>
                 <tr className="hover:bg-secondary/30">
-                  <td className={tdClass}>TAMs / Clients</td>
+                  <td className={tdClass} rowSpan={2} style={{ verticalAlign: "middle" }}>TAMs / Clients</td>
                   <td className={tdClass}>Total real tickets/month (excl. SPAM)</td>
                   <td className={tdClass}>Jira Service Management</td>
                   <td className={tdClass}>164<br />(total of 1,970)</td>
