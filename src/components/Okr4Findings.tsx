@@ -280,7 +280,7 @@ const Okr4Findings = () => {
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">Front-end — Website Builder</p>
-            <p className="text-lg font-bold text-foreground">{adminPanelFindings.unusedFeatures} features unused</p>
+            <p className="text-lg font-bold text-foreground">Custom CSS, JS, Block Config</p>
             <p className="text-xs text-muted-foreground mt-1">Theme setup, custom CSS/JavaScript, block configuration. TAMs use ChatGPT + CSS repos as workarounds. Exploring external AI agent overlay.
 
             </p>
