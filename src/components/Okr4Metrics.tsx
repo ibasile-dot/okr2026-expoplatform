@@ -98,7 +98,7 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>TAMs / Operations</td>
-                  <td className={tdClass}>Survey,<br/>Jira,<br/>Discovery Meetings,<br/>PM tools logs</td>
+                  <td className={tdClass}>Survey,<br/><br/>Jira (Worlogs, feature requests, tickets),<br/>Discovery Meetings,<br/>PM tools logs</td>
                   <td className={tdClass}>80% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
