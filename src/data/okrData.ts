@@ -76,7 +76,7 @@ export const okrData: OKR[] = [
   {
     id: 4,
     title: "OKR 4 — Automation of Manual Processes",
-    shortTitle: "Automation",
+    shortTitle: "Automation of Manual Processes",
     objective: "Remove operational friction by automating repeatable internal and customer-facing workflows",
     owners: ["Susan Merola", "Ilaria Basile"],
     whyItMatters: "This is how we will scale without scaling headcount or chaos",
