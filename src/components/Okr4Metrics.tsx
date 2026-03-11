@@ -160,8 +160,8 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Operations</td>
-                  <td className={tdClass}>Admin Panel</td>
-                  <td className={tdClass}>Rough estimate (not available until Q2)</td>
+                  <td className={tdClass}>Discovery Calls</td>
+                  <td className={tdClass}>Rough estimate, not available until Q2)</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
