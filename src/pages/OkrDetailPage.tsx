@@ -79,15 +79,15 @@ const OkrDetailPage = () => {
             <h2 className="text-lg font-semibold text-foreground mb-4">{okr.shortTitle}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Owner</p>
                 <p className="text-sm text-foreground">{okr.owners[0]}</p>
               </div>
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Co-Owner</p>
                 <p className="text-sm text-foreground">{okr.owners[1] || "TBC"}</p>
               </div>
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Objective</p>
                 <p className="text-sm text-foreground">{okr.objective}</p>
               </div>
