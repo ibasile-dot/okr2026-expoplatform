@@ -62,7 +62,7 @@ export const okrData: OKR[] = [
     title: "OKR 3 — Delivery & Platform Stability",
     shortTitle: "Platform Stability",
     objective: "Deliver reliably with high platform satisfaction, speed, and stability",
-    owners: ["Bartosz", "Ajay Singh"],
+    owners: ["Bartosz Malec", "Ajay Singh"],
     whyItMatters: "This brings us closer to a possibility of Product Led Growth company",
     color: "hsl(152, 60%, 40%)",
     keyResults: [
