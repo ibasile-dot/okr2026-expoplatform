@@ -135,7 +135,7 @@ export const Okr4Metrics = () => {
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>TAMs / Clients</td>
                   <td className={tdClass}>Time spent on trainings (hrs)</td>
-                  <td className={tdClass}>Fathom<br/><br/>Discovery Meetings with TAMs</td>
+                  <td className={tdClass}>Fathom<br /><br />Discovery Meetings with TAMs</td>
                   <td className={tdClass}>
                     <div className="space-y-2">
                       <div><span className="font-medium">Complex (FBF, MEX):</span> 5-8hrs recorded training + 10-15hrs ad hoc emails = 15-23hrs Total</div>
@@ -146,7 +146,8 @@ export const Okr4Metrics = () => {
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Includes recorded training + ad hoc emails</td>
+                  <td className={tdClass}>
+</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Product</td>
@@ -164,7 +165,10 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>(Rough estimate, not available until Q2)</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>
+
+
+                </td>
                   <td className={tdClass}>Record time it takes, share feedback on topics, videos, guides needed</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
@@ -180,12 +184,10 @@ export const Okr4Metrics = () => {
               </tbody>
             </table>
           </div>
-        </div>
-      }
+        </div>}
 
       {/* KR3 */}
-      {activeKR === "kr3" &&
-      <div>
+      {activeKR === "kr3" && <div>
           <h3 className="text-base font-semibold text-foreground mb-4">
             KR3 — Decrease customer support tickets related to manual workarounds ≥30%
           </h3>
@@ -246,12 +248,10 @@ export const Okr4Metrics = () => {
               </tbody>
             </table>
           </div>
-        </div>
-      }
+        </div>}
 
       {/* KR4 */}
-      {activeKR === "kr4" &&
-      <div>
+      {activeKR === "kr4" && <div>
           <h3 className="text-base font-semibold text-foreground mb-4">
             KR4 — Reduce average onboarding time for new customers ≥35%
           </h3>
