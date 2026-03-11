@@ -282,6 +282,9 @@ export const Okr4Metrics = () => {
                       <div><span className="font-medium">Top time sink finding:</span> 30–40% of live training time is spent on troubleshooting and re-explaining — content a video library could cover</div>
                     </div>
                   </td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>72% of repeated questions are addressable through self-serve content. Structured training programmes (FBF model) correlate with lower friction</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
