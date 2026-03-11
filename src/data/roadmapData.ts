@@ -57,7 +57,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 34, month: "May", week: "", okr: 2, action: "Analyse and prioritise longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 35, month: "May", week: "", okr: 2, action: "Determine next steps based on analysis", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 36, month: "May", week: "", okr: 4, action: "Collect data on time reduction from implementation of quick wins", owner: "Ilaria, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
-  { id: 37, month: "May", week: "", okr: 4, action: "Analyse and prioritise longer-term opportunities", subactions: "Validation from TAMs surveys, interviews, shadowing, Testing first hand onboarding time", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 37, month: "May", week: "", okr: 4, action: "Analyse and prioritise longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 38, month: "May", week: "", okr: 4, action: "Determine next steps based on analysis", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 39, month: "May", week: "", okr: 5, action: "Collect data on effort reductions from implementation of quick wins", owner: "Bartek, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 40, month: "May", week: "", okr: 5, action: "Analyse and prioritise longer-term opportunities", owner: "Bartek, Susan, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
