@@ -201,12 +201,16 @@ const OkrDetailPage = () => {
 
         {/* Findings Tab */}
         <TabsContent value="findings" className="mt-6">
-          <div className="section-card p-6">
-            <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
-              <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>Findings</p>
-              <p className="text-sm text-muted-foreground italic">Findings will be added as data is collected</p>
+          {okr.id === 4 ? (
+            <Okr4Findings />
+          ) : (
+            <div className="section-card p-6">
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
+                <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>Findings</p>
+                <p className="text-sm text-muted-foreground italic">Findings will be added as data is collected</p>
+              </div>
             </div>
-          </div>
+          )}
         </TabsContent>
 
         {/* Action Plan Tab */}
