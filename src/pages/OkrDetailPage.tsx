@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Okr4Metrics } from "@/components/Okr4Metrics";
 import { EditableCell } from "@/components/EditableCell";
 import { useMetricValues } from "@/hooks/useMetricValues";
+import OkrRoadmap from "@/components/OkrRoadmap";
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
