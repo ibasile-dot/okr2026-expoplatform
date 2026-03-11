@@ -20,7 +20,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 7, month: "February", week: "w/c 23rd Feb", okr: 2, action: "Discovery around current state and opportunities", subactions: "Meet with Cross-Functional leads, Shadow TAM Sessions, Interviews with Organisers, Sample Fathom calls, Understand base metrics, EP Platform review, Baseline metrics established", owner: "Ilaria", defaultStatus: "In Progress", defaultNotes: "" },
   { id: 8, month: "February", week: "w/c 23rd Feb", okr: 3, action: "Discovery around current state and opportunities", subactions: "Conduct 1:1 interviews with TAM Leads, Review Jira/Confluence, Get added to TAM Boards, EP Platform review, Start playing with tools, Contact AI/Automation experts", owner: "Ilaria", defaultStatus: "In Progress", defaultNotes: "" },
   
-  { id: 10, month: "February", week: "w/c 23rd Feb", okr: 4, action: "Discovery around current state and opportunities", subactions: "Review useful docs, Ideas of training before kick-off", owner: "Ilaria", defaultStatus: "Done", defaultNotes: "" },
+  { id: 10, month: "February", week: "w/c 23rd Feb", okr: 4, action: "Discovery around current state and opportunities", owner: "Ilaria", defaultStatus: "Done", defaultNotes: "" },
   { id: 11, month: "February", week: "early to mid-March", okr: 3, action: "Finish migrating customers to support mailbox", owner: "Samarth, Jens, Mykyta, Chris, Oriana, Julia", defaultStatus: "In Progress", defaultNotes: "As project end/new projects begin" },
   { id: 12, month: "February", week: "early to mid-March", okr: 4, action: "Continue to move admin panel improvements forward", owner: "Tanya, Ajay", defaultStatus: "In Progress", defaultNotes: "" },
   
@@ -42,7 +42,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 25, month: "April", week: "early to mid-April", okr: 2, action: "Identification of quick wins and longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 26, month: "April", week: "Mid to late-April", okr: 2, action: "Execute on quick wins", owner: "Ilaria, Susan, Bartek", defaultStatus: "To Do", defaultNotes: "" },
   { id: 27, month: "April", week: "", okr: 2, action: "Create automated workflows for customers in Planhat with how-to guides, best practices, common pitfalls", owner: "Susan, TAM Leads", defaultStatus: "To Do", defaultNotes: "" },
-  { id: 28, month: "April", week: "early to mid-April", okr: 4, action: "Identification of quick wins and longer-term opportunities", subactions: "Trainings set up", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 28, month: "April", week: "early to mid-April", okr: 4, action: "Identification of quick wins and longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 29, month: "April", week: "mid to late April", okr: 4, action: "Execute quick wins", owner: "Ilaria, Susan, Bartek", defaultStatus: "To Do", defaultNotes: "" },
   { id: 30, month: "April", week: "", okr: 4, action: "Create automated workflows for customers in Planhat with welcome materials, short videos", owner: "Susan, TAM Leads", defaultStatus: "To Do", defaultNotes: "" },
   { id: 31, month: "April", week: "Early to mid-April", okr: 5, action: "Identify quick wins & longer-term opportunities", owner: "Susan, Bartek, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
