@@ -4,14 +4,26 @@
 //          Task Time Log (1-week tracking), Direct observation
 // ============================================================
 
-export const discoverySources = [
-  { name: "Productivity & AI Adoption Survey", type: "Survey", date: "February 2026", scope: "All departments" },
-  { name: "1-Week Manual Task Time Log", type: "Task Tracking", date: "April 2026", scope: "Marketing, Sales, HR, Finance" },
-  { name: "1:1 Interviews", type: "Qualitative", date: "Feb–Mar 2026", scope: "All department heads + TAM leads" },
-  { name: "Jira Data Analysis", type: "Quantitative", date: "Ongoing", scope: "Engineering worklogs, bug reports, feature requests" },
-  { name: "Fathom Call Analysis", type: "Qualitative", date: "Feb–Mar 2026", scope: "TAM training & onboarding sessions" },
-  { name: "JSM Desk Tickets", type: "Quantitative", date: "2025–2026", scope: "All customer support tickets" },
-  { name: "Direct Observation & Shadowing", type: "Qualitative", date: "Feb 2026", scope: "TAM sessions, admin panel testing" },
+export const quantitativeSources = [
+  { name: "Jira Feature Requests Analysis", scope: "Identify features that would eliminate workarounds" },
+  { name: "Jira Customisation Requests Analysis", scope: "Frequently-requested customisations → standard features/templates" },
+  { name: "Ticket Volume & Resolution Trends", scope: "JSM Desk — 2025–2026 ticket data" },
+  { name: "Fathom Call Recordings", scope: "Sample of 20+ TAM/onboarding calls" },
+  { name: "Productivity, Automation Tools & AI Adoption Survey", scope: "All departments — February 2026" },
+  { name: "Monthly Efficiency Report", scope: "From Yuriy — engineering metrics" },
+  { name: "Platform Usage Report", scope: "Feature adoption & usage patterns" },
+  { name: "CRM Data", scope: "Current systems: Trello, Notion, ClickUp" },
+  { name: "Planhat Data Model", scope: "Draft data model vs. current reality gaps" },
+  { name: "Customer Satisfaction Data", scope: "NPS, CSAT — Survey, Jira" },
+  { name: "TAM & APIM Data", scope: "2024, 2025 and 2026 datasets" },
+  { name: "Existing Time-Logging Data", scope: "Where available" },
+];
+
+export const qualitativeSources = [
+  { name: "1:1 Interviews", scope: "All department heads + TAM leads" },
+  { name: "Direct Observation & Shadowing", scope: "TAM sessions, admin panel testing" },
+  { name: "1-Week Manual Task Time Log", scope: "Marketing, Sales, HR, Finance — self-reported" },
+  { name: "Fathom Call Sentiment Analysis", scope: "Friction patterns, sentiment themes from recordings" },
 ];
 
 // KR1 — Manual workload by department (from survey)
