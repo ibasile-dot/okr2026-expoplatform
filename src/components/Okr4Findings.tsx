@@ -273,28 +273,28 @@ const Okr4Findings = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">Back-end Configuration</p>
-            <p className="text-lg font-bold text-foreground">{adminPanelFindings.configSteps} manual steps</p>
+            <p className="text-lg font-bold text-foreground">Registration, Matchmaking, API</p>
             <p className="text-xs text-muted-foreground mt-1">Registration conditional logic, matchmaking rules, API configuration, exhibitor setup. Complex pipelines with no guided wizards. Investigating AI agent for automated config.
 
             </p>
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">Front-end — Website Builder</p>
-            <p className="text-lg font-bold text-foreground">{adminPanelFindings.unusedFeatures} features unused</p>
+            <p className="text-lg font-bold text-foreground">Custom CSS, JS, Block Config</p>
             <p className="text-xs text-muted-foreground mt-1">Theme setup, custom CSS/JavaScript, block configuration. TAMs use ChatGPT + CSS repos as workarounds. Exploring external AI agent overlay.
 
             </p>
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">App Submission</p>
-            <p className="text-lg font-bold text-foreground">{adminPanelFindings.appSubmission}</p>
+            <p className="text-lg font-bold text-foreground">1.5hrs per event</p>
             <p className="text-xs text-muted-foreground mt-1">Both Android & iOS questionnaires fully manual. Investigating automated pre-fill and API-based submission to Google Play & App Store Connect.
 
             </p>
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">App Builder — Mobile Bug Time</p>
-            <p className="text-lg font-bold text-foreground">{adminPanelFindings.mobileBugTime}</p>
+            <p className="text-lg font-bold text-foreground">44% bug time</p>
             <p className="text-xs text-muted-foreground mt-1">Mobile team at 44% bug time (Jan 2026). Healthy benchmark is 30%. Heavy maintenance overhead reduces capacity for new features.
 
             </p>
