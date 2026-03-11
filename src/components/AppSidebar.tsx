@@ -13,6 +13,8 @@ import {
   Map,
   Search,
   ListChecks,
+  Lightbulb,
+  Rocket,
 } from "lucide-react";
 import epLogo from "@/assets/ep-logo-full.png";
 
