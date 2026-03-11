@@ -43,6 +43,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 25, month: "April", week: "early to mid-April", okr: 2, action: "Identification of quick wins and longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 26, month: "April", week: "Mid to late-April", okr: 2, action: "Execute on quick wins", owner: "Ilaria, Susan, Bartek", defaultStatus: "To Do", defaultNotes: "" },
   { id: 27, month: "April", week: "", okr: 2, action: "Create automated workflows for customers in Planhat with how-to guides, best practices, common pitfalls", owner: "Susan, TAM Leads", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 51, month: "April", week: "", okr: 4, action: "Continue to move admin panel improvements forward", owner: "Tanya, Ajay, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 28, month: "April", week: "early to mid-April", okr: 4, action: "Identification of quick wins and longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 29, month: "April", week: "mid to late April", okr: 4, action: "Execute quick wins", owner: "Ilaria, Susan, Bartek", defaultStatus: "To Do", defaultNotes: "" },
   { id: 30, month: "April", week: "", okr: 4, action: "Create automated workflows for customers in Planhat with welcome materials, short videos", owner: "Susan, TAM Leads", defaultStatus: "To Do", defaultNotes: "" },
