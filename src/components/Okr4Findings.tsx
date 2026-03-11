@@ -273,7 +273,7 @@ const Okr4Findings = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">Back-end Configuration</p>
-            <p className="text-lg font-bold text-foreground">{adminPanelFindings.configSteps} manual steps</p>
+            <p className="text-lg font-bold text-foreground">Registration, Matchmaking, API</p>
             <p className="text-xs text-muted-foreground mt-1">Registration conditional logic, matchmaking rules, API configuration, exhibitor setup. Complex pipelines with no guided wizards. Investigating AI agent for automated config.
 
             </p>
