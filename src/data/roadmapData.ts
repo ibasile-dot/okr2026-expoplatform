@@ -47,7 +47,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 45, month: "April", week: "", okr: 3, action: "Investigate creating AI-Powered support chatbot", owner: "Susan, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   
   { id: 33, month: "May", week: "", okr: 2, action: "Collect data on effort reductions from implementation of quick wins", owner: "Ilaria, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
-  { id: 34, month: "May", week: "", okr: 2, action: "Analyse and prioritise longer-term opportunities", subactions: "Validation from organisers' calls", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 34, month: "May", week: "", okr: 2, action: "Analyse and prioritise longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 35, month: "May", week: "", okr: 2, action: "Determine next steps based on analysis", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 36, month: "May", week: "", okr: 4, action: "Collect data on time reduction from implementation of quick wins", owner: "Ilaria, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 37, month: "May", week: "", okr: 4, action: "Analyse and prioritise longer-term opportunities", subactions: "Validation from TAMs surveys, interviews, shadowing, Testing first hand onboarding time", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
