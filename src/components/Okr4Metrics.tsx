@@ -213,14 +213,13 @@ export const Okr4Metrics = () => {
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass} rowSpan={2} style={{ verticalAlign: "middle" }}>TAMs / Clients</td>
                   <td className={tdClass}>Total real tickets/month (excl. SPAM)</td>
-                  <td className={tdClass}>Jira Service Management</td>
+                  <td className={tdClass} rowSpan={2} style={{ verticalAlign: "middle" }}>Jira Service Management</td>
                   <td className={tdClass}>164<br />(total of 1,970)</td>
                   <td className={tdClass}>254</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Tickets per event</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>18.2<br />(2.2 tickets per event per month)</td>
                   <td className={tdClass}>28.2</td>
                   <td className={tdClass}>
