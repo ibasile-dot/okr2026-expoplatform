@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { NavLink as RouterNavLink, useLocation } from "react-router-dom";
 import {
-  BarChart3,
-  Search,
-  ListChecks,
-  Lightbulb,
-  FileText,
   Target,
   ChevronDown,
   LayoutDashboard,
@@ -13,71 +8,42 @@ import {
   Handshake,
   Shield,
   Zap,
-  Database } from
-"lucide-react";
+  Database,
+  BarChart3,
+  Map,
+  Search,
+  ListChecks,
+} from "lucide-react";
 import epLogo from "@/assets/ep-logo-full.png";
 
+const defaultSubItems = [
+  { suffix: "", label: "Overview", icon: LayoutDashboard },
+  { suffix: "/metrics", label: "Metrics", icon: BarChart3 },
+  { suffix: "/roadmap", label: "Roadmap", icon: Map },
+  { suffix: "/findings", label: "Findings", icon: Search },
+  { suffix: "/action-plan", label: "Action Plan", icon: ListChecks },
+];
+
 const okrNav = [
-{
-  id: 1,
-  label: "Revenue & Profit",
-  icon: TrendingUp,
-  color: "hsl(237, 68%, 33%)",
-  basePath: "/okr/1",
-  subItems: [{ to: "/okr/1", label: "Overview", icon: LayoutDashboard }]
-},
-{
-  id: 2,
-  label: "Meetings & Networks",
-  icon: Handshake,
-  color: "hsl(44, 100%, 58%)",
-  basePath: "/okr/2",
-  subItems: [{ to: "/okr/2", label: "Overview", icon: LayoutDashboard }]
-},
-{
-  id: 3,
-  label: "Platform Stability",
-  icon: Shield,
-  color: "hsl(152, 60%, 40%)",
-  basePath: "/okr/3",
-  subItems: [{ to: "/okr/3", label: "Overview", icon: LayoutDashboard }]
-},
-{
-  id: 4,
-  label: "Automation",
-  icon: Zap,
-  color: "hsl(200, 60%, 45%)",
-  basePath: "/okr/4",
-  subItems: [
-  { to: "/okr/4/overview", label: "Overview", icon: BarChart3 },
-  { to: "/okr/4/findings", label: "Findings", icon: Search },
-  { to: "/okr/4/action-plan", label: "Roadmap & Actions", icon: ListChecks },
-  { to: "/okr/4/automation-ideas", label: "Automation Ideas", icon: Lightbulb },
-  { to: "/okr/4/workarounds", label: "Workaround Catalogue", icon: FileText }]
-
-},
-{
-  id: 5,
-  label: "Data-Driven",
-  icon: Database,
-  color: "hsl(280, 50%, 50%)",
-  basePath: "/okr/5",
-  subItems: [{ to: "/okr/5", label: "Overview", icon: LayoutDashboard }]
-}];
-
+  { id: 1, label: "Revenue & Profit", icon: TrendingUp, color: "hsl(237, 68%, 33%)" },
+  { id: 2, label: "Meetings & Networks", icon: Handshake, color: "hsl(44, 100%, 58%)" },
+  { id: 3, label: "Platform Stability", icon: Shield, color: "hsl(152, 60%, 40%)" },
+  { id: 4, label: "Automation", icon: Zap, color: "hsl(200, 60%, 45%)" },
+  { id: 5, label: "Data-Driven", icon: Database, color: "hsl(280, 50%, 50%)" },
+];
 
 const AppSidebar = () => {
   const location = useLocation();
   const [expandedOkrs, setExpandedOkrs] = useState<number[]>(() => {
     const activeOkr = okrNav.find((o) =>
-    location.pathname.startsWith(o.basePath)
+      location.pathname.startsWith(`/okr/${o.id}`)
     );
-    return activeOkr ? [activeOkr.id] : [4];
+    return activeOkr ? [activeOkr.id] : [];
   });
 
   const toggleOkr = (id: number) => {
     setExpandedOkrs((prev) =>
-    prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
   };
 
@@ -93,18 +59,17 @@ const AppSidebar = () => {
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
-        {/* OKR Overview link */}
         <RouterNavLink
           to="/"
           end
           className={({ isActive }) =>
-          `flex items-center gap-2.5 px-3 py-2 rounded-md text-[13px] font-medium transition-colors ${
-          isActive ?
-          "bg-sidebar-accent text-primary-foreground" :
-          "text-sidebar-foreground hover:text-primary-foreground hover:bg-sidebar-accent/50"}`
-
-          }>
-          
+            `flex items-center gap-2.5 px-3 py-2 rounded-md text-[13px] font-medium transition-colors ${
+              isActive
+                ? "bg-sidebar-accent text-primary-foreground"
+                : "text-sidebar-foreground hover:text-primary-foreground hover:bg-sidebar-accent/50"
+            }`
+          }
+        >
           <Target className="w-3.5 h-3.5" />
           OKR Overview
         </RouterNavLink>
@@ -117,63 +82,62 @@ const AppSidebar = () => {
 
         {okrNav.map((okr) => {
           const isExpanded = expandedOkrs.includes(okr.id);
-          const isActive = location.pathname.startsWith(okr.basePath);
+          const basePath = `/okr/${okr.id}`;
+          const isActive = location.pathname.startsWith(basePath);
 
           return (
             <div key={okr.id}>
               <button
                 onClick={() => toggleOkr(okr.id)}
                 className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-[12px] font-medium transition-colors ${
-                isActive ?
-                "text-primary-foreground" :
-                "text-sidebar-foreground hover:text-primary-foreground hover:bg-sidebar-accent/50"}`
-                }>
-                
+                  isActive
+                    ? "text-primary-foreground"
+                    : "text-sidebar-foreground hover:text-primary-foreground hover:bg-sidebar-accent/50"
+                }`}
+              >
                 <span
                   className="w-4 h-4 rounded flex items-center justify-center text-[9px] font-bold text-primary-foreground shrink-0"
-                  style={{ background: okr.color }}>
-                  
+                  style={{ background: okr.color }}
+                >
                   {okr.id}
                 </span>
                 <span className="flex-1 text-left truncate">{okr.label}</span>
                 <ChevronDown
-                  className={`w-3 h-3 transition-transform ${isExpanded ? "" : "-rotate-90"}`} />
-                
+                  className={`w-3 h-3 transition-transform ${isExpanded ? "" : "-rotate-90"}`}
+                />
               </button>
 
-              {isExpanded &&
-              <div className="ml-6 pl-3 border-l border-sidebar-border/50 space-y-0.5 mt-0.5">
-                  {okr.subItems.map((sub) =>
-                <RouterNavLink
-                  key={sub.to}
-                  to={sub.to}
-                  end
-                  className={({ isActive: subActive }) =>
-                  `flex items-center gap-2 px-2 py-1.5 rounded text-[11px] font-medium transition-colors ${
-                  subActive ?
-                  "bg-sidebar-accent text-primary-foreground" :
-                  "text-sidebar-foreground hover:text-primary-foreground hover:bg-sidebar-accent/50"}`
-
-                  }>
-                  
+              {isExpanded && (
+                <div className="ml-6 pl-3 border-l border-sidebar-border/50 space-y-0.5 mt-0.5">
+                  {defaultSubItems.map((sub) => (
+                    <RouterNavLink
+                      key={sub.suffix}
+                      to={`${basePath}${sub.suffix}`}
+                      end
+                      className={({ isActive: subActive }) =>
+                        `flex items-center gap-2 px-2 py-1.5 rounded text-[11px] font-medium transition-colors ${
+                          subActive
+                            ? "bg-sidebar-accent text-primary-foreground"
+                            : "text-sidebar-foreground hover:text-primary-foreground hover:bg-sidebar-accent/50"
+                        }`
+                      }
+                    >
                       <sub.icon className="w-3 h-3" />
                       {sub.label}
                     </RouterNavLink>
-                )}
+                  ))}
                 </div>
-              }
-            </div>);
-
+              )}
+            </div>
+          );
         })}
       </nav>
 
       <div className="px-5 py-4 border-t border-sidebar-border">
-        
-        
         <img src={epLogo} alt="ExpoPlatform" className="h-8 mt-3 brightness-0 invert" />
       </div>
-    </aside>);
-
+    </aside>
+  );
 };
 
 export default AppSidebar;
