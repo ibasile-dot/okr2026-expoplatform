@@ -137,10 +137,10 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>Time spent on trainings (hrs)</td>
                   <td className={tdClass}>Fathom<br/><br/>Discovery Meetings with TAMs</td>
                   <td className={tdClass}>
-                    <div className="space-y-1">
-                      <div><span className="font-medium">Complex:</span> 15–23hrs</div>
-                      <div><span className="font-medium">Medium:</span> 12–18hrs</div>
-                      <div><span className="font-medium">Small:</span> 6–9hrs</div>
+                    <div className="space-y-2">
+                      <div><span className="font-medium">Complex (FBF, MEX):</span> 5-8hrs recorded training + 10-15hrs ad hoc emails = 15-23hrs Total</div>
+                      <div><span className="font-medium">Medium (SNAC, Hyve):</span> 2-3hrs recorded training + 10-15hrs ad hoc emails = 12-18hrs Total</div>
+                      <div><span className="font-medium">Small (DLG, FESPA):</span> 45mins recorded training + 5-8hrs ad hoc emails = 6-9hrs Total</div>
                     </div>
                   </td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
