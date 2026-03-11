@@ -93,14 +93,30 @@ const Okr4Findings = () => {
 
       {/* Methodology */}
       <div className="section-card p-5 mb-10">
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary/60 mb-3">Discovery Methodology</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2">
-          {discoverySources.map((s) => (
-            <div key={s.name} className="bg-secondary/50 rounded p-2.5 text-center">
-              <p className="text-[10px] font-bold text-foreground leading-snug">{s.name}</p>
-              <p className="text-[9px] text-muted-foreground mt-0.5">{s.type}</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-primary/60 mb-4">Discovery Methodology</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <p className="text-[11px] font-bold text-foreground mb-2">Quantitative Sources</p>
+            <div className="grid grid-cols-2 gap-2">
+              {quantitativeSources.map((s) => (
+                <div key={s.name} className="bg-secondary/50 rounded p-2.5">
+                  <p className="text-[10px] font-bold text-foreground leading-snug">{s.name}</p>
+                  <p className="text-[9px] text-muted-foreground mt-0.5">{s.scope}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-foreground mb-2">Qualitative Sources</p>
+            <div className="grid grid-cols-2 gap-2">
+              {qualitativeSources.map((s) => (
+                <div key={s.name} className="bg-secondary/50 rounded p-2.5">
+                  <p className="text-[10px] font-bold text-foreground leading-snug">{s.name}</p>
+                  <p className="text-[9px] text-muted-foreground mt-0.5">{s.scope}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
