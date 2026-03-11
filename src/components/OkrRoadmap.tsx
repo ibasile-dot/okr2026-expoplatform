@@ -46,9 +46,10 @@ const OkrRoadmap = () => {
 
   const filteredData = useMemo(() => {
     return roadmapData.map((item, idx) => ({ item, idx })).filter(({ item }) =>
-      krFilter === "all" || item.okr === Number(krFilter)
+      (krFilter === "all" || item.okr === Number(krFilter)) &&
+      (monthFilter === "all" || item.month === monthFilter)
     );
-  }, [krFilter]);
+  }, [krFilter, monthFilter]);
 
   const stats = useMemo(() => {
     const items = filteredData;
