@@ -57,7 +57,7 @@ export const Okr4Metrics = () => {
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Finance</td>
                   <td className={tdClass} rowSpan={6} style={{ verticalAlign: "middle" }}>% of time spent on manual tasks</td>
-                  <td className={tdClass} rowSpan={5} style={{ verticalAlign: "middle" }}>Survey / Tracking 1 week tasks sheet</td>
+                  <td className={tdClass} rowSpan={5} style={{ verticalAlign: "middle" }}>Survey<br/>&nbsp;<br/>Tracking 1 week tasks sheet</td>
                   <td className={tdClass}>80% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
@@ -98,7 +98,7 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>TAMs / Operations</td>
-                  <td className={tdClass}>Survey,<br/><br/>Jira (Worlogs, feature requests, tickets),<br/>Discovery Meetings,<br/>PM tools logs</td>
+                  <td className={tdClass}>Survey<br/><br/><br/>Jira (Worlogs, feature requests, tickets)<br/><br/><br/>Discovery Meetings<br/><br/>PM tools logs (Clickup/Trello/Notion)<br/><br/>No. of events they have now vs. later</td>
                   <td className={tdClass}>80% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
