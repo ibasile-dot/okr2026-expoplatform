@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { okrData } from "@/data/okrData";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Okr4Metrics } from "@/components/Okr4Metrics";
@@ -20,6 +20,7 @@ const statusLabels: Record<string, string> = {
 const OkrDetailPage = () => {
   const { okrId } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const okr = okrData.find((o) => o.id === Number(okrId));
 
   // Derive active tab from URL path
@@ -52,7 +53,10 @@ const OkrDetailPage = () => {
         <p className="text-sm text-muted-foreground mt-1">{okr.objective}</p>
       </div>
 
-      <Tabs value={activeTab} className="w-full">
+      <Tabs value={activeTab} onValueChange={(val) => {
+        const suffix = val === "overview" ? "" : `/${val}`;
+        navigate(`/okr/${okr.id}${suffix}`);
+      }} className="w-full">
         <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-border rounded-none gap-0 flex-wrap">
           {[
             "Overview", "Metrics", "Roadmap", "Findings", "Action Plan", "New Initiatives",
