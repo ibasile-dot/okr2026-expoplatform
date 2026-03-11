@@ -294,7 +294,7 @@ const Okr4Findings = () => {
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">App Builder — Mobile Bug Time</p>
-            <p className="text-lg font-bold text-foreground">{adminPanelFindings.mobileBugTime}</p>
+            <p className="text-lg font-bold text-foreground">44% bug time</p>
             <p className="text-xs text-muted-foreground mt-1">Mobile team at 44% bug time (Jan 2026). Healthy benchmark is 30%. Heavy maintenance overhead reduces capacity for new features.
 
             </p>
