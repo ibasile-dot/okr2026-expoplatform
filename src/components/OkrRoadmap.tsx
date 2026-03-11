@@ -27,9 +27,11 @@ const thClass = "text-left p-3 font-semibold text-foreground whitespace-nowrap t
 const tdClass = "p-3 text-sm border-b border-border";
 
 const uniqueKrs = [...new Set(roadmapData.map((r) => r.okr))].sort();
+const uniqueMonths = [...new Set(roadmapData.map((r) => r.month))];
 
 const OkrRoadmap = () => {
   const [krFilter, setKrFilter] = useState<string>("all");
+  const [monthFilter, setMonthFilter] = useState<string>("all");
   const { getValue, saveValue } = useMetricValues(4, 0);
 
   const getStatus = (rowIdx: number, defaultStatus: string) => {
@@ -44,9 +46,10 @@ const OkrRoadmap = () => {
 
   const filteredData = useMemo(() => {
     return roadmapData.map((item, idx) => ({ item, idx })).filter(({ item }) =>
-      krFilter === "all" || item.okr === Number(krFilter)
+      (krFilter === "all" || item.okr === Number(krFilter)) &&
+      (monthFilter === "all" || item.month === monthFilter)
     );
-  }, [krFilter]);
+  }, [krFilter, monthFilter]);
 
   const stats = useMemo(() => {
     const items = filteredData;
@@ -68,6 +71,17 @@ const OkrRoadmap = () => {
         <div className="flex items-center justify-between flex-wrap gap-3">
           <h2 className="text-lg font-semibold text-foreground">Implementation Roadmap</h2>
           <div className="flex items-center gap-3">
+            <Select value={monthFilter} onValueChange={setMonthFilter}>
+              <SelectTrigger className="w-[140px] h-8 text-xs">
+                <SelectValue placeholder="Filter by Month" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Months</SelectItem>
+                {uniqueMonths.map((m) => (
+                  <SelectItem key={m} value={m}>{m}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Select value={krFilter} onValueChange={setKrFilter}>
               <SelectTrigger className="w-[140px] h-8 text-xs">
                 <SelectValue placeholder="Filter by KR" />
