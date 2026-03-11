@@ -45,6 +45,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 31, month: "April", week: "Early to mid-April", okr: 5, action: "Identify quick wins & longer-term opportunities", owner: "Susan, Bartek, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 32, month: "April", week: "Mid to late April", okr: 5, action: "Execute quick wins", owner: "Ilaria, Susan, Bartek", defaultStatus: "To Do", defaultNotes: "" },
   { id: 45, month: "April", week: "", okr: 3, action: "Investigate creating AI-Powered support chatbot", owner: "Susan, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 46, month: "April", week: "", okr: 3, action: "Build granular customer journey end-to-end roadmap to assess opportunities for each step", owner: "Ilaria, Shafa", defaultStatus: "In Progress", defaultNotes: "" },
   
   { id: 33, month: "May", week: "", okr: 2, action: "Collect data on effort reductions from implementation of quick wins", owner: "Ilaria, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 34, month: "May", week: "", okr: 2, action: "Analyse and prioritise longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
