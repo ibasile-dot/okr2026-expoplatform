@@ -22,7 +22,7 @@ export const roadmapData: RoadmapItem[] = [
   
   { id: 10, month: "February", week: "w/c 23rd Feb", okr: 4, action: "Discovery around current state and opportunities", owner: "Ilaria", defaultStatus: "Done", defaultNotes: "" },
   { id: 11, month: "February", week: "early to mid-March", okr: 3, action: "Finish migrating customers to support mailbox", owner: "Samarth, Jens, Mykyta, Chris, Oriana, Julia", defaultStatus: "In Progress", defaultNotes: "As project end/new projects begin" },
-  { id: 12, month: "February", week: "early to mid-March", okr: 4, action: "Continue to move admin panel improvements forward", owner: "Tanya, Ajay", defaultStatus: "In Progress", defaultNotes: "" },
+  
   
   { id: 14, month: "April", week: "early April", okr: 1, action: "Reassess and use scoring to assess remaining automation candidates following Automation Days", owner: "Olga, Susan, Bartek, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 15, month: "March", week: "Mid to late March", okr: 2, action: "Collect baseline data about current level of effort for different stages and tasks", owner: "Ilaria, Yuriy", defaultStatus: "In Progress", defaultNotes: "" },
