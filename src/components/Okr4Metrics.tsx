@@ -236,7 +236,7 @@ export const Okr4Metrics = () => {
                 </tr>
               </tbody>
             </table>
-            <p className="text-xs text-muted-foreground mt-3 italic">
+            <p className="text-xs text-destructive mt-3 italic">
               Considering we are still enforcing the adoption of JSM desk, it is likely the tickets will increase in 2026 rather than decrease (example Jan &amp; Feb 2026 vs the 2025 average)
             </p>
           </div>
