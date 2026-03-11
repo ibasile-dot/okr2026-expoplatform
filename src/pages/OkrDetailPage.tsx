@@ -1,6 +1,7 @@
 import { useParams, useLocation } from "react-router-dom";
 import { okrData } from "@/data/okrData";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Okr4Metrics } from "@/components/Okr4Metrics";
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
