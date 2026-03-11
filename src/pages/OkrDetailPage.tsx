@@ -217,8 +217,8 @@ const OkrDetailPage = () => {
         {/* New Initiatives Tab */}
         <TabsContent value="new-initiatives" className="mt-6">
           <div className="section-card p-6">
-            <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
-              <p className="text-xs font-bold uppercase tracking-wide text-accent mb-1.5">New Initiatives</p>
+            <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>New Initiatives</p>
               <p className="text-sm text-muted-foreground italic">New initiatives will be added as they are identified</p>
             </div>
           </div>
