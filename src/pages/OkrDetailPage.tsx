@@ -12,6 +12,46 @@ const statusColors: Record<string, string> = {
   "not-started": "bg-muted text-muted-foreground border-border",
 };
 
+const tdClass = "p-3 text-sm border-b border-border";
+const thClass = "text-left p-3 font-semibold text-foreground whitespace-nowrap text-xs";
+const metricColumns = ["dept", "measurement", "source", "q1", "q2", "q3", "q4", "notes"];
+const metricHeaders = ["Department", "Measurement", "Source", "Q1 Baseline", "Q2 Results", "Q3 Results", "Q4 Results", "Notes"];
+
+const OkrTemplateMetrics = ({ okrId }: { okrId: number }) => {
+  const { getValue, saveValue } = useMetricValues(okrId, 1);
+  const rows = [0, 1, 2];
+
+  return (
+    <div className="section-card p-6">
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="bg-secondary/50 border-b-2 border-border">
+              {metricHeaders.map((h) => (
+                <th key={h} className={thClass}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((rowIdx) => (
+              <tr key={rowIdx} className="border-b border-border hover:bg-secondary/30">
+                {metricColumns.map((col) => (
+                  <EditableCell
+                    key={col}
+                    value={getValue(rowIdx, col)}
+                    onSave={(v) => saveValue(rowIdx, col, v)}
+                    className={tdClass}
+                  />
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
 const statusLabels: Record<string, string> = {
   "on-track": "On Track",
   "at-risk": "At Risk",
