@@ -150,7 +150,7 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Product</td>
-                  <td className={tdClass}>Time spent on a specific feature/task (hrs)</td>
+                  <td className={tdClass} rowSpan={2} style={{ verticalAlign: "middle" }}>Time spent on a specific feature/task (hrs)</td>
                   <td className={tdClass}>Admin Panel</td>
                   <td className={tdClass}>(Not available until 2027)</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
