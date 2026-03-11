@@ -83,7 +83,7 @@ export const okrData: OKR[] = [
     whyItMatters: "This is how we will scale without scaling headcount or chaos",
     color: "hsl(200, 60%, 45%)",
     keyResults: [
-      { id: "4-1", number: 1, description: "Reduce time spent on manual processes by ≥50% in each department", target: "≥ 50%", status: "on-track", q1: "Baseline collected" },
+      { id: "4-1", number: 1, description: "Reduce time spent on manual processes by ≥50% in each department by automation", target: "≥ 50%", status: "on-track", q1: "Baseline collected" },
       { id: "4-2", number: 2, description: "Reduce event setup and management manual effort by ≥40% for organisers", target: "≥ 40%", status: "on-track", q1: "Discovery done" },
       { id: "4-3", number: 3, description: "Decrease customer support tickets related to manual workarounds by ≥30%", target: "≥ 30%", status: "at-risk", q1: "254/mo (trending up)" },
       { id: "4-4", number: 4, description: "Reduce average onboarding time for new customers by ≥35%", target: "≥ 35%", status: "on-track", q1: "Friction analysis done" },
