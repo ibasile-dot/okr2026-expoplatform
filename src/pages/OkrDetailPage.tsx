@@ -29,6 +29,8 @@ const OkrDetailPage = () => {
     roadmap: "roadmap",
     findings: "findings",
     "action-plan": "action-plan",
+    "new-initiatives": "new-initiatives",
+    "automation-ideas": "automation-ideas",
   };
   const activeTab = tabMap[lastSegment] || "overview";
 
