@@ -57,7 +57,7 @@ export const Okr4Metrics = () => {
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Finance</td>
                   <td className={tdClass} rowSpan={6} style={{ verticalAlign: "middle" }}>% of time spent on manual tasks</td>
-                  <td className={tdClass} rowSpan={5} style={{ verticalAlign: "middle" }}>Survey / Tracking 1 week tasks sheet</td>
+                  <td className={tdClass} rowSpan={5} style={{ verticalAlign: "middle" }}>Survey<br/>&nbsp;<br/>Tracking 1 week tasks sheet</td>
                   <td className={tdClass}>80% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
