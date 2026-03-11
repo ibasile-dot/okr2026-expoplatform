@@ -28,12 +28,12 @@ export const qualitativeSources = [
 
 // KR1 — Manual workload by department (from survey)
 export const deptManualWorkload = [
-  { department: "Finance", pct: 80, detail: "Invoicing, reconciliation, reporting, client database maintenance" },
-  { department: "HR", pct: 77, detail: "Onboarding docs, leave tracking, payroll prep, contract drafting" },
-  { department: "Marketing", pct: 66, detail: "Campaign setup, lead list building, PD hygiene, data enrichment" },
-  { department: "Sales", pct: 55, detail: "Confirmed 'very manual' — CRM updates, forecasting, meeting prep" },
-  { department: "TAM Team", pct: 48, detail: "Admin panel setup, training, troubleshooting, workarounds" },
-  { department: "Engineering", pct: 42, detail: "Deployment checks, config updates, manual testing" },
+  { department: "Finance", pct: 80, detail: "Invoicing, reconciliation, payment follow-ups, commission calculations, client DB updates" },
+  { department: "TAMs / Operations", pct: 80, detail: "Admin panel setup & management: 30–40%, client training & comms: 15–20%, troubleshooting: 10–15%" },
+  { department: "HR", pct: 77, detail: "Sourcing, scheduling, offer admin, Drata device compliance" },
+  { department: "Marketing", pct: 66, detail: "Campaign setup, PPC optimisation, PD maintenance, data enrichment" },
+  { department: "Sales", pct: 55, detail: "Manual outbound, CRM updates, forecasting, meeting prep" },
+  { department: "Engineering", pct: 42, detail: "Deployment checks, config updates, 400–500 hrs/month lost due to missing Team field" },
   { department: "Eng Management", pct: 20, detail: "Sprint reporting, resource allocation" },
 ];
 
