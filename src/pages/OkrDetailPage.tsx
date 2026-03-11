@@ -98,9 +98,6 @@ const OkrDetailPage = () => {
                 <div key={kr.id} className="flex items-start gap-3 text-sm">
                   <span className="font-mono text-muted-foreground w-5 shrink-0 text-right">{kr.number}</span>
                   <span className="text-foreground flex-1">{kr.description}</span>
-                  <span className={`inline-flex items-center px-2 py-0.5 text-[10px] font-medium rounded border shrink-0 ${statusColors[kr.status]}`}>
-                    {statusLabels[kr.status]}
-                  </span>
                 </div>
               ))}
             </div>
