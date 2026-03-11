@@ -57,15 +57,20 @@ const OkrDetailPage = () => {
           {[
             "Overview", "Metrics", "Roadmap", "Findings", "Action Plan", "New Initiatives",
             ...(okr.id === 4 ? ["Automation Ideas"] : []),
-          ].map((tab) => (
-            <TabsTrigger
-              key={tab}
-              value={tab.toLowerCase().replace(/ /g, "-")}
-              className="rounded-none border-b-[3px] border-transparent data-[state=active]:border-accent data-[state=active]:text-accent data-[state=active]:shadow-none px-5 py-3 text-sm font-semibold text-muted-foreground hover:text-accent transition-colors bg-transparent"
-            >
-              {tab}
-            </TabsTrigger>
-          ))}
+          ].map((tab) => {
+            const tabValue = tab.toLowerCase().replace(/ /g, "-");
+            const isActive = activeTab === tabValue;
+            return (
+              <TabsTrigger
+                key={tab}
+                value={tabValue}
+                className="rounded-none border-b-[3px] border-transparent data-[state=active]:shadow-none px-5 py-3 text-sm font-semibold text-muted-foreground transition-colors bg-transparent"
+                style={isActive ? { borderBottomColor: okr.color, color: okr.color } : undefined}
+              >
+                {tab}
+              </TabsTrigger>
+            );
+          })}
         </TabsList>
 
         {/* Overview Tab */}
@@ -74,15 +79,15 @@ const OkrDetailPage = () => {
             <h2 className="text-lg font-semibold text-foreground mb-4">{okr.shortTitle}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Owner</p>
                 <p className="text-sm text-foreground">{okr.owners[0]}</p>
               </div>
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Co-Owner</p>
                 <p className="text-sm text-foreground">{okr.owners[1] || "TBC"}</p>
               </div>
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Objective</p>
                 <p className="text-sm text-foreground">{okr.objective}</p>
               </div>
@@ -173,8 +178,8 @@ const OkrDetailPage = () => {
         {/* Findings Tab */}
         <TabsContent value="findings" className="mt-6">
           <div className="section-card p-6">
-            <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
-              <p className="text-xs font-bold uppercase tracking-wide text-accent mb-1.5">Findings</p>
+            <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>Findings</p>
               <p className="text-sm text-muted-foreground italic">Findings will be added as data is collected</p>
             </div>
           </div>
@@ -212,8 +217,8 @@ const OkrDetailPage = () => {
         {/* New Initiatives Tab */}
         <TabsContent value="new-initiatives" className="mt-6">
           <div className="section-card p-6">
-            <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
-              <p className="text-xs font-bold uppercase tracking-wide text-accent mb-1.5">New Initiatives</p>
+            <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>New Initiatives</p>
               <p className="text-sm text-muted-foreground italic">New initiatives will be added as they are identified</p>
             </div>
           </div>
@@ -223,8 +228,8 @@ const OkrDetailPage = () => {
         {okr.id === 4 && (
           <TabsContent value="automation-ideas" className="mt-6">
             <div className="section-card p-6">
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
-                <p className="text-xs font-bold uppercase tracking-wide text-accent mb-1.5">Automation Ideas</p>
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
+                <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>Automation Ideas</p>
                 <p className="text-sm text-muted-foreground italic">Automation ideas will be catalogued here with priority scoring</p>
               </div>
             </div>
