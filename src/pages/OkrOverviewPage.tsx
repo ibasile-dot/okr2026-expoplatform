@@ -38,9 +38,8 @@ const OkrOverviewPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {okrData.map((okr) => {
-          const onTrack = okr.keyResults.filter((kr) => kr.status === "on-track").length;
-          const total = okr.keyResults.length;
-          const progressPct = total > 0 ? Math.round((onTrack / total) * 100) : 0;
+          // Progress will come from Roadmap data
+          const progressPct = 0;
 
           return (
             <div
