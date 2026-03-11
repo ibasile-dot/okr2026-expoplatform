@@ -168,7 +168,7 @@ const AppSidebar = () => {
       </nav>
 
       <div className="px-5 py-4 border-t border-sidebar-border">
-        <p className="text-[11px] font-medium text-sidebar-primary">Ilaria Basile</p>
+        
         
         <img src={epLogo} alt="ExpoPlatform" className="h-8 mt-3 brightness-0 invert" />
       </div>
