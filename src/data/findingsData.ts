@@ -50,7 +50,7 @@ export const taskTimeLog = {
     { department: "Sales", people: 9, tasksLogged: 5, totalHrs: 26.0, avgPerPerson: 1.44, estMonthly: 52.0, topTask: "CRM management, forecasting, meeting prep" },
     { department: "Marketing", people: 6, tasksLogged: 8, totalHrs: 23.95, avgPerPerson: 2.0, estMonthly: 47.9, topTask: "Data enrichment, PPC optimisation, PD maintenance" },
     { department: "Finance", people: 2, tasksLogged: 5, totalHrs: 12.0, avgPerPerson: 3.0, estMonthly: 24.0, topTask: "Overdue reports, invoice reminders, bonus calculations" },
-    { department: "HR", people: 2, tasksLogged: 0, totalHrs: 0, avgPerPerson: 0, estMonthly: 0, topTask: "Data collection pending" },
+    
   ],
   topTasks: [
     { task: "CRM / Pipedrive management & forecasting", person: "Jens Schindler", hrsWeek: 26.0, dept: "Sales" },
