@@ -274,7 +274,7 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>Fathom</td>
                   <td className={tdClass}>
                     <div className="space-y-2">
-                      <div>Baseline result: 6 friction points identified, 5 time sink categories, 8 recurring questions, 5 negative sentiment themes</div>
+                      <div><span className="font-medium">Baseline result:</span> 6 friction points identified, 5 time sink categories, 8 recurring questions, 5 negative sentiment themes</div>
                       <div><span className="font-medium">Top friction finding:</span> Platform capability confusion is the #1 issue (Hyve example), followed by integration challenges and documentation gaps</div>
                       <div><span className="font-medium">Top time sink finding:</span> 30–40% of live training time is spent on troubleshooting and re-explaining — content a video library could cover</div>
                     </div>
