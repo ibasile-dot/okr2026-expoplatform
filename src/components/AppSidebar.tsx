@@ -34,7 +34,7 @@ const okr4ExtraItems = [
 const okrNav = [
   { id: 1, label: "Revenue & Profit", icon: TrendingUp, color: "hsl(237, 68%, 33%)" },
   { id: 2, label: "Meetings & Networks", icon: Handshake, color: "hsl(44, 100%, 58%)" },
-  { id: 3, label: "Delivery & Platform", icon: Shield, color: "hsl(152, 60%, 40%)" },
+  { id: 3, label: "Delivery, Platform Satisfaction & Reliability", icon: Shield, color: "hsl(152, 60%, 40%)" },
   { id: 4, label: "Automation of Manual Processes", icon: Zap, color: "hsl(200, 60%, 45%)" },
   { id: 5, label: "Data-Driven Company", icon: Database, color: "hsl(280, 50%, 50%)" },
 ];
