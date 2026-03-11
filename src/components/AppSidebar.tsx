@@ -108,7 +108,7 @@ const AppSidebar = () => {
                 >
                   {okr.id}
                 </span>
-                <span className="flex-1 text-left truncate">{okr.label}</span>
+                <span className="flex-1 text-left leading-snug">{okr.label}</span>
                 <ChevronDown
                   className={`w-3 h-3 transition-transform ${isExpanded ? "" : "-rotate-90"}`}
                 />
