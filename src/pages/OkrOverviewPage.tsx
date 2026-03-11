@@ -69,7 +69,7 @@ const OkrOverviewPage = () => {
               </div>
 
               <div className="text-[13px] font-medium text-muted-foreground mb-4">
-                {total} Key Results
+                {okr.keyResults.length} Key Results
               </div>
 
               <div className="mt-auto">
