@@ -264,6 +264,9 @@ export const Okr4Metrics = () => {
                   <th className={thClass}>Measurement</th>
                   <th className={thClass}>Tool</th>
                   <th className={thClass}>Results — Pre video library</th>
+                  <th className={thClass}>Q2 Results</th>
+                  <th className={thClass}>Q3 Results</th>
+                  <th className={thClass}>Q4 Results</th>
                   <th className={thClass}>Notes</th>
                 </tr>
               </thead>
@@ -279,6 +282,9 @@ export const Okr4Metrics = () => {
                       <div><span className="font-medium">Top time sink finding:</span> 30–40% of live training time is spent on troubleshooting and re-explaining — content a video library could cover</div>
                     </div>
                   </td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>72% of repeated questions are addressable through self-serve content. Structured training programmes (FBF model) correlate with lower friction</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
@@ -293,12 +299,18 @@ export const Okr4Metrics = () => {
                     </div>
                   </td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Operations</td>
                   <td className={tdClass}>Time spent by Ilaria to set up Admin Panel (hrs)</td>
                   <td className={tdClass}>Admin Panel</td>
                   <td className={tdClass}>(Rough estimate now as haven't added all the trainings, not available until Q2)</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>
                     <div className="space-y-1">
                       <div>-Record time it takes</div>
