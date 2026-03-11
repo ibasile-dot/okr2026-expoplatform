@@ -379,7 +379,7 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>Engineering</td>
                   <td className={tdClass}>Unused platform features in 2025</td>
                   <td className={tdClass}>Platform usage data</td>
-                  <td className={tdClass}>Results?</td>
+                  <td className={`${tdClass} text-destructive font-medium`}>Results?</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>Yuriy to generate report. Identify features no client used. Feed to product team for removal.</td>
                 </tr>
