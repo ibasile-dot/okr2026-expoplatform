@@ -4,12 +4,8 @@ import { okrData } from "@/data/okrData";
 const OkrOverviewPage = () => {
   const navigate = useNavigate();
 
-  const totalKRs = okrData.reduce((sum, okr) => sum + okr.keyResults.length, 0);
-  const onTrackKRs = okrData.reduce(
-    (sum, okr) => sum + okr.keyResults.filter((kr) => kr.status === "on-track").length,
-    0
-  );
-  const overallProgress = totalKRs > 0 ? Math.round((onTrackKRs / totalKRs) * 100) : 0;
+  // Progress will be derived from Roadmap data once available
+  const overallProgress = 0;
 
   return (
     <div>
@@ -42,9 +38,8 @@ const OkrOverviewPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {okrData.map((okr) => {
-          const onTrack = okr.keyResults.filter((kr) => kr.status === "on-track").length;
-          const total = okr.keyResults.length;
-          const progressPct = total > 0 ? Math.round((onTrack / total) * 100) : 0;
+          // Progress will come from Roadmap data
+          const progressPct = 0;
 
           return (
             <div
@@ -74,7 +69,7 @@ const OkrOverviewPage = () => {
               </div>
 
               <div className="text-[13px] font-medium text-muted-foreground mb-4">
-                {total} Key Results
+                {okr.keyResults.length} Key Results
               </div>
 
               <div className="mt-auto">
