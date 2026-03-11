@@ -150,13 +150,22 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Product</td>
-                  <td className={tdClass}>Time spent on a specific feature/task (hrs)</td>
+                  <td className={tdClass} rowSpan={2} style={{ verticalAlign: "middle" }}>Time spent on a specific feature/task (hrs)</td>
                   <td className={tdClass}>Admin Panel</td>
                   <td className={tdClass}>Not available until 2027</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>Feature not in the product roadmap until 2027</td>
+                </tr>
+                <tr className="hover:bg-secondary/30">
+                  <td className={tdClass}>Operations</td>
+                  <td className={tdClass}>Admin Panel</td>
+                  <td className={tdClass}>Rough estimate (not available until Q2)</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={tdClass}>Record time it takes, share feedback on topics, videos, guides needed</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Operations</td>
@@ -167,16 +176,6 @@ export const Okr4Metrics = () => {
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>Meeting with organisers — to start</td>
-                </tr>
-                <tr className="hover:bg-secondary/30">
-                  <td className={tdClass}>Operations</td>
-                  <td className={tdClass}>Time spent by Ilaria to set up Admin Panel (hrs)</td>
-                  <td className={tdClass}>Admin Panel</td>
-                  <td className={tdClass}>Rough estimate (not available until Q2)</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Record time it takes, share feedback on topics, videos, guides needed</td>
                 </tr>
               </tbody>
             </table>
