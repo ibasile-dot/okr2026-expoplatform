@@ -203,11 +203,9 @@ export const Okr4Metrics = () => {
                 <tr className="bg-secondary/50 border-b-2 border-border">
                   <th className={thClass}>Department</th>
                   <th className={thClass}>Measurement</th>
-                  <th className={thClass}>Source</th>
-                  <th className={thClass}>Q1 Baseline (Jan–Dec 2025)</th>
-                  <th className={thClass}>Q2 Results</th>
-                  <th className={thClass}>Q3 Results</th>
-                  <th className={thClass}>Q4 Results</th>
+                  <th className={thClass}>Tool</th>
+                  <th className={thClass}>Results (Jan–Dec 2025)</th>
+                  <th className={thClass}>Results (Jan–Feb 2026)</th>
                   <th className={thClass}>Notes</th>
                 </tr>
               </thead>
@@ -216,40 +214,33 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>TAMs / Clients</td>
                   <td className={tdClass}>Total real tickets/month (excl. SPAM)</td>
                   <td className={tdClass}>Jira Service Management</td>
-                  <td className={tdClass}>
-                    <div><span className="font-medium">2025 avg:</span> 164/month</div>
-                    <div className="text-muted-foreground text-xs mt-1">Jan–Feb 2026: 254/month (+55%)</div>
-                  </td>
+                  <td className={tdClass}>164<br />(total of 1,970)</td>
+                  <td className={tdClass}>254</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Still enforcing JSM adoption — tickets likely to increase before decreasing</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
-                  <td className={tdClass}>TAMs / Clients</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>Tickets per event</td>
-                  <td className={tdClass}>Jira Service Management</td>
-                  <td className={tdClass}>
-                    <div><span className="font-medium">2025:</span> 18.2</div>
-                    <div className="text-muted-foreground text-xs mt-1">Jan–Feb 2026: 28.2</div>
-                  </td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={tdClass}>18.2<br />(2.2 tickets per event per month)</td>
+                  <td className={tdClass}>28.2</td>
                   <td className={tdClass}>
                     <div className="text-xs space-y-0.5">
                       <div className="font-medium">Top Themes:</div>
-                      <div>1. Login/password reset</div>
-                      <div>2. Mobile app build/config</div>
-                      <div>3. Exhibitor/booth profile setup</div>
-                      <div>4. CSS/Branding customisation</div>
-                      <div>5. Registration/Badge config</div>
-                      <div>6. Lead retrieval/integration</div>
+                      <div>1. Login/password reset requests</div>
+                      <div>2. Mobile app build/config issues</div>
+                      <div>3. Exhibitor/booth profile set up</div>
+                      <div>4. CSS/Branding customisation requests</div>
+                      <div>5. Registration/Badge config issues</div>
+                      <div>6. Lead retrieval/integration errors</div>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
+            <p className="text-xs text-muted-foreground mt-3 italic">
+              Considering we are still enforcing the adoption of JSM desk, it is likely the tickets will increase in 2026 rather than decrease (example Jan &amp; Feb 2026 vs the 2025 average)
+            </p>
           </div>
         </div>}
 
@@ -264,11 +255,8 @@ export const Okr4Metrics = () => {
                 <tr className="bg-secondary/50 border-b-2 border-border">
                   <th className={thClass}>Department</th>
                   <th className={thClass}>Measurement</th>
-                  <th className={thClass}>Source</th>
-                  <th className={thClass}>Q1 Baseline</th>
-                  <th className={thClass}>Q2 Results</th>
-                  <th className={thClass}>Q3 Results</th>
-                  <th className={thClass}>Q4 Results</th>
+                  <th className={thClass}>Tool</th>
+                  <th className={thClass}>Results — Pre video library</th>
                   <th className={thClass}>Notes</th>
                 </tr>
               </thead>
@@ -278,43 +266,40 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>Sentiment analysis — onboarding friction patterns</td>
                   <td className={tdClass}>Fathom</td>
                   <td className={tdClass}>
-                    <div className="space-y-1 text-xs">
-                      <div>6 friction points identified</div>
-                      <div>5 time sink categories</div>
-                      <div>8 recurring questions</div>
-                      <div>5 negative sentiment themes</div>
+                    <div className="space-y-2">
+                      <div>Baseline result: 6 friction points identified, 5 time sink categories, 8 recurring questions, 5 negative sentiment themes</div>
+                      <div><span className="font-medium">Top friction finding:</span> Platform capability confusion is the #1 issue (Hyve example), followed by integration challenges and documentation gaps</div>
+                      <div><span className="font-medium">Top time sink finding:</span> 30–40% of live training time is spent on troubleshooting and re-explaining — content a video library could cover</div>
                     </div>
                   </td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>72% of repeated questions addressable via self-serve. Platform capability confusion is #1 issue</td>
+                  <td className={tdClass}>72% of repeated questions are addressable through self-serve content. Structured training programmes (FBF model) correlate with lower friction</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>TAMs / Clients</td>
                   <td className={tdClass}>Time spent on trainings (hrs)</td>
-                  <td className={tdClass}>Fathom / Discovery Meetings</td>
+                  <td className={tdClass}>Fathom<br /><br />Discovery Meetings with TAMs</td>
                   <td className={tdClass}>
-                    <div className="space-y-1">
-                      <div><span className="font-medium">Complex:</span> 15–23hrs</div>
-                      <div><span className="font-medium">Medium:</span> 12–18hrs</div>
-                      <div><span className="font-medium">Small:</span> 6–9hrs</div>
+                    <div className="space-y-2">
+                      <div><span className="font-medium">Complex (FBF, MEX):</span> 5-8hrs recorded training + 10-15hrs ad hoc emails = 15-23hrs Total</div>
+                      <div><span className="font-medium">Medium (SNAC, Hyve):</span> 2-3hrs recorded training + 10-15hrs ad hoc emails = 12-18hrs Total</div>
+                      <div><span className="font-medium">Small (DLG, FESPA):</span> 45mins recorded training + 5-8hrs ad hoc emails = 6-9hrs Total</div>
                     </div>
                   </td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Includes recorded training + ad hoc emails</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Operations</td>
                   <td className={tdClass}>Time spent by Ilaria to set up Admin Panel (hrs)</td>
                   <td className={tdClass}>Admin Panel</td>
-                  <td className={tdClass}>Rough estimate (not available until Q2)</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Record time, share feedback on topics, videos, guides needed</td>
+                  <td className={tdClass}>(Rough estimate now as haven't added all the trainings, not available until Q2)</td>
+                  <td className={tdClass}>
+                    <div className="space-y-1">
+                      <div>-Record time it takes</div>
+                      <div>-Share any feedback in terms of topics not covered or not explained well enough, videos that would be helpful, guides we should create, etc</div>
+                      <div><a href="https://expoplatform.atlassian.net/wiki/spaces/ExpoDoc/pages/801636402/Basic+Setup+using+Organiser+Client" className="text-primary underline break-all" target="_blank" rel="noopener noreferrer">https://expoplatform.atlassian.net/wiki/spaces/ExpoDoc/pages/801636402/Basic+Setup+using+Organiser+Client</a></div>
+                      <div><a href="https://docs.google.com/spreadsheets/d/15kmLfx3VKj6nzPV93mPMZ43djiSzATb8XwBSnkofet4/edit?usp=sharing" className="text-primary underline break-all" target="_blank" rel="noopener noreferrer">https://docs.google.com/spreadsheets/d/15kmLfx3VKj6nzPV93mPMZ43djiSzATb8XwBSnkofet4/edit?usp=sharing</a></div>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -334,11 +319,9 @@ export const Okr4Metrics = () => {
                 <tr className="bg-secondary/50 border-b-2 border-border">
                   <th className={thClass}>Department</th>
                   <th className={thClass}>Measurement</th>
-                  <th className={thClass}>Source</th>
-                  <th className={thClass}>Q1 Baseline</th>
-                  <th className={thClass}>Q2 Results</th>
-                  <th className={thClass}>Q3 Results</th>
-                  <th className={thClass}>Q4 Results</th>
+                  <th className={thClass}>Tool</th>
+                  <th className={thClass}>Results (January)</th>
+                  <th className={thClass}>Results (February)</th>
                   <th className={thClass}>Notes</th>
                 </tr>
               </thead>
@@ -347,76 +330,39 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>Engineering</td>
                   <td className={tdClass}>Time spent on bug-related work (hrs)</td>
                   <td className={tdClass}>Jira</td>
-                  <td className={tdClass}>
-                    <div><span className="font-medium">Jan:</span> 1,161h (~34%)</div>
-                    <div><span className="font-medium">Feb:</span> 719h (~20%)</div>
-                  </td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Make Team field mandatory again. 126 tasks without Team field in Jan; 650h non-attributed time</td>
+                  <td className={tdClass}>1161h spent on bug-related work (Bugs + Defects), which is ~34% of engineering time<br />126 tasks without Team field;<br />650.48h non-attributed engineering time.</td>
+                  <td className={tdClass}>719h spent on bug-related work, which is ~20% of engineering time</td>
+                  <td className={tdClass}>Make Team field mandatory again. Yuriy checking with Bartosz &amp; check if Jira can get teams from names</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Engineering</td>
-                  <td className={tdClass}>% Bug vs non-bug time — Mobile</td>
-                  <td className={tdClass}>Jira + Yuriy report</td>
+                  <td className={tdClass}>% Bug vs non-bug time ratio per team</td>
+                  <td className={tdClass}>Jira + Yuriy monthly report</td>
                   <td className={tdClass}>
-                    <div><span className="font-medium">Jan:</span> 44.8%</div>
-                    <div><span className="font-medium">Feb:</span> 25.2%</div>
+                    <div className="space-y-1">
+                      <div>Mobile – 44.8%</div>
+                      <div>Exhibitor – 43.3%</div>
+                      <div>Visitor – 55.8%</div>
+                      <div>Organizer – 34.7%</div>
+                    </div>
                   </td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Yuriy considers 30% healthy</td>
-                </tr>
-                <tr className="hover:bg-secondary/30">
-                  <td className={tdClass}>Engineering</td>
-                  <td className={tdClass}>% Bug vs non-bug time — Exhibitor</td>
-                  <td className={tdClass}>Jira + Yuriy report</td>
                   <td className={tdClass}>
-                    <div><span className="font-medium">Jan:</span> 43.3%</div>
-                    <div><span className="font-medium">Feb:</span> 26.7%</div>
+                    <div className="space-y-1">
+                      <div>Mobile – 25.2%</div>
+                      <div>Exhibitor – 26.7%</div>
+                      <div>Visitor – 28.5%</div>
+                      <div>Organizer – 20.1%</div>
+                    </div>
                   </td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Heavy firefighting mode</td>
-                </tr>
-                <tr className="hover:bg-secondary/30">
-                  <td className={tdClass}>Engineering</td>
-                  <td className={tdClass}>% Bug vs non-bug time — Visitor</td>
-                  <td className={tdClass}>Jira + Yuriy report</td>
-                  <td className={tdClass}>
-                    <div><span className="font-medium">Jan:</span> 55.8%</div>
-                    <div><span className="font-medium">Feb:</span> 28.5%</div>
-                  </td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Highest bug ratio in Jan</td>
-                </tr>
-                <tr className="hover:bg-secondary/30">
-                  <td className={tdClass}>Engineering</td>
-                  <td className={tdClass}>% Bug vs non-bug time — Organizer</td>
-                  <td className={tdClass}>Jira + Yuriy report</td>
-                  <td className={tdClass}>
-                    <div><span className="font-medium">Jan:</span> 34.7%</div>
-                    <div><span className="font-medium">Feb:</span> 20.1%</div>
-                  </td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Best performing team</td>
+                  <td className={tdClass}>Yuriy considers 30% healthy. Heavy firefighting mode.</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Engineering</td>
                   <td className={tdClass}>Unused platform features in 2025</td>
                   <td className={tdClass}>Platform usage data</td>
-                  <td className={tdClass}>Pending report</td>
+                  <td className={tdClass}>Results?</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Yuriy to generate report. Identify features no client used. Feed to product team for removal</td>
+                  <td className={tdClass}>Yuriy to generate report. Identify features no client used. Feed to product team for removal.</td>
                 </tr>
               </tbody>
             </table>
