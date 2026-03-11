@@ -36,7 +36,7 @@ const okrNav = [
   { id: 2, label: "Meetings & Networks", icon: Handshake, color: "hsl(44, 100%, 58%)" },
   { id: 3, label: "Platform Stability", icon: Shield, color: "hsl(152, 60%, 40%)" },
   { id: 4, label: "Automation", icon: Zap, color: "hsl(200, 60%, 45%)" },
-  { id: 5, label: "Data-Driven", icon: Database, color: "hsl(280, 50%, 50%)" },
+  { id: 5, label: "Data-Driven Company", icon: Database, color: "hsl(280, 50%, 50%)" },
 ];
 
 const AppSidebar = () => {
