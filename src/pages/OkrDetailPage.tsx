@@ -2,12 +2,54 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { okrData } from "@/data/okrData";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Okr4Metrics } from "@/components/Okr4Metrics";
+import { EditableCell } from "@/components/EditableCell";
+import { useMetricValues } from "@/hooks/useMetricValues";
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
   "at-risk": "bg-warning/15 text-warning border-warning/30",
   "behind": "bg-destructive/15 text-destructive border-destructive/30",
   "not-started": "bg-muted text-muted-foreground border-border",
+};
+
+const tdClass = "p-3 text-sm border-b border-border";
+const thClass = "text-left p-3 font-semibold text-foreground whitespace-nowrap text-xs";
+const metricColumns = ["dept", "measurement", "source", "q1", "q2", "q3", "q4", "notes"];
+const metricHeaders = ["Department", "Measurement", "Source", "Q1 Baseline", "Q2 Results", "Q3 Results", "Q4 Results", "Notes"];
+
+const OkrTemplateMetrics = ({ okrId }: { okrId: number }) => {
+  const { getValue, saveValue } = useMetricValues(okrId, 1);
+  const rows = [0, 1, 2];
+
+  return (
+    <div className="section-card p-6">
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="bg-secondary/50 border-b-2 border-border">
+              {metricHeaders.map((h) => (
+                <th key={h} className={thClass}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((rowIdx) => (
+              <tr key={rowIdx} className="border-b border-border hover:bg-secondary/30">
+                {metricColumns.map((col) => (
+                  <EditableCell
+                    key={col}
+                    value={getValue(rowIdx, col)}
+                    onSave={(v) => saveValue(rowIdx, col, v)}
+                    className={tdClass}
+                  />
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 const statusLabels: Record<string, string> = {
@@ -119,34 +161,7 @@ const OkrDetailPage = () => {
           {okr.id === 4 ? (
             <Okr4Metrics />
           ) : (
-            <div className="section-card p-6">
-              <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
-                <span className="text-xs font-semibold text-muted-foreground">Template Mode</span>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-secondary/50 border-b-2 border-border">
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Department</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Measurement</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Source</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Q1 Baseline</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Q2 Results</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Q3 Results</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Q4 Results</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-border hover:bg-secondary/30">
-                      {Array(8).fill(null).map((_, i) => (
-                        <td key={i} className="p-3 text-muted-foreground italic">—</td>
-                      ))}
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <OkrTemplateMetrics okrId={okr.id} />
           )}
         </TabsContent>
 

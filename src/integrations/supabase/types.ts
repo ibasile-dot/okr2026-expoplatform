@@ -14,7 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      okr_metric_values: {
+        Row: {
+          column_key: string
+          id: string
+          kr_number: number
+          okr_number: number
+          row_index: number
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          column_key: string
+          id?: string
+          kr_number: number
+          okr_number: number
+          row_index: number
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          column_key?: string
+          id?: string
+          kr_number?: number
+          okr_number?: number
+          row_index?: number
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
