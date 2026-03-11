@@ -308,6 +308,9 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>Time spent by Ilaria to set up Admin Panel (hrs)</td>
                   <td className={tdClass}>Admin Panel</td>
                   <td className={tdClass}>(Rough estimate now as haven't added all the trainings, not available until Q2)</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>
                     <div className="space-y-1">
                       <div>-Record time it takes</div>
