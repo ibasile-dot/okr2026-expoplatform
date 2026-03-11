@@ -20,6 +20,7 @@ const statusLabels: Record<string, string> = {
 const OkrDetailPage = () => {
   const { okrId } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const okr = okrData.find((o) => o.id === Number(okrId));
 
   // Derive active tab from URL path
