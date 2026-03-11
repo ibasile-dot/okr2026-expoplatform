@@ -53,7 +53,10 @@ const OkrDetailPage = () => {
         <p className="text-sm text-muted-foreground mt-1">{okr.objective}</p>
       </div>
 
-      <Tabs value={activeTab} className="w-full">
+      <Tabs value={activeTab} onValueChange={(val) => {
+        const suffix = val === "overview" ? "" : `/${val}`;
+        navigate(`/okr/${okr.id}${suffix}`);
+      }} className="w-full">
         <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-border rounded-none gap-0 flex-wrap">
           {[
             "Overview", "Metrics", "Roadmap", "Findings", "Action Plan", "New Initiatives",
