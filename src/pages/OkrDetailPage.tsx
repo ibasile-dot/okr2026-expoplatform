@@ -166,33 +166,36 @@ const OkrDetailPage = () => {
           )}
         </TabsContent>
 
-        {/* Roadmap Tab */}
         <TabsContent value="roadmap" className="mt-6">
-          <div className="section-card p-6">
-            <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
-              <span className="text-xs font-semibold text-muted-foreground">Template Mode</span>
+          {okr.id === 4 ? (
+            <OkrRoadmap />
+          ) : (
+            <div className="section-card p-6">
+              <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
+                <span className="text-xs font-semibold text-muted-foreground">Template Mode</span>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-secondary/50 border-b-2 border-border">
+                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Month/Week</th>
+                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Initiative</th>
+                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Owner</th>
+                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Status</th>
+                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-border hover:bg-secondary/30">
+                      {Array(5).fill(null).map((_, i) => (
+                        <td key={i} className="p-3 text-muted-foreground italic">—</td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-secondary/50 border-b-2 border-border">
-                    <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Month/Week</th>
-                    <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Initiative</th>
-                    <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Owner</th>
-                    <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Status</th>
-                    <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-border hover:bg-secondary/30">
-                    {Array(5).fill(null).map((_, i) => (
-                      <td key={i} className="p-3 text-muted-foreground italic">—</td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          )}
         </TabsContent>
 
         {/* Findings Tab */}
