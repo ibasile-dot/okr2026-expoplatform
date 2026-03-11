@@ -11,8 +11,8 @@ export interface RoadmapItem {
 }
 
 export const roadmapData: RoadmapItem[] = [
-  { id: 1, month: "February", week: "w/c 16th Feb", okr: 1, action: "Analyse automation study results", owner: "Olga, Ilaria", defaultStatus: "Done", defaultNotes: "" },
-  { id: 2, month: "February", week: "w/c 16th Feb", okr: 1, action: "Validate list of manual tasks with each department", subactions: "Awaiting for various DEPTs responses", owner: "Ilaria, Julia, Susan", defaultStatus: "Done", defaultNotes: "" },
+  { id: 1, month: "February", week: "w/c 16th Feb", okr: 1, action: "Analyse automation study results", owner: "Olga, Ilaria, Susan, Bartek", defaultStatus: "Done", defaultNotes: "" },
+  { id: 2, month: "February", week: "w/c 16th Feb", okr: 1, action: "Validate list of manual tasks with each department", subactions: "Awaiting for various DEPTs responses", owner: "Olga, Ilaria, Susan, Bartek", defaultStatus: "Done", defaultNotes: "" },
   { id: 3, month: "February", week: "w/c 23rd Feb", okr: 1, action: "Discovery around current state and opportunities", subactions: "Review useful documents/meetings, Jira feature & customisation requests audit, Jira Reports review, Planhat integration plan review, Work logs review, Browse JSM Queues, Survey results review, Interviews with all departments, Review HR processes", owner: "Ilaria", defaultStatus: "Done", defaultNotes: "added" },
   { id: 4, month: "February", week: "w/c 23rd Feb", okr: 1, action: "Identify easy wins and high value automation targets", owner: "Ilaria, Susan, Julia", defaultStatus: "Done", defaultNotes: "" },
   { id: 5, month: "February", week: "w/c 23rd Feb", okr: 1, action: "Collect data about current time spent on above tasks", subactions: "Waiting on other dept and review with Julia", owner: "Ilaria, Susan, Julia, Olga, Bartek", defaultStatus: "Done", defaultNotes: "" },
