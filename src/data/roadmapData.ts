@@ -34,6 +34,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 19, month: "March", week: "w/c March 9", okr: 3, action: "Notion/ClickUp AI for theme identification across customer boards", owner: "Susan, Ilaria, TAMs", defaultStatus: "In Progress", defaultNotes: "" },
   { id: 20, month: "March", week: "w/c March 16", okr: 3, action: "Formulate action plan based on survey results and Rovo analysis", owner: "Susan, Ilaria, TAM Leads", defaultStatus: "In Progress", defaultNotes: "" },
   { id: 21, month: "March", week: "", okr: 4, action: "Collect baseline data about current time spent", owner: "Ilaria, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 50, month: "March", week: "", okr: 4, action: "Continue building new onboarding/training materials", owner: "Julia, Jonathan, Matheus, Josua, Susan", defaultStatus: "In Progress", defaultNotes: "" },
   { id: 47, month: "March", week: "", okr: 3, action: "Continue building new onboarding/training materials", owner: "Julia, Jonathan, Matheus, Josua, Susan", defaultStatus: "In Progress", defaultNotes: "" },
   { id: 22, month: "March", week: "w/c March 2", okr: 5, action: "Collect baseline data about current time spent", owner: "Susan, Bartek, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 23, month: "March", week: "After automation days?", okr: 5, action: "Conduct survey around current state and opportunities", owner: "Susan, Bartek, Olga", defaultStatus: "To Do", defaultNotes: "" },
