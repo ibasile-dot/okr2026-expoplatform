@@ -103,7 +103,7 @@ export const Okr4Metrics = () => {
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Admin panel setup 30-40%, Client training 15-20%, Troubleshooting 10-15%, Registration/matchmaking 10-15%</td>
+                  <td className={tdClass}>Admin panel setup &amp; management (inc. app submission, website builder, translations, etc.): 30-40% (600-800 hrs/yr per TAM)<br/>Client training &amp; comms: 15-20%<br/>Troubleshooting &amp; bug reporting (inc. workarounds): 10-15%<br/>Registration &amp; matchmaking setup: 10-15%<br/>Planning &amp; meetings (fragmented tools &amp; duplicated coordination effort, analytics, reporting and manual data work): 10%</td>
                 </tr>
               </tbody>
             </table>
