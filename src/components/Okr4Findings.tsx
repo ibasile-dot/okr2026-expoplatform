@@ -156,9 +156,6 @@ const Okr4Findings = () => {
           <div className="p-4 bg-secondary/30 border-b border-border">
             <p className="text-xs text-muted-foreground">
               19 people across 4 departments logged their top manual tasks for 1 week.
-              <span className="font-semibold text-foreground ml-1">
-                Result: {taskTimeLog.summary.totalHrsWeek} hrs/week → ~{taskTimeLog.summary.estHrsMonth} hrs/month
-              </span>
             </p>
           </div>
           <table className="w-full text-xs">
