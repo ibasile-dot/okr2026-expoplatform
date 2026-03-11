@@ -220,7 +220,6 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Tickets per event</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>18.2<br />(2.2 tickets per event per month)</td>
                   <td className={tdClass}>28.2</td>
                   <td className={tdClass}>
