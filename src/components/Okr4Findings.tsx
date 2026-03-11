@@ -7,7 +7,8 @@ import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
 } from "recharts";
 import {
-  discoverySources,
+  quantitativeSources,
+  qualitativeSources,
   deptManualWorkload,
   taskTimeLog,
   tamTimeBreakdown,
