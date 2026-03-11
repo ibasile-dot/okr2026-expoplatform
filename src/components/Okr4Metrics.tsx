@@ -165,10 +165,14 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>(Rough estimate, not available until Q2)</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>
-
-
-                </td>
+                  <td className={tdClass}>
+                    <div className="space-y-1">
+                      <div>-Record time it takes</div>
+                      <div>-Share any feedback in terms of topics not covered or not explained well enough, videos that would be helpful, guides we should create, etc</div>
+                      <div><a href="https://expoplatform.atlassian.net/wiki/spaces/ExpoDoc/pages/801636402/Basic+Setup+using+Organiser+Client" className="text-primary underline break-all" target="_blank" rel="noopener noreferrer">https://expoplatform.atlassian.net/wiki/spaces/ExpoDoc/pages/801636402/Basic+Setup+using+Organiser+Client</a></div>
+                      <div><a href="https://docs.google.com/spreadsheets/d/15kmLfx3VKj6nzPV93mPMZ43djiSzATb8XwBSnkofet4/edit?usp=sharing" className="text-primary underline break-all" target="_blank" rel="noopener noreferrer">https://docs.google.com/spreadsheets/d/15kmLfx3VKj6nzPV93mPMZ43djiSzATb8XwBSnkofet4/edit?usp=sharing</a></div>
+                    </div>
+                  </td>
                   <td className={tdClass}>Record time it takes, share feedback on topics, videos, guides needed</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
