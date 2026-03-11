@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { okrData } from "@/data/okrData";
+import { useRoadmapProgress } from "@/hooks/useRoadmapProgress";
 
 const OkrOverviewPage = () => {
   const navigate = useNavigate();
-
-  // Progress will be derived from Roadmap data once available
-  const overallProgress = 0;
+  const { progressByOkr, overallProgress } = useRoadmapProgress();
 
   return (
     <div>
