@@ -5,12 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import OkrOverviewPage from "./pages/OkrOverviewPage";
-import OkrPlaceholderPage from "./pages/OkrPlaceholderPage";
-import Index from "./pages/Index";
-import FindingsPage from "./pages/FindingsPage";
-import ActionPlanPage from "./pages/ActionPlanPage";
-import AutomationIdeasPage from "./pages/AutomationIdeasPage";
-import WorkaroundsPage from "./pages/WorkaroundsPage";
+import OkrDetailPage from "./pages/OkrDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,14 +19,11 @@ const App = () => (
         <AppLayout>
           <Routes>
             <Route path="/" element={<OkrOverviewPage />} />
-            {/* OKR 1, 2, 3, 5 placeholder pages */}
-            <Route path="/okr/:okrId" element={<OkrPlaceholderPage />} />
-            {/* OKR 4 — Full build-out */}
-            <Route path="/okr/4/overview" element={<Index />} />
-            <Route path="/okr/4/findings" element={<FindingsPage />} />
-            <Route path="/okr/4/action-plan" element={<ActionPlanPage />} />
-            <Route path="/okr/4/automation-ideas" element={<AutomationIdeasPage />} />
-            <Route path="/okr/4/workarounds" element={<WorkaroundsPage />} />
+            <Route path="/okr/:okrId" element={<OkrDetailPage />} />
+            <Route path="/okr/:okrId/metrics" element={<OkrDetailPage />} />
+            <Route path="/okr/:okrId/roadmap" element={<OkrDetailPage />} />
+            <Route path="/okr/:okrId/findings" element={<OkrDetailPage />} />
+            <Route path="/okr/:okrId/action-plan" element={<OkrDetailPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AppLayout>
