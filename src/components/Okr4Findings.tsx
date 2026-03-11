@@ -81,8 +81,8 @@ const Okr4Findings = () => {
   return (
     <div>
       {/* ═══════════════════════════════════════════════════════
-           HEADER & METHODOLOGY
-           ═══════════════════════════════════════════════════════ */}
+                             HEADER & METHODOLOGY
+                             ═══════════════════════════════════════════════════════ */}
       <div className="mb-8">
         <h2 className="text-lg font-semibold text-foreground">Discovery Findings & Rationale</h2>
         <p className="text-sm text-muted-foreground mt-1 max-w-3xl">
@@ -115,8 +115,8 @@ const Okr4Findings = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-           EXECUTIVE SUMMARY — Key Numbers
-           ═══════════════════════════════════════════════════════ */}
+                             EXECUTIVE SUMMARY — Key Numbers
+                             ═══════════════════════════════════════════════════════ */}
       <SectionTitle>Executive Summary</SectionTitle>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
         <MiniStat label="Primary Constraint" value="30–40%" sub="TAM time on admin panel" />
@@ -126,8 +126,8 @@ const Okr4Findings = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-           KR1 — Manual Process Reduction
-           ═══════════════════════════════════════════════════════ */}
+                             KR1 — Manual Process Reduction
+                             ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={1}
         title="KR1: Reduce Manual Processes by ≥50% per Department"
@@ -206,8 +206,8 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-           KR2 — Event Setup & Management
-           ═══════════════════════════════════════════════════════ */}
+                             KR2 — Event Setup & Management
+                             ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={2}
         title="KR2: Reduce Event Setup Manual Effort by ≥40%"
@@ -274,29 +274,29 @@ const Okr4Findings = () => {
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">Back-end Configuration</p>
             <p className="text-lg font-bold text-foreground">{adminPanelFindings.configSteps} manual steps</p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Registration conditional logic, matchmaking rules, API config, exhibitor setup. No guided wizards or templates.
+            <p className="text-xs text-muted-foreground mt-1">Registration conditional logic, matchmaking rules, API configuration, exhibitor setup. Complex pipelines with no guided wizards. Investigating AI agent for automated config.
+
             </p>
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">Front-end — Website Builder</p>
             <p className="text-lg font-bold text-foreground">{adminPanelFindings.unusedFeatures} features unused</p>
-            <p className="text-xs text-muted-foreground mt-1">
-              TAMs use ChatGPT + CSS repos as workarounds. No feature-based wizard — all features shown regardless of event type.
+            <p className="text-xs text-muted-foreground mt-1">Theme setup, custom CSS/JavaScript, block configuration. TAMs use ChatGPT + CSS repos as workarounds. Exploring external AI agent overlay.
+
             </p>
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">App Submission</p>
             <p className="text-lg font-bold text-foreground">{adminPanelFindings.appSubmission}</p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Both iOS & Android questionnaires fully manual. Quick win: pre-fill automation.
+            <p className="text-xs text-muted-foreground mt-1">Both Android & iOS questionnaires fully manual. Investigating automated pre-fill and API-based submission to Google Play & App Store Connect.
+
             </p>
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">App Builder — Mobile Bug Time</p>
             <p className="text-lg font-bold text-foreground">{adminPanelFindings.mobileBugTime}</p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Heavy maintenance overhead reduces capacity for new features.
+            <p className="text-xs text-muted-foreground mt-1">Mobile team at 44% bug time (Jan 2026). Healthy benchmark is 30%. Heavy maintenance overhead reduces capacity for new features.
+
             </p>
           </div>
         </div>
@@ -305,8 +305,8 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-           KR3 — Support Tickets
-           ═══════════════════════════════════════════════════════ */}
+                             KR3 — Support Tickets
+                             ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={3}
         title="KR3: Decrease Support Tickets by ≥30%"
@@ -389,8 +389,8 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-           KR4 — Customer Onboarding
-           ═══════════════════════════════════════════════════════ */}
+                             KR4 — Customer Onboarding
+                             ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={4}
         title="KR4: Reduce Onboarding Time by ≥35%"
@@ -461,8 +461,8 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-           KR5 — Engineering Maintenance
-           ═══════════════════════════════════════════════════════ */}
+                             KR5 — Engineering Maintenance
+                             ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={5}
         title="KR5: Engineering Maintenance Reduced by ≥25%"
@@ -499,8 +499,8 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-           RATIONALE — How It All Connects
-           ═══════════════════════════════════════════════════════ */}
+                             RATIONALE — How It All Connects
+                             ═══════════════════════════════════════════════════════ */}
       <div className="mb-12">
         <SectionTitle>How It All Connects — Priority Rationale</SectionTitle>
 
