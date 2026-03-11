@@ -94,7 +94,7 @@ export const okrData: OKR[] = [
     title: "OKR 5 — Data-Driven Company",
     shortTitle: "Data-Driven Company",
     objective: "Make data the default input for every strategic and operational means — transform into a data-driven company",
-    owners: ["Mykyta Fastovets"],
+    owners: ["Mykyta Fastovets", "Ajay Singh"],
     whyItMatters: "This OKR underpins all others — without it, automation, GTM, and product bets are guesswork",
     color: "hsl(280, 50%, 50%)",
     keyResults: [
