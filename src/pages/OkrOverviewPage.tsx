@@ -4,12 +4,8 @@ import { okrData } from "@/data/okrData";
 const OkrOverviewPage = () => {
   const navigate = useNavigate();
 
-  const totalKRs = okrData.reduce((sum, okr) => sum + okr.keyResults.length, 0);
-  const onTrackKRs = okrData.reduce(
-    (sum, okr) => sum + okr.keyResults.filter((kr) => kr.status === "on-track").length,
-    0
-  );
-  const overallProgress = totalKRs > 0 ? Math.round((onTrackKRs / totalKRs) * 100) : 0;
+  // Progress will be derived from Roadmap data once available
+  const overallProgress = 0;
 
   return (
     <div>
