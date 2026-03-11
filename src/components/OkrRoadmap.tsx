@@ -27,9 +27,11 @@ const thClass = "text-left p-3 font-semibold text-foreground whitespace-nowrap t
 const tdClass = "p-3 text-sm border-b border-border";
 
 const uniqueKrs = [...new Set(roadmapData.map((r) => r.okr))].sort();
+const uniqueMonths = [...new Set(roadmapData.map((r) => r.month))];
 
 const OkrRoadmap = () => {
   const [krFilter, setKrFilter] = useState<string>("all");
+  const [monthFilter, setMonthFilter] = useState<string>("all");
   const { getValue, saveValue } = useMetricValues(4, 0);
 
   const getStatus = (rowIdx: number, defaultStatus: string) => {
