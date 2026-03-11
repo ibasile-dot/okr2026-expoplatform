@@ -52,11 +52,14 @@ const OkrDetailPage = () => {
       </div>
 
       <Tabs value={activeTab} className="w-full">
-        <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-border rounded-none gap-0">
-          {["Overview", "Metrics", "Roadmap", "Findings", "Action Plan"].map((tab) => (
+        <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-border rounded-none gap-0 flex-wrap">
+          {[
+            "Overview", "Metrics", "Roadmap", "Findings", "Action Plan", "New Initiatives",
+            ...(okr.id === 4 ? ["Automation Ideas"] : []),
+          ].map((tab) => (
             <TabsTrigger
               key={tab}
-              value={tab.toLowerCase().replace(" ", "-")}
+              value={tab.toLowerCase().replace(/ /g, "-")}
               className="rounded-none border-b-[3px] border-transparent data-[state=active]:border-accent data-[state=active]:text-accent data-[state=active]:shadow-none px-5 py-3 text-sm font-semibold text-muted-foreground hover:text-accent transition-colors bg-transparent"
             >
               {tab}
