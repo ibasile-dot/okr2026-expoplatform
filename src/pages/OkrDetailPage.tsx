@@ -29,6 +29,8 @@ const OkrDetailPage = () => {
     roadmap: "roadmap",
     findings: "findings",
     "action-plan": "action-plan",
+    "new-initiatives": "new-initiatives",
+    "automation-ideas": "automation-ideas",
   };
   const activeTab = tabMap[lastSegment] || "overview";
 
@@ -50,11 +52,14 @@ const OkrDetailPage = () => {
       </div>
 
       <Tabs value={activeTab} className="w-full">
-        <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-border rounded-none gap-0">
-          {["Overview", "Metrics", "Roadmap", "Findings", "Action Plan"].map((tab) => (
+        <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-border rounded-none gap-0 flex-wrap">
+          {[
+            "Overview", "Metrics", "Roadmap", "Findings", "Action Plan", "New Initiatives",
+            ...(okr.id === 4 ? ["Automation Ideas"] : []),
+          ].map((tab) => (
             <TabsTrigger
               key={tab}
-              value={tab.toLowerCase().replace(" ", "-")}
+              value={tab.toLowerCase().replace(/ /g, "-")}
               className="rounded-none border-b-[3px] border-transparent data-[state=active]:border-accent data-[state=active]:text-accent data-[state=active]:shadow-none px-5 py-3 text-sm font-semibold text-muted-foreground hover:text-accent transition-colors bg-transparent"
             >
               {tab}
@@ -203,6 +208,27 @@ const OkrDetailPage = () => {
             </div>
           </div>
         </TabsContent>
+        {/* New Initiatives Tab */}
+        <TabsContent value="new-initiatives" className="mt-6">
+          <div className="section-card p-6">
+            <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
+              <p className="text-xs font-bold uppercase tracking-wide text-accent mb-1.5">New Initiatives</p>
+              <p className="text-sm text-muted-foreground italic">New initiatives will be added as they are identified</p>
+            </div>
+          </div>
+        </TabsContent>
+
+        {/* Automation Ideas Tab (OKR 4 only) */}
+        {okr.id === 4 && (
+          <TabsContent value="automation-ideas" className="mt-6">
+            <div className="section-card p-6">
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
+                <p className="text-xs font-bold uppercase tracking-wide text-accent mb-1.5">Automation Ideas</p>
+                <p className="text-sm text-muted-foreground italic">Automation ideas will be catalogued here with priority scoring</p>
+              </div>
+            </div>
+          </TabsContent>
+        )}
       </Tabs>
     </div>
   );
