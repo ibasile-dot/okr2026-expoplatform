@@ -146,13 +146,12 @@ export const Okr4Metrics = () => {
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>
-</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Product</td>
-                  <td className={tdClass} rowSpan={2} style={{ verticalAlign: "middle" }}>Time spent on a specific feature/task (hrs)</td>
-                  <td className={tdClass}>Discovery Calls</td>
+                  <td className={tdClass}>Time spent on a specific feature/task (hrs)</td>
+                  <td className={tdClass}>Admin Panel</td>
                   <td className={tdClass}>(Not available until 2027)</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
@@ -161,8 +160,20 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Operations</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>Discovery Calls</td>
-                  <td className={tdClass}>(Rough estimate, not available until Q2)</td>
+                  <td className={tdClass}>(Not available until Q2)</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={tdClass}>Meeting with organisers — to start</td>
+                </tr>
+                <tr className="hover:bg-secondary/30">
+                  <td className={tdClass}>Operations</td>
+                  <td className={tdClass}>Time spent by Ilaria to set up Admin Panel (hrs)</td>
+                  <td className={tdClass}>Admin Panel</td>
+                  <td className={tdClass}>(Rough estimate now as haven't added all the trainings, not available until Q2)</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>
@@ -173,17 +184,6 @@ export const Okr4Metrics = () => {
                       <div><a href="https://docs.google.com/spreadsheets/d/15kmLfx3VKj6nzPV93mPMZ43djiSzATb8XwBSnkofet4/edit?usp=sharing" className="text-primary underline break-all" target="_blank" rel="noopener noreferrer">https://docs.google.com/spreadsheets/d/15kmLfx3VKj6nzPV93mPMZ43djiSzATb8XwBSnkofet4/edit?usp=sharing</a></div>
                     </div>
                   </td>
-                  <td className={tdClass}>Record time it takes, share feedback on topics, videos, guides needed</td>
-                </tr>
-                <tr className="hover:bg-secondary/30">
-                  <td className={tdClass}>Operations</td>
-                  <td className={tdClass}>Organiser feedback</td>
-                  <td className={tdClass}>Discovery Calls</td>
-                  <td className={tdClass}>(Not available until Q2)</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
-                  <td className={tdClass}>Meeting with organisers — to start</td>
                 </tr>
               </tbody>
             </table>
