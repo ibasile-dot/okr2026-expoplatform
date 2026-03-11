@@ -82,7 +82,13 @@ const Okr4Findings = () => {
       {/* ═══════════════════════════════════════════════════════
           HEADER & METHODOLOGY
           ═══════════════════════════════════════════════════════ */}
-      {/* Header removed — page title is provided by the OkrDetailPage parent */}
+      <div className="mb-8">
+        <h2 className="text-lg font-semibold text-foreground">Discovery Findings & Rationale</h2>
+        <p className="text-sm text-muted-foreground mt-1 max-w-3xl">
+          Complete findings from the operational efficiency discovery. Each section maps to a Key Result, showing the data
+          collected, what it tells us, and why it drives our prioritisation.
+        </p>
+      </div>
 
       {/* Methodology */}
       <div className="section-card p-5 mb-10">
