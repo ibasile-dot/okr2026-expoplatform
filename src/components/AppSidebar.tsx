@@ -24,6 +24,11 @@ const defaultSubItems = [
   { suffix: "/roadmap", label: "Roadmap", icon: Map },
   { suffix: "/findings", label: "Findings", icon: Search },
   { suffix: "/action-plan", label: "Action Plan", icon: ListChecks },
+  { suffix: "/new-initiatives", label: "New Initiatives", icon: Rocket },
+];
+
+const okr4ExtraItems = [
+  { suffix: "/automation-ideas", label: "Automation Ideas", icon: Lightbulb },
 ];
 
 const okrNav = [
