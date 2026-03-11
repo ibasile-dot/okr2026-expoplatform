@@ -121,34 +121,7 @@ const OkrDetailPage = () => {
           {okr.id === 4 ? (
             <Okr4Metrics />
           ) : (
-            <div className="section-card p-6">
-              <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
-                <span className="text-xs font-semibold text-muted-foreground">Template Mode</span>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-secondary/50 border-b-2 border-border">
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Department</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Measurement</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Source</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Q1 Baseline</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Q2 Results</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Q3 Results</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Q4 Results</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-border hover:bg-secondary/30">
-                      {Array(8).fill(null).map((_, i) => (
-                        <td key={i} className="p-3 text-muted-foreground italic">—</td>
-                      ))}
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <OkrTemplateMetrics okrId={okr.id} />
           )}
         </TabsContent>
 
