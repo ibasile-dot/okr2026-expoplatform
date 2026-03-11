@@ -135,7 +135,7 @@ export const Okr4Metrics = () => {
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>TAMs / Clients</td>
                   <td className={tdClass}>Time spent on trainings (hrs)</td>
-                  <td className={tdClass}>Fathom / Discovery Meetings</td>
+                  <td className={tdClass}>Fathom<br/><br/>Discovery Meetings with TAMs</td>
                   <td className={tdClass}>
                     <div className="space-y-1">
                       <div><span className="font-medium">Complex:</span> 15–23hrs</div>
