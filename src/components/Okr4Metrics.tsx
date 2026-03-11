@@ -57,7 +57,7 @@ export const Okr4Metrics = () => {
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Finance</td>
                   <td className={tdClass} rowSpan={6} style={{ verticalAlign: "middle" }}>% of time spent on manual tasks</td>
-                  <td className={tdClass}>Survey / Tracking 1 week tasks sheet</td>
+                  <td className={tdClass} rowSpan={5} style={{ verticalAlign: "middle" }}>Survey / Tracking 1 week tasks sheet</td>
                   <td className={tdClass}>80% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
@@ -66,7 +66,6 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>HR</td>
-                  <td className={tdClass}>Survey / PeopleForce</td>
                   <td className={tdClass}>77% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
@@ -75,7 +74,6 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Marketing</td>
-                  <td className={tdClass}>Survey / Pipedrive</td>
                   <td className={tdClass}>66% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
@@ -84,7 +82,6 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Sales</td>
-                  <td className={tdClass}>Survey</td>
                   <td className={tdClass}>55% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
@@ -93,7 +90,6 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Engineering</td>
-                  <td className={tdClass}>Jira / Manual Study</td>
                   <td className={tdClass}>42% manual</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
