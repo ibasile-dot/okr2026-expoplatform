@@ -4,8 +4,8 @@ import { ArrowRight, FileText, Users, Headphones, Timer, Wrench, AlertTriangle }
 import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip,
   BarChart, Bar, XAxis, YAxis, CartesianGrid,
-  RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
-} from "recharts";
+  RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from
+"recharts";
 import {
   quantitativeSources,
   qualitativeSources,
@@ -24,8 +24,8 @@ import {
   integrationOverhead,
   painPointSeverity,
   priorityRanking,
-  CHART_COLORS,
-} from "@/data/findingsData";
+  CHART_COLORS } from
+"@/data/findingsData";
 
 const tooltipStyle = { fontSize: 11, borderRadius: 6, border: "1px solid hsl(0,0%,91%)" };
 
@@ -35,15 +35,15 @@ const FindingSection = ({
   title,
   icon,
   rationale,
-  children,
-}: {
-  krNumber: number;
-  title: string;
-  icon: React.ReactNode;
-  rationale: string;
-  children: React.ReactNode;
-}) => (
-  <div className="mb-14">
+  children
+
+
+
+
+
+
+}: {krNumber: number;title: string;icon: React.ReactNode;rationale: string;children: React.ReactNode;}) =>
+<div className="mb-14">
     <div className="flex items-start gap-3 mb-1">
       <span className="w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-sm font-bold shrink-0">
         {krNumber}
@@ -57,32 +57,32 @@ const FindingSection = ({
       </div>
     </div>
     <div className="ml-11 mt-4">{children}</div>
-  </div>
-);
+  </div>;
+
 
 // ─── Stat card ──────────────────────────────────────────────
-const MiniStat = ({ label, value, sub }: { label: string; value: string; sub?: string }) => (
-  <div className="section-card p-4 text-center">
+const MiniStat = ({ label, value, sub }: {label: string;value: string;sub?: string;}) =>
+<div className="section-card p-4 text-center">
     <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">{label}</p>
     <p className="text-2xl font-bold text-foreground">{value}</p>
     {sub && <p className="text-[10px] text-muted-foreground mt-0.5">{sub}</p>}
-  </div>
-);
+  </div>;
+
 
 // ─── Key insight callout ────────────────────────────────────
-const Insight = ({ text }: { text: string }) => (
-  <div className="flex items-start gap-2 p-3 bg-accent/10 rounded-md border border-accent/20 mt-4">
+const Insight = ({ text }: {text: string;}) =>
+<div className="flex items-start gap-2 p-3 bg-accent/10 rounded-md border border-accent/20 mt-4">
     <AlertTriangle className="w-4 h-4 text-accent shrink-0 mt-0.5" />
     <p className="text-xs text-foreground font-medium leading-relaxed">{text}</p>
-  </div>
-);
+  </div>;
+
 
 const Okr4Findings = () => {
   return (
     <div>
       {/* ═══════════════════════════════════════════════════════
-          HEADER & METHODOLOGY
-          ═══════════════════════════════════════════════════════ */}
+           HEADER & METHODOLOGY
+           ═══════════════════════════════════════════════════════ */}
       <div className="mb-8">
         <h2 className="text-lg font-semibold text-foreground">Discovery Findings & Rationale</h2>
         <p className="text-sm text-muted-foreground mt-1 max-w-3xl">
@@ -97,26 +97,26 @@ const Okr4Findings = () => {
         <div>
           <p className="text-[11px] font-bold text-foreground mb-2">Quantitative Sources</p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-4">
-            {quantitativeSources.map((s) => (
-              <div key={s.name} className="bg-secondary/50 rounded p-2.5">
+            {quantitativeSources.map((s) =>
+            <div key={s.name} className="bg-secondary/50 rounded p-2.5">
                 <p className="text-[10px] text-foreground leading-snug">{s.name}</p>
               </div>
-            ))}
+            )}
           </div>
           <p className="text-[11px] font-bold text-foreground mb-2">Qualitative Sources</p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            {qualitativeSources.map((s) => (
-              <div key={s.name} className="bg-secondary/50 rounded p-2.5">
+            {qualitativeSources.map((s) =>
+            <div key={s.name} className="bg-secondary/50 rounded p-2.5">
                 <p className="text-[10px] text-foreground leading-snug">{s.name}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          EXECUTIVE SUMMARY — Key Numbers
-          ═══════════════════════════════════════════════════════ */}
+           EXECUTIVE SUMMARY — Key Numbers
+           ═══════════════════════════════════════════════════════ */}
       <SectionTitle>Executive Summary</SectionTitle>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
         <MiniStat label="Primary Constraint" value="30–40%" sub="TAM time on admin panel" />
@@ -126,27 +126,27 @@ const Okr4Findings = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          KR1 — Manual Process Reduction
-          ═══════════════════════════════════════════════════════ */}
+           KR1 — Manual Process Reduction
+           ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={1}
         title="KR1: Reduce Manual Processes by ≥50% per Department"
         icon={<FileText className="w-4 h-4 text-primary" />}
-        rationale="To understand the baseline, we ran a company-wide Productivity & AI Adoption Survey and asked each department to log their top manual tasks for 1 week. The survey showed perception; the time log showed reality."
-      >
+        rationale="To understand the baseline, we ran a company-wide Productivity & AI Adoption Survey and asked each department to log their top manual tasks for 1 week. The survey showed perception; the time log showed reality.">
+        
         {/* Survey results */}
         <SectionTitle>What Our People Are Telling Us — Survey Results</SectionTitle>
         <div className="section-card p-6 mb-6">
           <p className="text-[10px] text-muted-foreground mb-4">
-            Source: Productivity, Automation Tools & AI Adoption Survey — February 2026
+
           </p>
           <div className="space-y-3">
-            {deptManualWorkload.map((d) => (
-              <div key={d.department}>
+            {deptManualWorkload.map((d) =>
+            <div key={d.department}>
                 <HorizontalBar label={d.department} value={d.pct} />
                 <p className="text-[10px] text-muted-foreground ml-0.5 mt-0.5">{d.detail}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
 
@@ -174,8 +174,8 @@ const Okr4Findings = () => {
               </tr>
             </thead>
             <tbody>
-              {taskTimeLog.byDepartment.map((d) => (
-                <tr key={d.department} className="border-b border-border/50 hover:bg-muted/20">
+              {taskTimeLog.byDepartment.map((d) =>
+              <tr key={d.department} className="border-b border-border/50 hover:bg-muted/20">
                   <td className="p-3 font-semibold text-foreground">{d.department}</td>
                   <td className="p-3 text-muted-foreground">{d.people}</td>
                   <td className="p-3 text-muted-foreground">{d.tasksLogged}</td>
@@ -184,7 +184,7 @@ const Okr4Findings = () => {
                   <td className="p-3 font-mono text-foreground">{d.estMonthly.toFixed(0)}</td>
                   <td className="p-3 text-muted-foreground">{d.topTask}</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
@@ -192,28 +192,28 @@ const Okr4Findings = () => {
         {/* Top individual tasks */}
         <SectionTitle>Biggest Individual Time Sinks</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-          {taskTimeLog.topTasks.map((t) => (
-            <div key={t.person} className="section-card p-4 border-l-4 border-accent">
+          {taskTimeLog.topTasks.map((t) =>
+          <div key={t.person} className="section-card p-4 border-l-4 border-accent">
               <p className="text-xs font-bold text-foreground">{t.task}</p>
               <p className="text-[10px] text-muted-foreground mt-1">
                 {t.person} ({t.dept}) — <span className="font-mono font-semibold text-foreground">{t.hrsWeek} hrs/week</span>
               </p>
             </div>
-          ))}
+          )}
         </div>
 
         <Insight text="Finance has the highest manual workload per person (3 hrs/week avg) despite having the smallest team. Sales has the highest absolute volume (52 hrs/month est.) driven by a single person's CRM management burden. These are the top automation candidates for Phase 3." />
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-          KR2 — Event Setup & Management
-          ═══════════════════════════════════════════════════════ */}
+           KR2 — Event Setup & Management
+           ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={2}
         title="KR2: Reduce Event Setup Manual Effort by ≥40%"
         icon={<Timer className="w-4 h-4 text-primary" />}
-        rationale="TAM interviews and direct observation revealed the admin panel as the single biggest bottleneck. We mapped where TAM time goes and compared recurring vs new customer effort to understand the gap."
-      >
+        rationale="TAM interviews and direct observation revealed the admin panel as the single biggest bottleneck. We mapped where TAM time goes and compared recurring vs new customer effort to understand the gap.">
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* TAM Time Pie */}
           <div>
@@ -224,22 +224,22 @@ const Okr4Findings = () => {
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie data={tamTimeBreakdown} cx="50%" cy="50%" innerRadius={38} outerRadius={68} dataKey="value" stroke="none">
-                        {tamTimeBreakdown.map((_, i) => (
-                          <Cell key={i} fill={CHART_COLORS[i]} />
-                        ))}
+                        {tamTimeBreakdown.map((_, i) =>
+                        <Cell key={i} fill={CHART_COLORS[i]} />
+                        )}
                       </Pie>
                       <Tooltip formatter={(v: number) => `${v}%`} contentStyle={tooltipStyle} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
                 <div className="space-y-1.5 flex-1">
-                  {tamTimeBreakdown.map((t, i) => (
-                    <div key={t.name} className="flex items-center gap-2 text-xs">
+                  {tamTimeBreakdown.map((t, i) =>
+                  <div key={t.name} className="flex items-center gap-2 text-xs">
                       <span className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ background: CHART_COLORS[i] }} />
                       <span className="text-foreground font-medium flex-1">{t.name}</span>
                       <span className="font-mono text-muted-foreground">{t.value}%</span>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
             </div>
@@ -305,14 +305,14 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-          KR3 — Support Tickets
-          ═══════════════════════════════════════════════════════ */}
+           KR3 — Support Tickets
+           ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={3}
         title="KR3: Decrease Support Tickets by ≥30%"
         icon={<Headphones className="w-4 h-4 text-primary" />}
-        rationale="We analysed JSM Desk ticket volume, categorised themes, and mapped root causes. The data shows tickets are rising — but this is partly due to JSM adoption. The key finding is that 40% of tickets trace back to admin panel issues, confirming KR2 as the root cause."
-      >
+        rationale="We analysed JSM Desk ticket volume, categorised themes, and mapped root causes. The data shows tickets are rising — but this is partly due to JSM adoption. The key finding is that 40% of tickets trace back to admin panel issues, confirming KR2 as the root cause.">
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Ticket trend */}
           <div>
@@ -344,22 +344,22 @@ const Okr4Findings = () => {
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie data={ticketBreakdownByType} cx="50%" cy="50%" innerRadius={35} outerRadius={65} dataKey="value" stroke="none">
-                        {ticketBreakdownByType.map((_, i) => (
-                          <Cell key={i} fill={CHART_COLORS[i]} />
-                        ))}
+                        {ticketBreakdownByType.map((_, i) =>
+                        <Cell key={i} fill={CHART_COLORS[i]} />
+                        )}
                       </Pie>
                       <Tooltip formatter={(v: number) => `${v}%`} contentStyle={tooltipStyle} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
                 <div className="space-y-1.5 flex-1">
-                  {ticketBreakdownByType.map((t, i) => (
-                    <div key={t.name} className="flex items-center gap-2 text-xs">
+                  {ticketBreakdownByType.map((t, i) =>
+                  <div key={t.name} className="flex items-center gap-2 text-xs">
                       <span className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ background: CHART_COLORS[i] }} />
                       <span className="text-foreground font-medium flex-1">{t.name}</span>
                       <span className="font-mono text-muted-foreground">{t.value}%</span>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
               <p className="text-[10px] text-muted-foreground mt-3">
@@ -389,14 +389,14 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-          KR4 — Customer Onboarding
-          ═══════════════════════════════════════════════════════ */}
+           KR4 — Customer Onboarding
+           ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={4}
         title="KR4: Reduce Onboarding Time by ≥35%"
         icon={<Users className="w-4 h-4 text-primary" />}
-        rationale="We used Fathom call analysis to study training sessions and identify friction patterns. The data revealed that a significant portion of 'training' time is actually troubleshooting — and that self-serve content could address the majority of repeated questions."
-      >
+        rationale="We used Fathom call analysis to study training sessions and identify friction patterns. The data revealed that a significant portion of 'training' time is actually troubleshooting — and that self-serve content could address the majority of repeated questions.">
+        
         {/* Training duration by complexity */}
         <SectionTitle>Training Duration by Event Complexity</SectionTitle>
         <div className="section-card overflow-hidden mb-6">
@@ -410,14 +410,14 @@ const Okr4Findings = () => {
               </tr>
             </thead>
             <tbody>
-              {trainingDuration.map((t) => (
-                <tr key={t.type} className="border-b border-border/50 hover:bg-muted/20">
+              {trainingDuration.map((t) =>
+              <tr key={t.type} className="border-b border-border/50 hover:bg-muted/20">
                   <td className="p-3 font-semibold text-foreground">{t.type}</td>
                   <td className="p-3 text-muted-foreground">{t.recorded}</td>
                   <td className="p-3 text-muted-foreground">{t.adHoc}</td>
                   <td className="p-3 font-bold text-foreground">{t.total}</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
@@ -435,9 +435,9 @@ const Okr4Findings = () => {
         <SectionTitle>Training & Self-serve Readiness</SectionTitle>
         <div className="section-card p-6 mb-4">
           <div className="space-y-3">
-            {trainingReadiness.map((d) => (
-              <HorizontalBar key={d.label} label={d.label} value={d.value} />
-            ))}
+            {trainingReadiness.map((d) =>
+            <HorizontalBar key={d.label} label={d.label} value={d.value} />
+            )}
           </div>
           <div className="pt-3 border-t border-border mt-3">
             <div className="flex items-center gap-3">
@@ -461,14 +461,14 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-          KR5 — Engineering Maintenance
-          ═══════════════════════════════════════════════════════ */}
+           KR5 — Engineering Maintenance
+           ═══════════════════════════════════════════════════════ */}
       <FindingSection
         krNumber={5}
         title="KR5: Engineering Maintenance Reduced by ≥25%"
         icon={<Wrench className="w-4 h-4 text-primary" />}
-        rationale="We analysed Jira worklogs, bug-to-feature time ratios, and identified data quality gaps. The findings reveal both quick wins (backlog purge, Team field enforcement) and structural issues (mobile bug time)."
-      >
+        rationale="We analysed Jira worklogs, bug-to-feature time ratios, and identified data quality gaps. The findings reveal both quick wins (backlog purge, Team field enforcement) and structural issues (mobile bug time).">
+        
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           <MiniStat label="Estimated Lost" value={engineeringFindings.estimatedLostHrs} sub="per month" />
           <MiniStat label="Ghost Bugs" value={String(engineeringFindings.ghostBugs)} sub={`from ${engineeringFindings.ghostBugPeriod}`} />
@@ -485,12 +485,12 @@ const Okr4Findings = () => {
               <p className="text-xs text-muted-foreground mt-1">Total hours in manual integrations</p>
             </div>
             <div className="flex-1 space-y-2">
-              {integrationOverhead.findings.map((f, i) => (
-                <div key={i} className="flex items-center gap-3 text-xs">
+              {integrationOverhead.findings.map((f, i) =>
+              <div key={i} className="flex items-center gap-3 text-xs">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ background: CHART_COLORS[i] }} />
                   <span className="text-foreground font-medium">{f}</span>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -499,8 +499,8 @@ const Okr4Findings = () => {
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
-          RATIONALE — How It All Connects
-          ═══════════════════════════════════════════════════════ */}
+           RATIONALE — How It All Connects
+           ═══════════════════════════════════════════════════════ */}
       <div className="mb-12">
         <SectionTitle>How It All Connects — Priority Rationale</SectionTitle>
 
@@ -570,21 +570,21 @@ const Okr4Findings = () => {
               </tr>
             </thead>
             <tbody>
-              {priorityRanking.map((p) => (
-                <tr key={p.rank} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
+              {priorityRanking.map((p) =>
+              <tr key={p.rank} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
                   <td className="p-3 font-mono font-bold text-foreground">{p.rank}</td>
                   <td className="p-3 font-medium text-foreground">{p.area}</td>
                   <td className="p-3 text-muted-foreground">{p.impact}</td>
                   <td className="p-3 font-mono text-muted-foreground">{p.validation}</td>
                   <td className="p-3">
                     <div className="flex gap-1">
-                      {p.kr.map((k) => (
-                        <span key={k} className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-accent/20 text-accent">KR{k}</span>
-                      ))}
+                      {p.kr.map((k) =>
+                    <span key={k} className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-accent/20 text-accent">KR{k}</span>
+                    )}
                     </div>
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
@@ -600,15 +600,15 @@ const Okr4Findings = () => {
             </div>
             <Link
               to="/okr/4/action-plan"
-              className="flex items-center gap-1.5 px-4 py-2 bg-accent text-accent-foreground text-xs font-semibold rounded hover:opacity-90 transition-opacity shrink-0"
-            >
+              className="flex items-center gap-1.5 px-4 py-2 bg-accent text-accent-foreground text-xs font-semibold rounded hover:opacity-90 transition-opacity shrink-0">
+              
               View Action Plan <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Okr4Findings;
