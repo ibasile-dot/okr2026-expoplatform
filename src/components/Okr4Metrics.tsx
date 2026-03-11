@@ -206,6 +206,9 @@ export const Okr4Metrics = () => {
                   <th className={thClass}>Tool</th>
                   <th className={thClass}>Results (Jan–Dec 2025)</th>
                   <th className={thClass}>Results (Jan–Feb 2026)</th>
+                  <th className={thClass}>Q2 Results</th>
+                  <th className={thClass}>Q3 Results</th>
+                  <th className={thClass}>Q4 Results</th>
                   <th className={thClass}>Notes</th>
                 </tr>
               </thead>
@@ -217,11 +220,17 @@ export const Okr4Metrics = () => {
                   <td className={tdClass}>164<br />(total of 1,970)</td>
                   <td className={tdClass}>254</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Tickets per event</td>
                   <td className={tdClass}>18.2<br />(2.2 tickets per event per month)</td>
                   <td className={tdClass}>28.2</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
+                  <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={tdClass}>
                     <div className="text-xs space-y-0.5">
                       <div className="font-medium">Top Themes:</div>
