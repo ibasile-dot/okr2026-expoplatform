@@ -263,7 +263,7 @@ export const Okr4Metrics = () => {
                   <th className={thClass}>Department</th>
                   <th className={thClass}>Measurement</th>
                   <th className={thClass}>Tool</th>
-                  <th className={thClass}>Results — Pre video library</th>
+                  <th className={thClass}>Q1 Results</th>
                   <th className={thClass}>Q2 Results</th>
                   <th className={thClass}>Q3 Results</th>
                   <th className={thClass}>Q4 Results</th>
