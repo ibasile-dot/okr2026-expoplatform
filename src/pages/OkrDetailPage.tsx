@@ -228,8 +228,8 @@ const OkrDetailPage = () => {
         {okr.id === 4 && (
           <TabsContent value="automation-ideas" className="mt-6">
             <div className="section-card p-6">
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4 border-accent">
-                <p className="text-xs font-bold uppercase tracking-wide text-accent mb-1.5">Automation Ideas</p>
+              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
+                <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>Automation Ideas</p>
                 <p className="text-sm text-muted-foreground italic">Automation ideas will be catalogued here with priority scoring</p>
               </div>
             </div>
