@@ -135,7 +135,7 @@ const Okr4Findings = () => {
         rationale="To understand the baseline, we ran a company-wide Productivity & AI Adoption Survey and asked each department to log their top manual tasks for 1 week. The survey showed perception; the time log showed reality.">
         
         {/* Survey results */}
-        <SectionTitle>What Our People Are Telling Us — Survey Results</SectionTitle>
+        <SectionTitle>Productivity, Automation Tools & AI Adoption Survey — February 2026</SectionTitle>
         <div className="section-card p-6 mb-6">
           <p className="text-[10px] text-muted-foreground mb-4">
 
