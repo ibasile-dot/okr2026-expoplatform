@@ -202,7 +202,7 @@ const Okr4Findings = () => {
           )}
         </div>
 
-        <Insight text="Finance has the highest manual workload per person (3 hrs/week avg) despite having the smallest team. Sales has the highest absolute volume (52 hrs/month est.) driven by a single person's CRM management burden. These are the top automation candidates for Phase 3." />
+        <Insight text="Finance has the highest manual workload per person despite having the smallest team. Sales has the highest absolute volume driven by CRM management. These are the top automation candidates for Phase 3." />
       </FindingSection>
 
       {/* ═══════════════════════════════════════════════════════
