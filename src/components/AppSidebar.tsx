@@ -116,7 +116,7 @@ const AppSidebar = () => {
 
               {isExpanded && (
                 <div className="ml-6 pl-3 border-l border-sidebar-border/50 space-y-0.5 mt-0.5">
-                  {defaultSubItems.map((sub) => (
+                  {[...defaultSubItems, ...(okr.id === 4 ? okr4ExtraItems : [])].map((sub) => (
                     <RouterNavLink
                       key={sub.suffix}
                       to={`${basePath}${sub.suffix}`}
