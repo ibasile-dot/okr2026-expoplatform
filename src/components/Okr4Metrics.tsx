@@ -135,7 +135,7 @@ export const Okr4Metrics = () => {
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>TAMs / Clients</td>
                   <td className={tdClass}>Time spent on trainings (hrs)</td>
-                  <td className={tdClass}>Fathom / Discovery Meetings</td>
+                  <td className={tdClass}>Fathom<br/><br/>Discovery Meetings with TAMs</td>
                   <td className={tdClass}>
                     <div className="space-y-1">
                       <div><span className="font-medium">Complex:</span> 15–23hrs</div>
@@ -151,8 +151,8 @@ export const Okr4Metrics = () => {
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Product</td>
                   <td className={tdClass} rowSpan={2} style={{ verticalAlign: "middle" }}>Time spent on a specific feature/task (hrs)</td>
-                  <td className={tdClass}>Admin Panel</td>
-                  <td className={tdClass}>Not available until 2027</td>
+                  <td className={tdClass}>Discovery Calls</td>
+                  <td className={tdClass}>(Not available until 2027)</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
@@ -160,8 +160,8 @@ export const Okr4Metrics = () => {
                 </tr>
                 <tr className="hover:bg-secondary/30">
                   <td className={tdClass}>Operations</td>
-                  <td className={tdClass}>Admin Panel</td>
-                  <td className={tdClass}>Rough estimate (not available until Q2)</td>
+                  <td className={tdClass}>Discovery Calls</td>
+                  <td className={tdClass}>Rough estimate, not available until Q2)</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
                   <td className={`${tdClass} text-muted-foreground italic`}>—</td>
