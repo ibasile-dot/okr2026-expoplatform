@@ -2,6 +2,8 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { okrData } from "@/data/okrData";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Okr4Metrics } from "@/components/Okr4Metrics";
+import { EditableCell } from "@/components/EditableCell";
+import { useMetricValues } from "@/hooks/useMetricValues";
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
