@@ -15,7 +15,7 @@ const OkrOverviewPage = () => {
           <div className="phase-indicator text-lg w-10 h-10">5</div>
           <div>
             <p className="text-2xl font-bold text-foreground">OKRs</p>
-            <p className="text-xs text-muted-foreground">Across revenue, meetings & networks, product, automation, and data</p>
+            <p className="text-xs text-muted-foreground">Across revenue, product, platform, operations & data</p>
           </div>
         </div>
         <div className="section-card p-5 flex items-center gap-4">
