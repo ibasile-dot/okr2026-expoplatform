@@ -287,7 +287,7 @@ const Okr4Findings = () => {
           </div>
           <div className="section-card p-5">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">App Submission</p>
-            <p className="text-lg font-bold text-foreground">{adminPanelFindings.appSubmission}</p>
+            <p className="text-lg font-bold text-foreground">1.5hrs per event</p>
             <p className="text-xs text-muted-foreground mt-1">Both Android & iOS questionnaires fully manual. Investigating automated pre-fill and API-based submission to Google Play & App Store Connect.
 
             </p>
