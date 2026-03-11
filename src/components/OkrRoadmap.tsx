@@ -71,6 +71,17 @@ const OkrRoadmap = () => {
         <div className="flex items-center justify-between flex-wrap gap-3">
           <h2 className="text-lg font-semibold text-foreground">Implementation Roadmap</h2>
           <div className="flex items-center gap-3">
+            <Select value={monthFilter} onValueChange={setMonthFilter}>
+              <SelectTrigger className="w-[140px] h-8 text-xs">
+                <SelectValue placeholder="Filter by Month" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Months</SelectItem>
+                {uniqueMonths.map((m) => (
+                  <SelectItem key={m} value={m}>{m}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Select value={krFilter} onValueChange={setKrFilter}>
               <SelectTrigger className="w-[140px] h-8 text-xs">
                 <SelectValue placeholder="Filter by KR" />
