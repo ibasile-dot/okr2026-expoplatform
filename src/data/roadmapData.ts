@@ -26,6 +26,7 @@ export const roadmapData: RoadmapItem[] = [
   
   { id: 14, month: "April", week: "early April", okr: 1, action: "Reassess and use scoring to assess remaining automation candidates following Automation Days", owner: "Olga, Susan, Bartek, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 15, month: "March", week: "Mid to late March", okr: 2, action: "Collect baseline data about current level of effort for different stages and tasks", owner: "Ilaria, Yuriy", defaultStatus: "In Progress", defaultNotes: "" },
+  { id: 48, month: "March", week: "", okr: 3, action: "Evaluate other ways to streamline customer onboarding process", owner: "Ilaria, Julia, Susan, Ajay", defaultStatus: "To Do", defaultNotes: "" },
   { id: 16, month: "March", week: "w/c March 2", okr: 3, action: "Conduct TAM survey around bugs, problematic areas, workarounds", owner: "Susan, Olga", defaultStatus: "To Do", defaultNotes: "" },
   { id: 17, month: "March", week: "w/c March 9", okr: 3, action: "Analyse survey results", owner: "Susan, Julia, Bartek, Ajay", defaultStatus: "To Do", defaultNotes: "" },
   { id: 18, month: "March", week: "w/c March 9", okr: 3, action: "Use Jira Theme Analysis Rovo agent to identify themes and common questions", owner: "Susan, Ilaria, TAM Leads", defaultStatus: "In Progress", defaultNotes: "" },
