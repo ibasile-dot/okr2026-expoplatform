@@ -1,0 +1,1 @@
+DELETE FROM okr_metric_values WHERE id = '7f277994-3fe7-4e9c-a579-92307a574948'
