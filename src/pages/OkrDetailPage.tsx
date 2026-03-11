@@ -18,7 +18,19 @@ const statusLabels: Record<string, string> = {
 
 const OkrDetailPage = () => {
   const { okrId } = useParams();
+  const location = useLocation();
   const okr = okrData.find((o) => o.id === Number(okrId));
+
+  // Derive active tab from URL path
+  const pathSegments = location.pathname.split("/");
+  const lastSegment = pathSegments[pathSegments.length - 1];
+  const tabMap: Record<string, string> = {
+    metrics: "metrics",
+    roadmap: "roadmap",
+    findings: "findings",
+    "action-plan": "action-plan",
+  };
+  const activeTab = tabMap[lastSegment] || "overview";
 
   if (!okr) {
     return (
