@@ -53,7 +53,7 @@ export const okrData: OKR[] = [
       { id: "2-1", number: 1, description: "Networks generates ≥ £500K ARR with a repeatable GTM motion", target: "≥ £500K ARR", status: "on-track" },
       { id: "2-2", number: 2, description: "≥50% of new customers buy ExpoPlatform primarily for meetings/networking", target: "≥ 50%", status: "not-started" },
       { id: "2-3", number: 3, description: "Win rate for meeting-centric deals ≥ 50%", target: "≥ 50%", status: "not-started" },
-      { id: "2-4", number: 4, description: "ExpoPlatform recognised as a leader in event meeting formats", target: "Recognition", status: "not-started" },
+      { id: "2-4", number: 4, description: "ExpoPlatform recognised by customers and partners as a leader in event meeting formats", target: "Recognition", status: "not-started" },
     ],
   },
   {
