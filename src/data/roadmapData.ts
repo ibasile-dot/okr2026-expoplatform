@@ -24,7 +24,6 @@ export const roadmapData: RoadmapItem[] = [
   { id: 11, month: "February", week: "early to mid-March", okr: 3, action: "Finish migrating customers to support mailbox", owner: "Samarth, Jens, Mykyta, Chris, Oriana, Julia", defaultStatus: "In Progress", defaultNotes: "As project end/new projects begin" },
   
   
-  { id: 14, month: "April", week: "early April", okr: 1, action: "Reassess and use scoring to assess remaining automation candidates following Automation Days", owner: "Olga, Susan, Bartek, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 15, month: "March", week: "Mid to late March", okr: 2, action: "Collect baseline data about current level of effort for different stages and tasks", owner: "Ilaria, Yuriy", defaultStatus: "In Progress", defaultNotes: "" },
   { id: 48, month: "March", week: "", okr: 3, action: "Evaluate other ways to streamline customer onboarding process", owner: "Ilaria, Julia, Susan, Ajay", defaultStatus: "To Do", defaultNotes: "" },
   { id: 49, month: "March", week: "", okr: 3, action: "Continue to move admin panel improvements forward", owner: "Tanya, Ajay, Ilaria", defaultStatus: "In Progress", defaultNotes: "" },
@@ -39,6 +38,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 22, month: "March", week: "w/c March 2", okr: 5, action: "Collect baseline data about current time spent", owner: "Susan, Bartek, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 23, month: "March", week: "After automation days?", okr: 5, action: "Conduct survey around current state and opportunities", owner: "Susan, Bartek, Olga", defaultStatus: "To Do", defaultNotes: "" },
   { id: 13, month: "April", week: "", okr: 1, action: "Create automations for easy wins and high value automation targets during Automation Days. Complete any spillover work as needed.", owner: "All Automation Days Participants", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 14, month: "April", week: "early April", okr: 1, action: "Reassess and use scoring to assess remaining automation candidates following Automation Days", owner: "Olga, Susan, Bartek, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 24, month: "April", week: "w/c 1st April", okr: 1, action: "Determine next steps based on analysis", owner: "Susan, Bartek, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 25, month: "April", week: "early to mid-April", okr: 2, action: "Identification of quick wins and longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
   { id: 26, month: "April", week: "Mid to late-April", okr: 2, action: "Execute on quick wins", owner: "Ilaria, Susan, Bartek", defaultStatus: "To Do", defaultNotes: "" },
