@@ -249,8 +249,16 @@ const DepartmentTable = ({
               const priority = getPriority(total);
               return (
                 <tr key={idea.id} className="border-b border-border/50 hover:bg-secondary/30 transition-colors group">
-                  <EditableCell value={idea.idea} onSave={(v) => onUpdate(idea.id, "idea", v)} className="p-2.5 font-medium text-foreground" placeholder="Idea name..." />
-                  <EditableCell value={idea.solves} onSave={(v) => onUpdate(idea.id, "solves", v)} className="p-2.5 text-muted-foreground" placeholder="What it solves..." />
+                  {idea.id.startsWith("ai-new-") ? (
+                    <EditableCell value={idea.idea} onSave={(v) => onUpdate(idea.id, "idea", v)} className="p-2.5 font-medium text-foreground" placeholder="Idea name..." />
+                  ) : (
+                    <td className="p-2.5 font-medium text-foreground">{idea.idea}</td>
+                  )}
+                  {idea.id.startsWith("ai-new-") ? (
+                    <EditableCell value={idea.solves} onSave={(v) => onUpdate(idea.id, "solves", v)} className="p-2.5 text-muted-foreground" placeholder="What it solves..." />
+                  ) : (
+                    <td className="p-2.5 text-muted-foreground">{idea.solves}</td>
+                  )}
                   <td className="p-2.5">
                     <PhaseDropdown value={idea.phase} onChange={(v) => onUpdate(idea.id, "phase", v)} />
                   </td>
