@@ -349,6 +349,47 @@ let clientIdCounter = 1000;
 const AutomationIdeasPage = () => {
   const [categories, setCategories] = useState<DepartmentCategory[]>(automationCategories);
   const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, kr: null });
+  const initialLoadDone = useRef(false);
+
+  // Load saved notes/status from database on mount
+  useEffect(() => {
+    const loadSavedUpdates = async () => {
+      const { data } = await supabase
+        .from("automation_idea_updates")
+        .select("idea_id, status, notes");
+      if (data && data.length > 0) {
+        const updatesMap = new Map(data.map((d) => [d.idea_id, d]));
+        setCategories((prev) =>
+          prev.map((cat) => ({
+            ...cat,
+            ideas: cat.ideas.map((idea) => {
+              const saved = updatesMap.get(idea.id);
+              if (saved) {
+                return {
+                  ...idea,
+                  ...(saved.status ? { status: saved.status as IdeaStatus } : {}),
+                  ...(saved.notes !== null ? { notes: saved.notes } : {}),
+                };
+              }
+              return idea;
+            }),
+          }))
+        );
+      }
+      initialLoadDone.current = true;
+    };
+    loadSavedUpdates();
+  }, []);
+
+  // Persist notes/status to database
+  const persistUpdate = useCallback(async (ideaId: string, field: string, value: string) => {
+    if (!initialLoadDone.current) return;
+    if (field !== "status" && field !== "notes") return;
+    const updateData: Record<string, string> = { idea_id: ideaId, [field]: value };
+    await supabase
+      .from("automation_idea_updates")
+      .upsert(updateData, { onConflict: "idea_id" });
+  }, []);
 
   const handleUpdate = useCallback((ideaId: string, field: string, value: string) => {
     setCategories((prev) =>
@@ -359,7 +400,8 @@ const AutomationIdeasPage = () => {
         ),
       }))
     );
-  }, []);
+    persistUpdate(ideaId, field, value);
+  }, [persistUpdate]);
 
   const handleUpdateKrs = useCallback((ideaId: string, krs: number[]) => {
     setCategories((prev) =>
