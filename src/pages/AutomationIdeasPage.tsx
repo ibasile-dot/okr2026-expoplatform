@@ -343,7 +343,7 @@ let clientIdCounter = 1000;
 
 const AutomationIdeasPage = () => {
   const [categories, setCategories] = useState<DepartmentCategory[]>(automationCategories);
-  const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, kr: null });
+  const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, krs: [] });
   const [searchQuery, setSearchQuery] = useState("");
   const initialLoadDone = useRef(false);
 
