@@ -127,17 +127,17 @@ const SummaryBar = ({ categories }: { categories: DepartmentCategory[] }) => {
       <div className="w-px h-10 bg-white/20" />
       <div className="text-center">
         <div className="text-2xl font-bold text-[hsl(185,80%,80%)]">{doneCount}</div>
-        <div className="text-[11px] opacity-75 uppercase tracking-wider">Done ✅</div>
+        <div className="text-[11px] opacity-75 uppercase tracking-wider">DONE</div>
       </div>
       <div className="w-px h-10 bg-white/20" />
       <div className="text-center">
         <div className="text-2xl font-bold text-[hsl(44,90%,80%)]">{inProgressCount}</div>
-        <div className="text-[11px] opacity-75 uppercase tracking-wider">In Progress 🔄</div>
+        <div className="text-[11px] opacity-75 uppercase tracking-wider">IN PROGRESS</div>
       </div>
       <div className="w-px h-10 bg-white/20" />
       <div className="text-center">
         <div className="text-2xl font-bold text-[hsl(260,70%,80%)]">{toDoCount}</div>
-        <div className="text-[11px] opacity-75 uppercase tracking-wider">To Do ⏳</div>
+        <div className="text-[11px] opacity-75 uppercase tracking-wider">TO DO</div>
       </div>
       <div className="flex-1 min-w-[120px]" />
       <div className="text-[11px] opacity-70 text-right leading-relaxed">
