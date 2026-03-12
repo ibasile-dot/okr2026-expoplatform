@@ -58,7 +58,7 @@ const krColorActive: Record<number, string> = {
 interface Filters {
   priority: string | null;
   phase: string | null;
-  kr: number | null;
+  krs: number[];
 }
 
 const IceDropdown = ({ value, onChange }: { value: IceScore; onChange: (v: IceScore) => void }) => (
