@@ -369,7 +369,7 @@ const ActionPlanPage = () => {
                           <ActionCard
                             key={entry.idea.id}
                             entry={entry}
-                            savedStatus={savedStatus}
+                            savedStatus={{}}
                             savedNotes={savedNotes}
                             onSaveNote={handleSaveNote}
                           />
