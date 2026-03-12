@@ -182,7 +182,7 @@ const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: 
           className={`text-[11px] px-2 py-1 rounded border transition-colors font-bold ${filters.krs.includes(kr) ? `${krColorActive[kr]}` : "bg-transparent text-muted-foreground border-border hover:border-primary/50"}`}>KR{kr}</button>
       ))}
       {hasFilters && (
-        <button onClick={() => setFilters({ priority: null, phase: null, kr: null })}
+        <button onClick={() => setFilters({ priority: null, phase: null, krs: [] })}
           className="text-[11px] px-2 py-1 rounded-full text-destructive hover:bg-destructive/10 transition-colors flex items-center gap-1">
           <X className="w-3 h-3" /> Clear
         </button>
