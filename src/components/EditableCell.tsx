@@ -75,7 +75,7 @@ export const EditableCell = ({
       onClick={() => setEditing(true)}
     >
       {value ? (
-        <span className="text-sm">{value}</span>
+        <span className="text-inherit">{value}</span>
       ) : (
         <span className="text-muted-foreground/50 italic text-xs">{placeholder}</span>
       )}
