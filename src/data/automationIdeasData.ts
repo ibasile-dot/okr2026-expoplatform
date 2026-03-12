@@ -59,12 +59,6 @@ export const automationCategories: DepartmentCategory[] = [
         source: "KR1 Analysis", notes: ""
       },
       {
-        id: nextId(), idea: "Website builder improvements: ready templates and customisation, CSS easy creation with claude, overlay AI Agent, Confluence KB",
-        solves: "TAM setup time per event; organiser website creation from scratch each time",
-        phase: "Primary Focus", krs: [1, 2], impact: "L", confidence: "L", ease: "M", status: "Not Started",
-        source: "KR1 Analysis, Survey", notes: "Susan rank #10. Talk to TAMs and Max about previous template event"
-      },
-      {
         id: nextId(), idea: "Auto-Clone Environment with Smart Defaults — pre-populate repeat event settings from previous builds",
         solves: "First-time builds 15 days vs 11 for clones; TAMs can't selectively copy/prevent items",
         phase: "Primary Focus", krs: [1, 4], impact: "M", confidence: "L", ease: "S", status: "Not Started",
