@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      automation_idea_updates: {
+        Row: {
+          id: string
+          idea_id: string
+          notes: string | null
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          idea_id: string
+          notes?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          idea_id?: string
+          notes?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       okr_metric_values: {
         Row: {
           column_key: string
