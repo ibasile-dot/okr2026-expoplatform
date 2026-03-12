@@ -9,6 +9,12 @@ import OkrUpdates from "@/components/OkrUpdates";
 import Okr4Findings from "@/components/Okr4Findings";
 import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
 import ActionPlanPage from "@/pages/ActionPlanPage";
+import EditableTemplateTable from "@/components/EditableTemplateTable";
+
+// Section keys (stored as kr_number) for template tables
+const SECTION_ROADMAP = 100;
+const SECTION_FINDINGS = 200;
+const SECTION_ACTION_PLAN = 300;
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
