@@ -436,8 +436,10 @@ const AutomationIdeasPage = () => {
         ideas: cat.ideas.filter((idea) => idea.id !== ideaId),
       }))
     );
-    // Also delete from DB so the deletion persists
-    await supabase.from("automation_idea_updates").delete().eq("idea_id", ideaId);
+    // Soft-delete in DB so it persists across pages and reloads
+    await supabase
+      .from("automation_idea_updates")
+      .upsert({ idea_id: ideaId, deleted: true } as any, { onConflict: "idea_id" });
   }, []);
 
   return (
