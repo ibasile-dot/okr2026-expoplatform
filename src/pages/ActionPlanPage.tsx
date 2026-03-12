@@ -153,7 +153,7 @@ const ActionCard = ({
   const navigate = useNavigate();
   const { idea } = entry;
 
-  const currentNote = savedNotes[idea.id] ?? idea.notes;
+  const currentNote = savedNotes[idea.id] ?? "";
   const currentStatus = savedStatus[idea.id] ?? idea.status;
 
   const startEditNote = (e: React.MouseEvent) => {
