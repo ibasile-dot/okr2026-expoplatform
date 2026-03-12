@@ -117,8 +117,10 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
   for (const cat of automationCategories) {
     for (const origIdea of cat.ideas) {
       coveredIds.add(origIdea.id);
-      // Apply DB overrides to get the current truth
+      // Skip soft-deleted ideas
       const saved = dbOverrides[origIdea.id];
+      if (saved && saved.deleted) continue;
+      // Apply DB overrides to get the current truth
       const idea: AutomationIdea = saved ? {
         ...origIdea,
         ...(saved.idea ? { idea: saved.idea } : {}),
