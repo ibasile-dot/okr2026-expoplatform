@@ -139,14 +139,6 @@ const PhaseLegend = () => (
   </div>
 );
 
-const IceFootnote = () => (
-  <div className="mt-3 px-3 py-2 bg-muted/50 rounded-lg text-[10px] text-muted-foreground leading-relaxed">
-    <span className="font-semibold">Impact:</span> How much it will solve the problem (S=1, M=2, L=3) &nbsp;·&nbsp;
-    <span className="font-semibold">Confidence:</span> How likely it is to work (S=1, M=2, L=3) &nbsp;·&nbsp;
-    <span className="font-semibold">Ease:</span> How easy to implement (S=1, M=2, L=3) &nbsp;·&nbsp;
-    <span className="font-semibold">Total:</span> Sum of ICE (max 9)
-  </div>
-);
 
 const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: Filters) => void }) => {
   const priorityOpts = ["High", "Medium", "Low"];
