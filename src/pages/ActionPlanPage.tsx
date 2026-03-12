@@ -296,12 +296,7 @@ const ActionPlanPage = () => {
       .upsert({ idea_id: ideaId, action_plan_notes: note } as any, { onConflict: "idea_id" });
   };
 
-  // Count totals using DB status overrides
-  const allIdeas = automationCategories.flatMap((c) => c.ideas);
   const getStatus = (idea: AutomationIdea) => savedStatus[idea.id] ?? idea.status;
-  const totalItems = allIdeas.length;
-  const doneItems = allIdeas.filter((i) => getStatus(i) === "Done").length;
-  const inProgressItems = allIdeas.filter((i) => getStatus(i) === "In Progress").length;
 
   return (
     <div>
@@ -310,24 +305,6 @@ const ActionPlanPage = () => {
         <div>
           <h2 className="text-sm font-bold text-foreground">Action Plan</h2>
           <p className="text-xs text-muted-foreground">Prioritised by findings and ICE scoring</p>
-        </div>
-        <div className="flex gap-4 text-xs">
-          <div className="text-center">
-            <p className="text-base font-bold text-foreground">{totalItems}</p>
-            <p className="text-muted-foreground">Total</p>
-          </div>
-          <div className="text-center">
-            <p className="text-base font-bold text-foreground">{doneItems}</p>
-            <p className="text-muted-foreground">Done</p>
-          </div>
-          <div className="text-center">
-            <p className="text-base font-bold text-foreground">{inProgressItems}</p>
-            <p className="text-muted-foreground">In Progress</p>
-          </div>
-          <div className="text-center">
-            <p className="text-base font-bold text-foreground">{totalItems - doneItems - inProgressItems}</p>
-            <p className="text-muted-foreground">Not Started</p>
-          </div>
         </div>
       </div>
 
