@@ -89,7 +89,7 @@ interface ActionEntry {
   area: string;
 }
 
-function buildPhaseMap(): Record<Phase, Record<string, ActionEntry[]>> {
+function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<string, ActionEntry[]>> {
   const map: Record<Phase, Record<string, ActionEntry[]>> = {
     "Primary Focus": {},
     "Quick Wins": {},
@@ -97,7 +97,20 @@ function buildPhaseMap(): Record<Phase, Record<string, ActionEntry[]>> {
   };
 
   for (const cat of automationCategories) {
-    for (const idea of cat.ideas) {
+    for (const origIdea of cat.ideas) {
+      // Apply DB overrides to get the current truth
+      const saved = dbOverrides[origIdea.id];
+      const idea: AutomationIdea = saved ? {
+        ...origIdea,
+        ...(saved.idea ? { idea: saved.idea } : {}),
+        ...(saved.solves ? { solves: saved.solves } : {}),
+        ...(saved.status ? { status: saved.status } : {}),
+        ...(saved.impact ? { impact: saved.impact } : {}),
+        ...(saved.confidence ? { confidence: saved.confidence } : {}),
+        ...(saved.ease ? { ease: saved.ease } : {}),
+        ...(saved.phase ? { phase: saved.phase } : {}),
+      } : origIdea;
+
       const phase = idea.phase as Phase;
       if (!map[phase]) continue;
       const area = getArea(idea, cat.key);
@@ -154,7 +167,7 @@ const ActionCard = ({
   const { idea } = entry;
 
   const currentNote = savedNotes[idea.id] ?? "";
-  const currentStatus = savedStatus[idea.id] ?? idea.status;
+  const currentStatus = idea.status;
 
   const startEditNote = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -261,17 +274,18 @@ const ActionCard = ({
 
 /* ── Main page ── */
 const ActionPlanPage = () => {
-  const phaseMap = useMemo(() => buildPhaseMap(), []);
-  const [dbOverrides, setDbOverrides] = useState<Record<string, { notes?: string; status?: string }>>({});
+  const [dbOverrides, setDbOverrides] = useState<Record<string, any>>({});
 
-  // Load overrides from DB (automation_idea_updates)
+  // Load overrides from DB (automation_idea_updates) — all fields
   useEffect(() => {
     const load = async () => {
-      const { data } = await supabase.from("automation_idea_updates").select("idea_id, action_plan_notes, status");
+      const { data } = await supabase
+        .from("automation_idea_updates")
+        .select("idea_id, action_plan_notes, status, idea, solves, impact, confidence, ease, phase");
       if (data) {
-        const map: Record<string, { notes?: string; status?: string }> = {};
-        data.forEach((r) => {
-          map[r.idea_id] = { notes: (r as any).action_plan_notes ?? undefined, status: r.status ?? undefined };
+        const map: Record<string, any> = {};
+        data.forEach((r: any) => {
+          map[r.idea_id] = r;
         });
         setDbOverrides(map);
       }
@@ -279,24 +293,24 @@ const ActionPlanPage = () => {
     load();
   }, []);
 
+  const phaseMap = useMemo(() => buildPhaseMap(dbOverrides), [dbOverrides]);
+
   const savedNotes: Record<string, string> = {};
-  const savedStatus: Record<string, string> = {};
   for (const [id, o] of Object.entries(dbOverrides)) {
-    if (o.notes) savedNotes[id] = o.notes;
-    if (o.status) savedStatus[id] = o.status;
+    if (o.action_plan_notes) savedNotes[id] = o.action_plan_notes;
   }
 
   const handleSaveNote = async (ideaId: string, note: string) => {
     setDbOverrides((prev) => ({
       ...prev,
-      [ideaId]: { ...prev[ideaId], notes: note },
+      [ideaId]: { ...prev[ideaId], action_plan_notes: note },
     }));
     await supabase
       .from("automation_idea_updates")
       .upsert({ idea_id: ideaId, action_plan_notes: note } as any, { onConflict: "idea_id" });
   };
 
-  const getStatus = (idea: AutomationIdea) => savedStatus[idea.id] ?? idea.status;
+  const getStatus = (idea: AutomationIdea) => idea.status;
 
   return (
     <div>
@@ -355,7 +369,7 @@ const ActionPlanPage = () => {
                           <ActionCard
                             key={entry.idea.id}
                             entry={entry}
-                            savedStatus={savedStatus}
+                            savedStatus={{}}
                             savedNotes={savedNotes}
                             onSaveNote={handleSaveNote}
                           />
