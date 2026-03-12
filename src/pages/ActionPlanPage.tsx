@@ -363,7 +363,7 @@ const ActionPlanPage = () => {
     <div>
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">Action Plan</h1>
+        <h1 className="font-bold tracking-tight text-foreground text-xl">Action Plan</h1>
         <p className="text-sm text-muted-foreground mt-1">Prioritised by findings and ICE scoring</p>
       </div>
 
