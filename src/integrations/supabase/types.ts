@@ -16,23 +16,41 @@ export type Database = {
     Tables: {
       automation_idea_updates: {
         Row: {
+          confidence: string | null
+          ease: string | null
           id: string
+          idea: string | null
           idea_id: string
+          impact: string | null
           notes: string | null
+          phase: string | null
+          solves: string | null
           status: string | null
           updated_at: string
         }
         Insert: {
+          confidence?: string | null
+          ease?: string | null
           id?: string
+          idea?: string | null
           idea_id: string
+          impact?: string | null
           notes?: string | null
+          phase?: string | null
+          solves?: string | null
           status?: string | null
           updated_at?: string
         }
         Update: {
+          confidence?: string | null
+          ease?: string | null
           id?: string
+          idea?: string | null
           idea_id?: string
+          impact?: string | null
           notes?: string | null
+          phase?: string | null
+          solves?: string | null
           status?: string | null
           updated_at?: string
         }
