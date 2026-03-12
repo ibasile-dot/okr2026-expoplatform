@@ -187,7 +187,7 @@ const OkrDetailPage = () => {
               columns={["month", "initiative", "owner", "status", "notes"]}
               headers={["Month", "Initiative", "Owner", "Status", "Notes"]}
               color={okr.color}
-              emptyMessage="No roadmap items yet. Click \"+ Add Row\" to start planning."
+              emptyMessage={'No roadmap items yet. Click "+ Add Row" to start planning.'}
             />
           )}
         </TabsContent>
