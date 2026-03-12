@@ -328,7 +328,7 @@ const ActionPlanPage = () => {
     const load = async () => {
       const { data } = await supabase.
       from("automation_idea_updates").
-      select("idea_id, action_plan_notes, status, idea, solves, impact, confidence, ease, phase");
+      select("idea_id, action_plan_notes, status, idea, solves, impact, confidence, ease, phase, deleted");
       if (data) {
         const map: Record<string, any> = {};
         data.forEach((r: any) => {
