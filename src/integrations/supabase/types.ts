@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       automation_idea_updates: {
         Row: {
+          action_plan_notes: string | null
           confidence: string | null
           ease: string | null
           id: string
@@ -29,6 +30,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          action_plan_notes?: string | null
           confidence?: string | null
           ease?: string | null
           id?: string
@@ -42,6 +44,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          action_plan_notes?: string | null
           confidence?: string | null
           ease?: string | null
           id?: string
