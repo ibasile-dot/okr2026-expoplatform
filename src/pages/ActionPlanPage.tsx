@@ -89,7 +89,7 @@ interface ActionEntry {
   area: string;
 }
 
-function buildPhaseMap(): Record<Phase, Record<string, ActionEntry[]>> {
+function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<string, ActionEntry[]>> {
   const map: Record<Phase, Record<string, ActionEntry[]>> = {
     "Primary Focus": {},
     "Quick Wins": {},
@@ -97,7 +97,20 @@ function buildPhaseMap(): Record<Phase, Record<string, ActionEntry[]>> {
   };
 
   for (const cat of automationCategories) {
-    for (const idea of cat.ideas) {
+    for (const origIdea of cat.ideas) {
+      // Apply DB overrides to get the current truth
+      const saved = dbOverrides[origIdea.id];
+      const idea: AutomationIdea = saved ? {
+        ...origIdea,
+        ...(saved.idea ? { idea: saved.idea } : {}),
+        ...(saved.solves ? { solves: saved.solves } : {}),
+        ...(saved.status ? { status: saved.status } : {}),
+        ...(saved.impact ? { impact: saved.impact } : {}),
+        ...(saved.confidence ? { confidence: saved.confidence } : {}),
+        ...(saved.ease ? { ease: saved.ease } : {}),
+        ...(saved.phase ? { phase: saved.phase } : {}),
+      } : origIdea;
+
       const phase = idea.phase as Phase;
       if (!map[phase]) continue;
       const area = getArea(idea, cat.key);
