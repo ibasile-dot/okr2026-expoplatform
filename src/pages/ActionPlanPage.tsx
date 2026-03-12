@@ -1,8 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { automationCategories, AutomationIdea } from "@/data/automationIdeasData";
+import { automationCategories, AutomationIdea, iceTotal } from "@/data/automationIdeasData";
 import { supabase } from "@/integrations/supabase/client";
-import { Badge } from "@/components/ui/badge";
 import {
   ChevronDown,
   ChevronRight,
@@ -79,7 +78,6 @@ function getArea(idea: AutomationIdea, dept: string): string {
     if (t.includes("unified") || t.includes("project management")) return "Unified Tools";
     return "Product / Design";
   }
-  // Quick Wins — use department label directly
   return dept;
 }
 
@@ -107,6 +105,18 @@ function buildPhaseMap(): Record<Phase, Record<string, ActionEntry[]>> {
       map[phase][area].push({ idea, deptKey: cat.key, deptLabel: cat.label, area });
     }
   }
+
+  // Sort entries within each area by ICE total (descending) for priority
+  for (const phase of phases) {
+    for (const area of Object.keys(map[phase])) {
+      map[phase][area].sort((a, b) => {
+        const scoreA = iceTotal(a.idea.impact, a.idea.confidence, a.idea.ease);
+        const scoreB = iceTotal(b.idea.impact, b.idea.confidence, b.idea.ease);
+        return scoreB - scoreA;
+      });
+    }
+  }
+
   return map;
 }
 
@@ -128,12 +138,12 @@ const KrBadge = ({ kr }: { kr: number }) => (
 /* ── Single action card ── */
 const ActionCard = ({
   entry,
-  phaseColor,
+  savedStatus,
   savedNotes,
   onSaveNote,
 }: {
   entry: ActionEntry;
-  phaseColor: string;
+  savedStatus: Record<string, string>;
   savedNotes: Record<string, string>;
   onSaveNote: (id: string, note: string) => void;
 }) => {
@@ -144,6 +154,7 @@ const ActionCard = ({
   const { idea } = entry;
 
   const currentNote = savedNotes[idea.id] ?? idea.notes;
+  const currentStatus = savedStatus[idea.id] ?? idea.status;
 
   const startEditNote = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -165,8 +176,8 @@ const ActionCard = ({
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <h4 className="text-xs font-bold text-foreground leading-snug flex-1">{idea.idea}</h4>
-            <span className={`shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full whitespace-nowrap ${statusStyle[idea.status]}`}>
-              {idea.status}
+            <span className={`shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full whitespace-nowrap ${statusStyle[currentStatus]}`}>
+              {currentStatus}
             </span>
           </div>
           <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">{idea.solves}</p>
@@ -174,9 +185,6 @@ const ActionCard = ({
             {idea.krs.map((kr) => (
               <KrBadge key={kr} kr={kr} />
             ))}
-            <span className="text-[10px] text-muted-foreground ml-1">
-              ICE: {idea.impact}/{idea.confidence}/{idea.ease}
-            </span>
           </div>
         </div>
       </div>
@@ -254,65 +262,71 @@ const ActionCard = ({
 /* ── Main page ── */
 const ActionPlanPage = () => {
   const phaseMap = useMemo(() => buildPhaseMap(), []);
-  const [savedNotes, setSavedNotes] = useState<Record<string, string>>({});
-  const [dbNotes, setDbNotes] = useState<Record<string, string>>({});
+  const [dbOverrides, setDbOverrides] = useState<Record<string, { notes?: string; status?: string }>>({});
 
-  // Load notes from DB (automation_idea_updates)
+  // Load overrides from DB (automation_idea_updates)
   useEffect(() => {
     const load = async () => {
-      const { data } = await supabase.from("automation_idea_updates").select("idea_id, notes");
+      const { data } = await supabase.from("automation_idea_updates").select("idea_id, notes, status");
       if (data) {
-        const map: Record<string, string> = {};
-        data.forEach((r) => { if (r.notes) map[r.idea_id] = r.notes; });
-        setDbNotes(map);
+        const map: Record<string, { notes?: string; status?: string }> = {};
+        data.forEach((r) => {
+          map[r.idea_id] = { notes: r.notes ?? undefined, status: r.status ?? undefined };
+        });
+        setDbOverrides(map);
       }
     };
     load();
   }, []);
 
-  const mergedNotes = { ...dbNotes, ...savedNotes };
+  const savedNotes: Record<string, string> = {};
+  const savedStatus: Record<string, string> = {};
+  for (const [id, o] of Object.entries(dbOverrides)) {
+    if (o.notes) savedNotes[id] = o.notes;
+    if (o.status) savedStatus[id] = o.status;
+  }
 
   const handleSaveNote = async (ideaId: string, note: string) => {
-    setSavedNotes((prev) => ({ ...prev, [ideaId]: note }));
+    setDbOverrides((prev) => ({
+      ...prev,
+      [ideaId]: { ...prev[ideaId], notes: note },
+    }));
     await supabase
       .from("automation_idea_updates")
       .upsert({ idea_id: ideaId, notes: note }, { onConflict: "idea_id" });
   };
 
-  // Count totals
+  // Count totals using DB status overrides
   const allIdeas = automationCategories.flatMap((c) => c.ideas);
+  const getStatus = (idea: AutomationIdea) => savedStatus[idea.id] ?? idea.status;
   const totalItems = allIdeas.length;
-  const doneItems = allIdeas.filter((i) => i.status === "Done").length;
-  const inProgressItems = allIdeas.filter((i) => i.status === "In Progress").length;
+  const doneItems = allIdeas.filter((i) => getStatus(i) === "Done").length;
+  const inProgressItems = allIdeas.filter((i) => getStatus(i) === "In Progress").length;
 
   return (
     <div>
-      {/* Header summary */}
-      <div className="bg-gradient-to-r from-[hsl(280,50%,15%)] to-[hsl(200,60%,15%)] rounded-xl p-5 mb-8 border border-border">
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <div>
-            <h2 className="text-base font-bold text-white">Action Plan — All Initiatives</h2>
-            <p className="text-xs text-white/60 mt-0.5">
-              Derived from Automation Ideas catalogue · Prioritised by findings and impact
-            </p>
+      {/* Header — matching roadmap style */}
+      <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
+        <div>
+          <h2 className="text-sm font-bold text-foreground">Action Plan</h2>
+          <p className="text-xs text-muted-foreground">Prioritised by findings and ICE scoring</p>
+        </div>
+        <div className="flex gap-4 text-xs">
+          <div className="text-center">
+            <p className="text-base font-bold text-foreground">{totalItems}</p>
+            <p className="text-muted-foreground">Total</p>
           </div>
-          <div className="flex gap-4 text-xs">
-            <div className="text-center">
-              <p className="text-lg font-bold text-white">{totalItems}</p>
-              <p className="text-white/50">Total</p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-bold text-success">{doneItems}</p>
-              <p className="text-white/50">Done</p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-bold text-warning">{inProgressItems}</p>
-              <p className="text-white/50">In Progress</p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-bold text-white/80">{totalItems - doneItems - inProgressItems}</p>
-              <p className="text-white/50">Not Started</p>
-            </div>
+          <div className="text-center">
+            <p className="text-base font-bold text-foreground">{doneItems}</p>
+            <p className="text-muted-foreground">Done</p>
+          </div>
+          <div className="text-center">
+            <p className="text-base font-bold text-foreground">{inProgressItems}</p>
+            <p className="text-muted-foreground">In Progress</p>
+          </div>
+          <div className="text-center">
+            <p className="text-base font-bold text-foreground">{totalItems - doneItems - inProgressItems}</p>
+            <p className="text-muted-foreground">Not Started</p>
           </div>
         </div>
       </div>
@@ -323,41 +337,35 @@ const ActionPlanPage = () => {
           const cfg = phaseConfig[phase];
           const areas = phaseMap[phase];
           const orderedAreaNames = areaOrder[phase];
-          // include any areas not in the predefined order
           const allAreaNames = [...orderedAreaNames, ...Object.keys(areas).filter((a) => !orderedAreaNames.includes(a))];
-          const phaseItems = Object.values(areas).flat();
-          const phaseDone = phaseItems.filter((e) => e.idea.status === "Done").length;
+          const phaseEntries = Object.values(areas).flat();
+          const phaseDone = phaseEntries.filter((e) => getStatus(e.idea) === "Done").length;
 
           return (
             <div key={phase}>
               {/* Phase header */}
-              <div className="flex items-center gap-3 mb-1">
+              <div className="flex items-center gap-3 mb-4">
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
                   style={{ backgroundColor: cfg.color }}
                 >
                   {cfg.number}
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3">
-                    <h2 className="text-lg font-bold text-foreground">
-                      {cfg.icon} {phase}
-                    </h2>
-                    <span className="text-[10px] text-muted-foreground">
-                      {phaseDone}/{phaseItems.length} completed
-                    </span>
-                  </div>
+                <div className="flex items-center gap-3">
+                  <h2 className="text-lg font-bold text-foreground">
+                    {cfg.icon} {phase}
+                  </h2>
+                  <span className="text-xs text-muted-foreground font-medium">
+                    {phaseDone}/{phaseEntries.length} completed
+                  </span>
                 </div>
               </div>
 
               {/* Area groups */}
-              <div className="space-y-6 ml-11 mt-4">
+              <div className="space-y-6 ml-11">
                 {allAreaNames.map((areaName) => {
                   const entries = areas[areaName];
                   if (!entries || entries.length === 0) return null;
-                  const areaDone = entries.filter((e) => e.idea.status === "Done").length;
-                  // Collect unique KRs in this area
-                  const areaKrs = [...new Set(entries.flatMap((e) => e.idea.krs))].sort();
 
                   return (
                     <div key={areaName}>
@@ -366,22 +374,14 @@ const ActionPlanPage = () => {
                         <h3 className="text-xs font-bold" style={{ color: cfg.color }}>
                           {areaName}
                         </h3>
-                        <span className="text-[10px] text-muted-foreground font-medium ml-1">
-                          {areaDone}/{entries.length} completed
-                        </span>
-                        <div className="flex gap-1 ml-2">
-                          {areaKrs.map((kr) => (
-                            <KrBadge key={kr} kr={kr} />
-                          ))}
-                        </div>
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                         {entries.map((entry) => (
                           <ActionCard
                             key={entry.idea.id}
                             entry={entry}
-                            phaseColor={cfg.color}
-                            savedNotes={mergedNotes}
+                            savedStatus={savedStatus}
+                            savedNotes={savedNotes}
                             onSaveNote={handleSaveNote}
                           />
                         ))}
