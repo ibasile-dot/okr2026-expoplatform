@@ -70,7 +70,12 @@ function getArea(idea: AutomationIdea, dept: string): string {
       return "Admin Panel — Back-end Configuration";
     }
     if (dept === "finance" || dept === "Finance") return "Finance";
-    return "Support & Ticket Automation";
+    if (dept === "hr" || dept === "HR") return "HR";
+    if (dept === "engineering" || dept === "Engineering") return "Engineering";
+    if (dept === "marketing" || dept === "Marketing") return "Marketing";
+    if (dept === "data" || dept === "Data") return "Data";
+    if (dept === "sales" || dept === "Sales") return "Sales";
+    return dept;
   }
   if (idea.phase === "Secondary Focus") {
     if (t.includes("website") || t.includes("in-builder")) return "Website Builder — Phase 2";
