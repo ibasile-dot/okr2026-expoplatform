@@ -125,6 +125,7 @@ const DepartmentTable = ({
                   <td className="p-2.5 text-muted-foreground">
                     {idea.krs.map((kr) => `KR${kr}`).join(", ")}
                   </td>
+                  <td className="p-2.5 text-muted-foreground text-[11px]">{idea.source}</td>
                   <td className="p-2.5">
                     <IceDropdown
                       value={idea.impact}
