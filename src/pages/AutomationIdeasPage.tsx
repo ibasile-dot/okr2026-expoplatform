@@ -341,6 +341,7 @@ let clientIdCounter = 1000;
 const AutomationIdeasPage = () => {
   const [categories, setCategories] = useState<DepartmentCategory[]>(automationCategories);
   const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, kr: null });
+  const [searchQuery, setSearchQuery] = useState("");
   const initialLoadDone = useRef(false);
 
   // Load saved notes/status from database on mount
