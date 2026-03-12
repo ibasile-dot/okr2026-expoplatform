@@ -5,11 +5,12 @@ import { EditableCell } from "@/components/EditableCell";
 
 interface EditableTemplateTableProps {
   okrNumber: number;
-  sectionKey: number; // stored as kr_number in okr_metric_values
+  sectionKey: number;
   columns: string[];
   headers: string[];
   color: string;
   emptyMessage?: string;
+  readOnly?: boolean;
 }
 
 const tdClass = "p-3 text-sm border-b border-border";
@@ -21,7 +22,8 @@ const EditableTemplateTable = ({
   columns,
   headers,
   color,
-  emptyMessage = "No entries yet. Click \"+ Add Row\" to get started.",
+  emptyMessage = "No entries yet.",
+  readOnly = false,
 }: EditableTemplateTableProps) => {
   const [rows, setRows] = useState<Record<string, string>[]>([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +42,6 @@ const EditableTemplateTable = ({
         if (!map[d.row_index]) map[d.row_index] = { _idx: String(d.row_index) };
         map[d.row_index][d.column_key] = d.value;
       });
-      // Also include rows that only have _idx
       const maxIdx = data.length > 0 ? Math.max(...data.map((d) => d.row_index)) : -1;
       const rowList: Record<string, string>[] = [];
       for (let i = 0; i <= maxIdx; i++) {
@@ -61,8 +62,8 @@ const EditableTemplateTable = ({
   };
 
   const addRow = async () => {
+    if (readOnly) return;
     const idx = getNextIndex();
-    // Insert a placeholder to mark the row exists
     await supabase.from("okr_metric_values").upsert({
       okr_number: okrNumber,
       kr_number: sectionKey,
@@ -78,7 +79,7 @@ const EditableTemplateTable = ({
   };
 
   const deleteRow = async (rowIdx: number) => {
-    // Delete all columns for this row
+    if (readOnly) return;
     await supabase
       .from("okr_metric_values")
       .delete()
@@ -89,6 +90,7 @@ const EditableTemplateTable = ({
   };
 
   const saveCell = async (rowIdx: number, col: string, value: string) => {
+    if (readOnly) return;
     setRows((prev) =>
       prev.map((r) => (Number(r._idx) === rowIdx ? { ...r, [col]: value } : r))
     );
@@ -108,6 +110,11 @@ const EditableTemplateTable = ({
 
   return (
     <div className="section-card p-6">
+      {readOnly && (
+        <div className="bg-muted/50 border border-border rounded-md px-4 py-2.5 mb-4 text-xs text-muted-foreground">
+          🔒 View only — you are not assigned to this OKR. Contact an admin to request access.
+        </div>
+      )}
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -115,13 +122,13 @@ const EditableTemplateTable = ({
               {headers.map((h) => (
                 <th key={h} className={thClass}>{h}</th>
               ))}
-              <th className={thClass} style={{ width: 40 }}></th>
+              {!readOnly && <th className={thClass} style={{ width: 40 }}></th>}
             </tr>
           </thead>
           <tbody>
             {rows.length === 0 && (
               <tr>
-                <td colSpan={headers.length + 1} className="p-6 text-center text-muted-foreground italic text-sm">
+                <td colSpan={headers.length + (readOnly ? 0 : 1)} className="p-6 text-center text-muted-foreground italic text-sm">
                   {emptyMessage}
                 </td>
               </tr>
@@ -137,16 +144,19 @@ const EditableTemplateTable = ({
                       onSave={(v) => saveCell(idx, col, v)}
                       className={tdClass}
                       placeholder="Click to edit..."
+                      readOnly={readOnly}
                     />
                   ))}
-                  <td className={tdClass}>
-                    <button
-                      onClick={() => deleteRow(idx)}
-                      className="p-1 rounded hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
-                  </td>
+                  {!readOnly && (
+                    <td className={tdClass}>
+                      <button
+                        onClick={() => deleteRow(idx)}
+                        className="p-1 rounded hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </td>
+                  )}
                 </tr>
               );
             })}
@@ -154,13 +164,15 @@ const EditableTemplateTable = ({
         </table>
       </div>
 
-      <button
-        onClick={addRow}
-        className="mt-4 flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-        style={{ color }}
-      >
-        <Plus className="w-4 h-4" /> Add Row
-      </button>
+      {!readOnly && (
+        <button
+          onClick={addRow}
+          className="mt-4 flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+          style={{ color }}
+        >
+          <Plus className="w-4 h-4" /> Add Row
+        </button>
+      )}
     </div>
   );
 };

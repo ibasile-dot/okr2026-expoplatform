@@ -6,6 +6,7 @@ interface EditableCellProps {
   onSave: (value: string) => void;
   className?: string;
   placeholder?: string;
+  readOnly?: boolean;
 }
 
 export const EditableCell = ({
@@ -13,6 +14,7 @@ export const EditableCell = ({
   onSave,
   className = "",
   placeholder = "Click to edit...",
+  readOnly = false,
 }: EditableCellProps) => {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(value);
@@ -49,7 +51,7 @@ export const EditableCell = ({
     }
   };
 
-  if (editing) {
+  if (editing && !readOnly) {
     return (
       <td className={className}>
         <textarea
@@ -71,15 +73,19 @@ export const EditableCell = ({
 
   return (
     <td
-      className={`${className} cursor-pointer group relative hover:bg-accent/30 transition-colors`}
-      onClick={() => setEditing(true)}
+      className={`${className} ${readOnly ? "" : "cursor-pointer group relative hover:bg-accent/30"} transition-colors`}
+      onClick={() => !readOnly && setEditing(true)}
     >
       {value ? (
         <span className="text-inherit">{value}</span>
       ) : (
-        <span className="text-muted-foreground/50 italic text-xs">{placeholder}</span>
+        <span className="text-muted-foreground/50 italic text-xs">
+          {readOnly ? "—" : placeholder}
+        </span>
       )}
-      <Pencil className="w-3 h-3 text-muted-foreground/40 absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+      {!readOnly && (
+        <Pencil className="w-3 h-3 text-muted-foreground/40 absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+      )}
     </td>
   );
 };
