@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SectionTitle } from "@/components/DashboardWidgets";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Filter, X, Trash2 } from "lucide-react";
+import { Plus, Filter, X, Trash2, Search } from "lucide-react";
 import {
   automationCategories,
   iceTotal,
