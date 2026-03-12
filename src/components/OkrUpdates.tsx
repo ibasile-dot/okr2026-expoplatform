@@ -18,7 +18,7 @@ const headers = ["Owner", "Department", "Initiative", "Tool", "Link / Notes"];
 const tdClass = "p-3 text-sm border-b border-border";
 const thClass = "text-left p-3 font-semibold text-foreground whitespace-nowrap text-xs uppercase tracking-wide";
 
-const OkrUpdates = ({ okrNumber, color }: { okrNumber: number; color: string }) => {
+const OkrUpdates = ({ okrNumber, color, readOnly = false }: { okrNumber: number; color: string; readOnly?: boolean }) => {
   const [rows, setRows] = useState<UpdateRow[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,6 +44,7 @@ const OkrUpdates = ({ okrNumber, color }: { okrNumber: number; color: string }) 
   useEffect(() => { fetchRows(); }, [fetchRows]);
 
   const addRow = async () => {
+    if (readOnly) return;
     const { data } = await supabase
       .from("okr_updates")
       .insert({ okr_number: okrNumber })
@@ -62,11 +63,13 @@ const OkrUpdates = ({ okrNumber, color }: { okrNumber: number; color: string }) 
   };
 
   const deleteRow = async (id: string) => {
+    if (readOnly) return;
     await supabase.from("okr_updates").delete().eq("id", id);
     setRows((prev) => prev.filter((r) => r.id !== id));
   };
 
   const saveCell = async (id: string, col: string, value: string) => {
+    if (readOnly) return;
     setRows((prev) => prev.map((r) => r.id === id ? { ...r, [col]: value } : r));
     await supabase.from("okr_updates").update({ [col]: value, updated_at: new Date().toISOString() }).eq("id", id);
   };
@@ -77,6 +80,11 @@ const OkrUpdates = ({ okrNumber, color }: { okrNumber: number; color: string }) 
 
   return (
     <div className="section-card p-6">
+      {readOnly && (
+        <div className="bg-muted/50 border border-border rounded-md px-4 py-2.5 mb-4 text-xs text-muted-foreground">
+          🔒 View only — you are not assigned to this OKR. Contact an admin to request access.
+        </div>
+      )}
       <div className="bg-secondary/50 p-4 rounded-md border-l-4 mb-6" style={{ borderLeftColor: color }}>
         <p className="text-sm text-foreground">
           📝 <strong>Team:</strong> Please update this section with anything you've worked on or completed. This will be used for the weekly round-up newsletter.
@@ -90,14 +98,14 @@ const OkrUpdates = ({ okrNumber, color }: { okrNumber: number; color: string }) 
               {headers.map((h) => (
                 <th key={h} className={thClass}>{h}</th>
               ))}
-              <th className={thClass} style={{ width: 40 }}></th>
+              {!readOnly && <th className={thClass} style={{ width: 40 }}></th>}
             </tr>
           </thead>
           <tbody>
             {rows.length === 0 && (
               <tr>
-                <td colSpan={6} className="p-6 text-center text-muted-foreground italic text-sm">
-                  No updates yet. Click "+ Add Update" to get started.
+                <td colSpan={headers.length + (readOnly ? 0 : 1)} className="p-6 text-center text-muted-foreground italic text-sm">
+                  No updates yet.
                 </td>
               </tr>
             )}
@@ -110,28 +118,33 @@ const OkrUpdates = ({ okrNumber, color }: { okrNumber: number; color: string }) 
                     onSave={(v) => saveCell(row.id, col, v)}
                     className={tdClass}
                     placeholder="Click to edit..."
+                    readOnly={readOnly}
                   />
                 ))}
-                <td className={tdClass}>
-                  <button
-                    onClick={() => deleteRow(row.id)}
-                    className="p-1 rounded hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-                </td>
+                {!readOnly && (
+                  <td className={tdClass}>
+                    <button
+                      onClick={() => deleteRow(row.id)}
+                      className="p-1 rounded hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      <button
-        onClick={addRow}
-        className="mt-4 flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-      >
-        <Plus className="w-4 h-4" /> Add Update
-      </button>
+      {!readOnly && (
+        <button
+          onClick={addRow}
+          className="mt-4 flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+        >
+          <Plus className="w-4 h-4" /> Add Update
+        </button>
+      )}
     </div>
   );
 };

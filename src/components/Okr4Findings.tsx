@@ -77,7 +77,7 @@ const Insight = ({ text }: {text: string;}) =>
   </div>;
 
 
-const Okr4Findings = () => {
+const Okr4Findings = ({ readOnly = false }: { readOnly?: boolean }) => {
   return (
     <div>
       {/* ═══════════════════════════════════════════════════════

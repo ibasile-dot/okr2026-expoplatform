@@ -341,7 +341,7 @@ const DepartmentTable = ({
 
 let clientIdCounter = 1000;
 
-const AutomationIdeasPage = () => {
+const AutomationIdeasPage = ({ readOnly = false }: { readOnly?: boolean }) => {
   const [categories, setCategories] = useState<DepartmentCategory[]>(automationCategories);
   const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, krs: [] });
   const [searchQuery, setSearchQuery] = useState("");

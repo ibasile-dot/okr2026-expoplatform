@@ -29,7 +29,7 @@ const tdClass = "p-3 text-sm border-b border-border";
 const uniqueKrs = [...new Set(roadmapData.map((r) => r.okr))].sort();
 const uniqueMonths = [...new Set(roadmapData.map((r) => r.month))];
 
-const OkrRoadmap = () => {
+const OkrRoadmap = ({ readOnly = false }: { readOnly?: boolean }) => {
   const [krFilter, setKrFilter] = useState<string>("all");
   const [monthFilter, setMonthFilter] = useState<string>("all");
   const { getValue, saveValue } = useMetricValues(4, 0);
@@ -163,35 +163,42 @@ const OkrRoadmap = () => {
                   </td>
                   <td className={`${tdClass} text-xs text-muted-foreground`}>{item.owner}</td>
                   <td className={tdClass}>
-                    <Select
-                      value={status}
-                      onValueChange={(v) => saveValue(idx, "roadmap_status", v)}
-                    >
-                      <SelectTrigger className={`h-7 text-xs border rounded-md px-2 ${statusBadgeClass[status] || ""}`}>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {statusOptions.map((s) => (
-                          <SelectItem key={s} value={s}>
-                            <span className="flex items-center gap-1.5">
-                              <span className={`w-2 h-2 rounded-full ${
-                                s === "Done" ? "bg-success" :
-                                s === "In Progress" ? "bg-warning" :
-                                s === "Blocked" ? "bg-destructive" :
-                                "bg-muted-foreground/40"
-                              }`} />
-                              {s}
-                            </span>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    {readOnly ? (
+                      <Badge variant="outline" className={`text-xs px-2 py-0.5 ${statusBadgeClass[status] || ""}`}>
+                        {status}
+                      </Badge>
+                    ) : (
+                      <Select
+                        value={status}
+                        onValueChange={(v) => saveValue(idx, "roadmap_status", v)}
+                      >
+                        <SelectTrigger className={`h-7 text-xs border rounded-md px-2 ${statusBadgeClass[status] || ""}`}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {statusOptions.map((s) => (
+                            <SelectItem key={s} value={s}>
+                              <span className="flex items-center gap-1.5">
+                                <span className={`w-2 h-2 rounded-full ${
+                                  s === "Done" ? "bg-success" :
+                                  s === "In Progress" ? "bg-warning" :
+                                  s === "Blocked" ? "bg-destructive" :
+                                  "bg-muted-foreground/40"
+                                }`} />
+                                {s}
+                              </span>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
                   </td>
                   <EditableCell
                     value={getNotes(idx, item.defaultNotes)}
                     onSave={(v) => saveValue(idx, "roadmap_notes", v)}
                     className={tdClass}
                     placeholder="Add notes..."
+                    readOnly={readOnly}
                   />
                 </tr>
               );

@@ -13,7 +13,7 @@ const krTabs = [
   { id: "kr5", label: "KR5 — Engineering Maintenance" },
 ];
 
-export const Okr4Metrics = () => {
+export const Okr4Metrics = ({ readOnly = false }: { readOnly?: boolean }) => {
   const [activeKR, setActiveKR] = useState("kr1");
   const krNum = parseInt(activeKR.replace("kr", ""));
   const { getValue, saveValue } = useMetricValues(4, krNum);
@@ -23,6 +23,7 @@ export const Okr4Metrics = () => {
       value={getValue(row, col)}
       onSave={(v) => saveValue(row, col, v)}
       className={tdClass}
+      readOnly={readOnly}
     />
   );
 

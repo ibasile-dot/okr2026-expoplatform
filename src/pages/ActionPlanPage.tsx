@@ -322,7 +322,7 @@ const ActionCard = ({
 };
 
 /* ── Main page ── */
-const ActionPlanPage = () => {
+const ActionPlanPage = ({ readOnly = false }: { readOnly?: boolean }) => {
   const [dbOverrides, setDbOverrides] = useState<Record<string, any>>({});
 
   // Load overrides from DB (automation_idea_updates) — all fields
