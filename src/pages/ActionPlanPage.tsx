@@ -30,6 +30,11 @@ const areaOrder: Record<Phase, string[]> = {
     "Admin Panel — Usability & Onboarding",
     "Support & Ticket Automation",
     "Finance",
+    "HR",
+    "Data",
+    "Sales",
+    "Engineering",
+    "Marketing",
   ],
   "Quick Wins": [
     "TAMs / Operations",
