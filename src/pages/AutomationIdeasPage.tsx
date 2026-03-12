@@ -250,16 +250,8 @@ const DepartmentTable = ({
               const priority = getPriority(total);
               return (
                 <tr key={idea.id} className="border-b border-border/50 hover:bg-secondary/30 transition-colors group">
-                  {idea.id.startsWith("ai-new-") ? (
-                    <EditableCell value={idea.idea} onSave={(v) => onUpdate(idea.id, "idea", v)} className="p-2.5 font-medium text-foreground" placeholder="Idea name..." />
-                  ) : (
-                    <td className="p-2.5 font-medium text-foreground">{idea.idea}</td>
-                  )}
-                  {idea.id.startsWith("ai-new-") ? (
-                    <EditableCell value={idea.solves} onSave={(v) => onUpdate(idea.id, "solves", v)} className="p-2.5 text-muted-foreground" placeholder="What it solves..." />
-                  ) : (
-                    <td className="p-2.5 text-muted-foreground">{idea.solves}</td>
-                  )}
+                  <EditableCell value={idea.idea} onSave={(v) => onUpdate(idea.id, "idea", v)} className="p-2.5 font-medium text-foreground" placeholder="Idea name..." />
+                  <EditableCell value={idea.solves} onSave={(v) => onUpdate(idea.id, "solves", v)} className="p-2.5 text-muted-foreground" placeholder="What it solves..." />
                   <td className="p-2.5">
                     <PhaseDropdown value={idea.phase} onChange={(v) => onUpdate(idea.id, "phase", v)} />
                   </td>
@@ -356,9 +348,9 @@ const AutomationIdeasPage = () => {
     const loadSavedUpdates = async () => {
       const { data } = await supabase
         .from("automation_idea_updates")
-        .select("idea_id, status, notes");
+        .select("idea_id, status, notes, idea, solves, impact, confidence, ease, phase");
       if (data && data.length > 0) {
-        const updatesMap = new Map(data.map((d) => [d.idea_id, d]));
+        const updatesMap = new Map(data.map((d: any) => [d.idea_id, d]));
         setCategories((prev) =>
           prev.map((cat) => ({
             ...cat,
@@ -367,8 +359,14 @@ const AutomationIdeasPage = () => {
               if (saved) {
                 return {
                   ...idea,
+                  ...(saved.idea ? { idea: saved.idea } : {}),
+                  ...(saved.solves ? { solves: saved.solves } : {}),
                   ...(saved.status ? { status: saved.status as IdeaStatus } : {}),
-                  ...(saved.notes !== null ? { notes: saved.notes } : {}),
+                  ...(saved.notes !== null && saved.notes !== undefined ? { notes: saved.notes } : {}),
+                  ...(saved.impact ? { impact: saved.impact as IceScore } : {}),
+                  ...(saved.confidence ? { confidence: saved.confidence as IceScore } : {}),
+                  ...(saved.ease ? { ease: saved.ease as IceScore } : {}),
+                  ...(saved.phase ? { phase: saved.phase as AutomationIdea["phase"] } : {}),
                 };
               }
               return idea;
@@ -382,12 +380,14 @@ const AutomationIdeasPage = () => {
   }, []);
 
   // Persist notes/status to database
+  const persistableFields = ["status", "notes", "idea", "solves", "impact", "confidence", "ease", "phase"];
+
   const persistUpdate = useCallback(async (ideaId: string, field: string, value: string) => {
     if (!initialLoadDone.current) return;
-    if (field !== "status" && field !== "notes") return;
+    if (!persistableFields.includes(field)) return;
     await supabase
       .from("automation_idea_updates")
-      .upsert({ idea_id: ideaId, [field]: value } as { idea_id: string; status?: string; notes?: string }, { onConflict: "idea_id" });
+      .upsert({ idea_id: ideaId, [field]: value } as any, { onConflict: "idea_id" });
   }, []);
 
   const handleUpdate = useCallback((ideaId: string, field: string, value: string) => {
