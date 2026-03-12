@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SectionTitle } from "@/components/DashboardWidgets";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Filter, X, Trash2 } from "lucide-react";
+import { Plus, Filter, X, Trash2, Search } from "lucide-react";
 import {
   automationCategories,
   iceTotal,
@@ -341,6 +341,7 @@ let clientIdCounter = 1000;
 const AutomationIdeasPage = () => {
   const [categories, setCategories] = useState<DepartmentCategory[]>(automationCategories);
   const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, kr: null });
+  const [searchQuery, setSearchQuery] = useState("");
   const initialLoadDone = useRef(false);
 
   // Load saved notes/status from database on mount
@@ -434,33 +435,59 @@ const AutomationIdeasPage = () => {
       <SectionTitle>Automation Ideas</SectionTitle>
       <SummaryBar categories={categories} />
 
+      <div className="relative mb-4">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search ideas..."
+          className="w-full pl-9 pr-8 py-2 text-sm rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+        />
+        {searchQuery && (
+          <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+            <X className="w-3.5 h-3.5" />
+          </button>
+        )}
+      </div>
+
       <Tabs defaultValue="tams" className="w-full">
         <TabsList className="mb-4 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
-          {categories.map((cat) => (
-            <TabsTrigger
-              key={cat.key}
-              value={cat.key}
-              className="text-xs rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none border border-border px-3 py-1"
-            >
-              {cat.label} ({cat.ideas.length})
-            </TabsTrigger>
-          ))}
+          {categories.map((cat) => {
+            const q = searchQuery.toLowerCase();
+            const matchCount = q ? cat.ideas.filter(i => i.idea.toLowerCase().includes(q) || i.solves.toLowerCase().includes(q) || i.notes.toLowerCase().includes(q)).length : cat.ideas.length;
+            return (
+              <TabsTrigger
+                key={cat.key}
+                value={cat.key}
+                className="text-xs rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none border border-border px-3 py-1"
+              >
+                {cat.label} ({matchCount})
+              </TabsTrigger>
+            );
+          })}
         </TabsList>
 
         <FilterBar filters={filters} setFilters={setFilters} />
 
-        {categories.map((cat) => (
-          <TabsContent key={cat.key} value={cat.key}>
-            <DepartmentTable
-              ideas={cat.ideas}
-              onUpdate={handleUpdate}
-              onAddIdea={(idea) => handleAddIdea(cat.key, idea)}
-              onDeleteIdea={handleDeleteIdea}
-              onUpdateKrs={handleUpdateKrs}
-              filters={filters}
-            />
-          </TabsContent>
-        ))}
+        {categories.map((cat) => {
+          const q = searchQuery.toLowerCase();
+          const filteredIdeas = q
+            ? cat.ideas.filter(i => i.idea.toLowerCase().includes(q) || i.solves.toLowerCase().includes(q) || i.notes.toLowerCase().includes(q))
+            : cat.ideas;
+          return (
+            <TabsContent key={cat.key} value={cat.key}>
+              <DepartmentTable
+                ideas={filteredIdeas}
+                onUpdate={handleUpdate}
+                onAddIdea={(idea) => handleAddIdea(cat.key, idea)}
+                onDeleteIdea={handleDeleteIdea}
+                onUpdateKrs={handleUpdateKrs}
+                filters={filters}
+              />
+            </TabsContent>
+          );
+        })}
       </Tabs>
     </div>
   );
