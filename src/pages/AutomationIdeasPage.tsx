@@ -121,25 +121,6 @@ const SummaryBar = ({ categories }: { categories: DepartmentCategory[] }) => {
   );
 };
 
-const PhaseLegend = () => (
-  <div className="flex gap-4 mb-5 flex-wrap items-center">
-    <span className="text-xs text-muted-foreground font-semibold">Phase:</span>
-    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-      <span className={`px-2.5 py-0.5 rounded-full font-semibold text-[11px] ${phaseStyle["Primary Focus"]}`}>Primary Focus</span>
-      <span>Core bottlenecks — do first</span>
-    </div>
-    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-      <span className={`px-2.5 py-0.5 rounded-full font-semibold text-[11px] ${phaseStyle["Quick Wins"]}`}>Quick Wins</span>
-      <span>Fast to implement</span>
-    </div>
-    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-      <span className={`px-2.5 py-0.5 rounded-full font-semibold text-[11px] ${phaseStyle["Secondary Focus"]}`}>Secondary Focus</span>
-      <span>After Phase 1</span>
-    </div>
-  </div>
-);
-
-
 const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: Filters) => void }) => {
   const priorityOpts = ["High", "Medium", "Low"];
   const krOpts = [1, 2, 3, 4, 5];
