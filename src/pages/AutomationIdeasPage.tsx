@@ -58,7 +58,7 @@ const krColorActive: Record<number, string> = {
 interface Filters {
   priority: string | null;
   phase: string | null;
-  kr: number | null;
+  krs: number[];
 }
 
 const IceDropdown = ({ value, onChange }: { value: IceScore; onChange: (v: IceScore) => void }) => (
@@ -158,7 +158,7 @@ const SummaryBar = ({ categories }: { categories: DepartmentCategory[] }) => {
 const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: Filters) => void }) => {
   const priorityOpts = ["High", "Medium", "Low"];
   const krOpts = [1, 2, 3, 4, 5];
-  const hasFilters = filters.priority || filters.phase || filters.kr;
+  const hasFilters = filters.priority || filters.phase || filters.krs.length > 0;
 
   return (
     <div className="flex items-center gap-2 mb-4 flex-wrap">
@@ -175,11 +175,14 @@ const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: 
       ))}
       <span className="text-border">|</span>
       {krOpts.map((kr) => (
-        <button key={kr} onClick={() => setFilters({ ...filters, kr: filters.kr === kr ? null : kr })}
-          className={`text-[11px] px-2 py-1 rounded border transition-colors font-bold ${filters.kr === kr ? `${krColorActive[kr]}` : "bg-transparent text-muted-foreground border-border hover:border-primary/50"}`}>KR{kr}</button>
+        <button key={kr} onClick={() => {
+          const active = filters.krs.includes(kr);
+          setFilters({ ...filters, krs: active ? filters.krs.filter(k => k !== kr) : [...filters.krs, kr].sort() });
+        }}
+          className={`text-[11px] px-2 py-1 rounded border transition-colors font-bold ${filters.krs.includes(kr) ? `${krColorActive[kr]}` : "bg-transparent text-muted-foreground border-border hover:border-primary/50"}`}>KR{kr}</button>
       ))}
       {hasFilters && (
-        <button onClick={() => setFilters({ priority: null, phase: null, kr: null })}
+        <button onClick={() => setFilters({ priority: null, phase: null, krs: [] })}
           className="text-[11px] px-2 py-1 rounded-full text-destructive hover:bg-destructive/10 transition-colors flex items-center gap-1">
           <X className="w-3 h-3" /> Clear
         </button>
@@ -205,7 +208,7 @@ const DepartmentTable = ({
     let result = ideas;
     if (filters.priority) result = result.filter((i) => getPriority(iceTotal(i.impact, i.confidence, i.ease)) === filters.priority);
     if (filters.phase) result = result.filter((i) => i.phase === filters.phase);
-    if (filters.kr) result = result.filter((i) => i.krs.includes(filters.kr!));
+    if (filters.krs.length > 0) result = result.filter((i) => filters.krs.some(kr => i.krs.includes(kr)));
     return result;
   }, [ideas, filters]);
 
@@ -340,7 +343,7 @@ let clientIdCounter = 1000;
 
 const AutomationIdeasPage = () => {
   const [categories, setCategories] = useState<DepartmentCategory[]>(automationCategories);
-  const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, kr: null });
+  const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, krs: [] });
   const [searchQuery, setSearchQuery] = useState("");
   const initialLoadDone = useRef(false);
 
