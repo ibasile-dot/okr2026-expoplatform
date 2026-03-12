@@ -6,6 +6,7 @@ import { EditableCell } from "@/components/EditableCell";
 import { useMetricValues } from "@/hooks/useMetricValues";
 import OkrRoadmap from "@/components/OkrRoadmap";
 import Okr4Findings from "@/components/Okr4Findings";
+import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
@@ -255,12 +256,7 @@ const OkrDetailPage = () => {
         {/* Automation Ideas Tab (OKR 4 only) */}
         {okr.id === 4 && (
           <TabsContent value="automation-ideas" className="mt-6">
-            <div className="section-card p-6">
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
-                <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>Automation Ideas</p>
-                <p className="text-sm text-muted-foreground italic">Automation ideas will be catalogued here with priority scoring</p>
-              </div>
-            </div>
+            <AutomationIdeasPage />
           </TabsContent>
         )}
       </Tabs>
