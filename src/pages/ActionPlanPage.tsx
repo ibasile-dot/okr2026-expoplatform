@@ -41,10 +41,13 @@ const areaOrder: Record<Phase, string[]> = {
     "Data",
   ],
   "Secondary Focus": [
+    "TAMs / Operations",
     "Website Builder — Phase 2",
     "Sales",
     "Product / Design",
     "Engineering",
+    "HR",
+    "Finance",
     "Marketing & Data",
     "Unified Tools",
   ],
