@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           action_plan_notes: string | null
           confidence: string | null
+          deleted: boolean
           ease: string | null
           id: string
           idea: string | null
@@ -32,6 +33,7 @@ export type Database = {
         Insert: {
           action_plan_notes?: string | null
           confidence?: string | null
+          deleted?: boolean
           ease?: string | null
           id?: string
           idea?: string | null
@@ -46,6 +48,7 @@ export type Database = {
         Update: {
           action_plan_notes?: string | null
           confidence?: string | null
+          deleted?: boolean
           ease?: string | null
           id?: string
           idea?: string | null
