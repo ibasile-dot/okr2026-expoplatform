@@ -7,6 +7,7 @@ import { useMetricValues } from "@/hooks/useMetricValues";
 import OkrRoadmap from "@/components/OkrRoadmap";
 import Okr4Findings from "@/components/Okr4Findings";
 import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
+import ActionPlanPage from "@/pages/ActionPlanPage";
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
@@ -216,32 +217,36 @@ const OkrDetailPage = () => {
 
         {/* Action Plan Tab */}
         <TabsContent value="action-plan" className="mt-6">
-          <div className="section-card p-6">
-            <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
-              <span className="text-xs font-semibold text-muted-foreground">0 / 0 items completed</span>
+          {okr.id === 4 ? (
+            <ActionPlanPage />
+          ) : (
+            <div className="section-card p-6">
+              <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
+                <span className="text-xs font-semibold text-muted-foreground">0 / 0 items completed</span>
+              </div>
+              <h3 className="text-base font-semibold text-foreground mb-3">Phase 1 — Core Initiatives</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-secondary/50 border-b-2 border-border">
+                      <th className="text-left p-3 font-semibold text-foreground">#</th>
+                      <th className="text-left p-3 font-semibold text-foreground">Initiative</th>
+                      <th className="text-left p-3 font-semibold text-foreground">Owner</th>
+                      <th className="text-left p-3 font-semibold text-foreground">Status</th>
+                      <th className="text-left p-3 font-semibold text-foreground">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-border hover:bg-secondary/30">
+                      {Array(5).fill(null).map((_, i) => (
+                        <td key={i} className="p-3 text-muted-foreground italic">—</td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <h3 className="text-base font-semibold text-foreground mb-3">Phase 1 — Core Initiatives</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-secondary/50 border-b-2 border-border">
-                    <th className="text-left p-3 font-semibold text-foreground">#</th>
-                    <th className="text-left p-3 font-semibold text-foreground">Initiative</th>
-                    <th className="text-left p-3 font-semibold text-foreground">Owner</th>
-                    <th className="text-left p-3 font-semibold text-foreground">Status</th>
-                    <th className="text-left p-3 font-semibold text-foreground">Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-border hover:bg-secondary/30">
-                    {Array(5).fill(null).map((_, i) => (
-                      <td key={i} className="p-3 text-muted-foreground italic">—</td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          )}
         </TabsContent>
         {/* New Initiatives Tab */}
         <TabsContent value="new-initiatives" className="mt-6">
