@@ -23,6 +23,7 @@ export const Okr4Metrics = ({ readOnly = false }: { readOnly?: boolean }) => {
       value={getValue(row, col)}
       onSave={(v) => saveValue(row, col, v)}
       className={tdClass}
+      readOnly={readOnly}
     />
   );
 
