@@ -274,17 +274,18 @@ const ActionCard = ({
 
 /* ── Main page ── */
 const ActionPlanPage = () => {
-  const phaseMap = useMemo(() => buildPhaseMap(), []);
-  const [dbOverrides, setDbOverrides] = useState<Record<string, { notes?: string; status?: string }>>({});
+  const [dbOverrides, setDbOverrides] = useState<Record<string, any>>({});
 
-  // Load overrides from DB (automation_idea_updates)
+  // Load overrides from DB (automation_idea_updates) — all fields
   useEffect(() => {
     const load = async () => {
-      const { data } = await supabase.from("automation_idea_updates").select("idea_id, action_plan_notes, status");
+      const { data } = await supabase
+        .from("automation_idea_updates")
+        .select("idea_id, action_plan_notes, status, idea, solves, impact, confidence, ease, phase");
       if (data) {
-        const map: Record<string, { notes?: string; status?: string }> = {};
-        data.forEach((r) => {
-          map[r.idea_id] = { notes: (r as any).action_plan_notes ?? undefined, status: r.status ?? undefined };
+        const map: Record<string, any> = {};
+        data.forEach((r: any) => {
+          map[r.idea_id] = r;
         });
         setDbOverrides(map);
       }
@@ -292,11 +293,11 @@ const ActionPlanPage = () => {
     load();
   }, []);
 
+  const phaseMap = useMemo(() => buildPhaseMap(dbOverrides), [dbOverrides]);
+
   const savedNotes: Record<string, string> = {};
-  const savedStatus: Record<string, string> = {};
   for (const [id, o] of Object.entries(dbOverrides)) {
-    if (o.notes) savedNotes[id] = o.notes;
-    if (o.status) savedStatus[id] = o.status;
+    if (o.action_plan_notes) savedNotes[id] = o.action_plan_notes;
   }
 
   const handleSaveNote = async (ideaId: string, note: string) => {
