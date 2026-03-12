@@ -1,0 +1,1 @@
+CREATE POLICY "Allow public delete" ON public.okr_metric_values FOR DELETE TO public USING (true);
