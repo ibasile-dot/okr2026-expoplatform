@@ -113,7 +113,7 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
 
       const phase = idea.phase as Phase;
       if (!map[phase]) continue;
-      const area = getArea(idea, cat.key);
+      const area = getArea(idea, cat.label);
       if (!map[phase][area]) map[phase][area] = [];
       map[phase][area].push({ idea, deptKey: cat.key, deptLabel: cat.label, area });
     }
