@@ -1,0 +1,1 @@
+CREATE POLICY "Allow public delete" ON public.automation_idea_updates FOR DELETE TO public USING (true);
