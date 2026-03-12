@@ -175,8 +175,11 @@ const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: 
       ))}
       <span className="text-border">|</span>
       {krOpts.map((kr) => (
-        <button key={kr} onClick={() => setFilters({ ...filters, kr: filters.kr === kr ? null : kr })}
-          className={`text-[11px] px-2 py-1 rounded border transition-colors font-bold ${filters.kr === kr ? `${krColorActive[kr]}` : "bg-transparent text-muted-foreground border-border hover:border-primary/50"}`}>KR{kr}</button>
+        <button key={kr} onClick={() => {
+          const active = filters.krs.includes(kr);
+          setFilters({ ...filters, krs: active ? filters.krs.filter(k => k !== kr) : [...filters.krs, kr].sort() });
+        }}
+          className={`text-[11px] px-2 py-1 rounded border transition-colors font-bold ${filters.krs.includes(kr) ? `${krColorActive[kr]}` : "bg-transparent text-muted-foreground border-border hover:border-primary/50"}`}>KR{kr}</button>
       ))}
       {hasFilters && (
         <button onClick={() => setFilters({ priority: null, phase: null, kr: null })}
