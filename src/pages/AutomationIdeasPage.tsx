@@ -1,7 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { SectionTitle } from "@/components/DashboardWidgets";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus } from "lucide-react";
+import { Plus, Filter, X } from "lucide-react";
 import {
   automationCategories,
   iceTotal,
@@ -38,7 +38,6 @@ const statusColors: Record<string, string> = {
   Cancelled: "bg-muted text-muted-foreground line-through",
 };
 
-// KR colors matching roadmap okrBadgeColors
 const krColors: Record<number, string> = {
   1: "bg-[hsl(237,68%,33%)] text-white",
   2: "bg-[hsl(44,100%,58%)] text-white",
@@ -47,57 +46,39 @@ const krColors: Record<number, string> = {
   5: "bg-[hsl(152,60%,40%)] text-white",
 };
 
-const IceDropdown = ({
-  value,
-  onChange,
-}: {
-  value: IceScore;
-  onChange: (v: IceScore) => void;
-}) => (
+interface Filters {
+  priority: string | null;
+  phase: string | null;
+  kr: number | null;
+}
+
+const IceDropdown = ({ value, onChange }: { value: IceScore; onChange: (v: IceScore) => void }) => (
   <select
     value={value}
     onChange={(e) => onChange(e.target.value as IceScore)}
     className="w-11 bg-transparent border border-border rounded px-1 py-1 text-xs font-medium cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/50 appearance-none text-center"
   >
-    {iceOptions.map((o) => (
-      <option key={o} value={o}>{o}</option>
-    ))}
+    {iceOptions.map((o) => (<option key={o} value={o}>{o}</option>))}
   </select>
 );
 
-const PhaseDropdown = ({
-  value,
-  onChange,
-}: {
-  value: AutomationIdea["phase"];
-  onChange: (v: AutomationIdea["phase"]) => void;
-}) => (
+const PhaseDropdown = ({ value, onChange }: { value: AutomationIdea["phase"]; onChange: (v: AutomationIdea["phase"]) => void }) => (
   <select
     value={value}
     onChange={(e) => onChange(e.target.value as AutomationIdea["phase"])}
     className={`border-0 rounded-full px-2 py-1 text-[11px] font-semibold cursor-pointer focus:outline-none whitespace-nowrap ${phaseStyle[value]}`}
   >
-    {phaseOptions.map((o) => (
-      <option key={o} value={o}>{o}</option>
-    ))}
+    {phaseOptions.map((o) => (<option key={o} value={o}>{o}</option>))}
   </select>
 );
 
-const StatusDropdown = ({
-  value,
-  onChange,
-}: {
-  value: IdeaStatus;
-  onChange: (v: IdeaStatus) => void;
-}) => (
+const StatusDropdown = ({ value, onChange }: { value: IdeaStatus; onChange: (v: IdeaStatus) => void }) => (
   <select
     value={value}
     onChange={(e) => onChange(e.target.value as IdeaStatus)}
     className={`w-full min-w-[100px] border-0 rounded-full px-2.5 py-1 text-[11px] font-medium cursor-pointer focus:outline-none ${statusColors[value]}`}
   >
-    {statusOptions.map((o) => (
-      <option key={o} value={o}>{o}</option>
-    ))}
+    {statusOptions.map((o) => (<option key={o} value={o}>{o}</option>))}
   </select>
 );
 
@@ -165,20 +146,100 @@ const IceFootnote = () => (
   </div>
 );
 
+const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: Filters) => void }) => {
+  const priorityOpts = ["High", "Medium", "Low"];
+  const krOpts = [1, 2, 3, 4, 5];
+  const hasFilters = filters.priority || filters.phase || filters.kr;
+
+  return (
+    <div className="flex items-center gap-2 mb-4 flex-wrap">
+      <Filter className="w-3.5 h-3.5 text-muted-foreground" />
+      <span className="text-xs text-muted-foreground font-medium mr-1">Filter:</span>
+
+      {priorityOpts.map((p) => (
+        <button
+          key={p}
+          onClick={() => setFilters({ ...filters, priority: filters.priority === p ? null : p })}
+          className={`text-[11px] px-2.5 py-1 rounded-full border transition-colors ${
+            filters.priority === p
+              ? "bg-primary text-primary-foreground border-primary"
+              : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+          }`}
+        >
+          {p}
+        </button>
+      ))}
+
+      <span className="text-border">|</span>
+
+      {phaseOptions.map((p) => (
+        <button
+          key={p}
+          onClick={() => setFilters({ ...filters, phase: filters.phase === p ? null : p })}
+          className={`text-[11px] px-2.5 py-1 rounded-full border transition-colors ${
+            filters.phase === p
+              ? "bg-primary text-primary-foreground border-primary"
+              : `bg-transparent border-border hover:border-primary/50 ${phaseStyle[p].split(" ")[1]}`
+          }`}
+        >
+          {p}
+        </button>
+      ))}
+
+      <span className="text-border">|</span>
+
+      {krOpts.map((kr) => (
+        <button
+          key={kr}
+          onClick={() => setFilters({ ...filters, kr: filters.kr === kr ? null : kr })}
+          className={`text-[11px] px-2 py-1 rounded border transition-colors font-bold ${
+            filters.kr === kr
+              ? `${krColors[kr]} border-transparent`
+              : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+          }`}
+        >
+          KR{kr}
+        </button>
+      ))}
+
+      {hasFilters && (
+        <button
+          onClick={() => setFilters({ priority: null, phase: null, kr: null })}
+          className="text-[11px] px-2 py-1 rounded-full text-destructive hover:bg-destructive/10 transition-colors flex items-center gap-1"
+        >
+          <X className="w-3 h-3" /> Clear
+        </button>
+      )}
+    </div>
+  );
+};
+
 const DepartmentTable = ({
   ideas,
   onUpdate,
   onAddIdea,
+  filters,
 }: {
   ideas: AutomationIdea[];
   onUpdate: (id: string, field: string, value: string) => void;
   onAddIdea: () => void;
+  filters: Filters;
 }) => {
-  const sorted = [...ideas].sort((a, b) => {
-    const totalA = iceTotal(a.impact, a.confidence, a.ease);
-    const totalB = iceTotal(b.impact, b.confidence, b.ease);
-    return totalB - totalA;
-  });
+  const filtered = useMemo(() => {
+    let result = ideas;
+    if (filters.priority) {
+      result = result.filter((i) => getPriority(iceTotal(i.impact, i.confidence, i.ease)) === filters.priority);
+    }
+    if (filters.phase) {
+      result = result.filter((i) => i.phase === filters.phase);
+    }
+    if (filters.kr) {
+      result = result.filter((i) => i.krs.includes(filters.kr!));
+    }
+    return result;
+  }, [ideas, filters]);
+
+  const sorted = [...filtered].sort((a, b) => iceTotal(b.impact, b.confidence, b.ease) - iceTotal(a.impact, a.confidence, a.ease));
 
   return (
     <div className="section-card overflow-hidden">
@@ -200,6 +261,9 @@ const DepartmentTable = ({
             </tr>
           </thead>
           <tbody>
+            {sorted.length === 0 && (
+              <tr><td colSpan={11} className="p-6 text-center text-muted-foreground text-sm">No ideas match the current filters</td></tr>
+            )}
             {sorted.map((idea) => {
               const total = iceTotal(idea.impact, idea.confidence, idea.ease);
               const priority = getPriority(total);
@@ -208,10 +272,7 @@ const DepartmentTable = ({
                   <td className="p-2.5 font-medium text-foreground">{idea.idea}</td>
                   <td className="p-2.5 text-muted-foreground">{idea.solves}</td>
                   <td className="p-2.5">
-                    <PhaseDropdown
-                      value={idea.phase}
-                      onChange={(v) => onUpdate(idea.id, "phase", v)}
-                    />
+                    <PhaseDropdown value={idea.phase} onChange={(v) => onUpdate(idea.id, "phase", v)} />
                   </td>
                   <td className="p-2.5">
                     <div className="flex flex-wrap gap-1">
@@ -222,32 +283,15 @@ const DepartmentTable = ({
                       ))}
                     </div>
                   </td>
-                  <td className="p-2.5">
-                    <IceDropdown value={idea.impact} onChange={(v) => onUpdate(idea.id, "impact", v)} />
-                  </td>
-                  <td className="p-2.5">
-                    <IceDropdown value={idea.confidence} onChange={(v) => onUpdate(idea.id, "confidence", v)} />
-                  </td>
-                  <td className="p-2.5">
-                    <IceDropdown value={idea.ease} onChange={(v) => onUpdate(idea.id, "ease", v)} />
-                  </td>
+                  <td className="p-2.5"><IceDropdown value={idea.impact} onChange={(v) => onUpdate(idea.id, "impact", v)} /></td>
+                  <td className="p-2.5"><IceDropdown value={idea.confidence} onChange={(v) => onUpdate(idea.id, "confidence", v)} /></td>
+                  <td className="p-2.5"><IceDropdown value={idea.ease} onChange={(v) => onUpdate(idea.id, "ease", v)} /></td>
+                  <td className="p-2.5 text-center"><span className="font-bold text-sm text-foreground">{total}</span></td>
                   <td className="p-2.5 text-center">
-                    <span className="font-bold text-sm text-foreground">{total}</span>
+                    <span className={`inline-flex items-center px-2 py-0.5 text-[11px] font-medium rounded-full border ${priorityColors[priority]}`}>{priority}</span>
                   </td>
-                  <td className="p-2.5 text-center">
-                    <span className={`inline-flex items-center px-2 py-0.5 text-[11px] font-medium rounded-full border ${priorityColors[priority]}`}>
-                      {priority}
-                    </span>
-                  </td>
-                  <td className="p-2.5">
-                    <StatusDropdown value={idea.status} onChange={(v) => onUpdate(idea.id, "status", v)} />
-                  </td>
-                  <EditableCell
-                    value={idea.notes}
-                    onSave={(v) => onUpdate(idea.id, "notes", v)}
-                    className="p-2.5 text-[11px]"
-                    placeholder="Add notes..."
-                  />
+                  <td className="p-2.5"><StatusDropdown value={idea.status} onChange={(v) => onUpdate(idea.id, "status", v)} /></td>
+                  <EditableCell value={idea.notes} onSave={(v) => onUpdate(idea.id, "notes", v)} className="p-2.5 text-[11px]" placeholder="Add notes..." />
                 </tr>
               );
             })}
@@ -270,49 +314,36 @@ let clientIdCounter = 1000;
 
 const AutomationIdeasPage = () => {
   const [categories, setCategories] = useState<DepartmentCategory[]>(automationCategories);
+  const [filters, setFilters] = useState<Filters>({ priority: null, phase: null, kr: null });
 
-  const handleUpdate = useCallback(
-    (ideaId: string, field: string, value: string) => {
-      setCategories((prev) =>
-        prev.map((cat) => ({
-          ...cat,
-          ideas: cat.ideas.map((idea) =>
-            idea.id === ideaId ? { ...idea, [field]: value } : idea
-          ),
-        }))
-      );
-    },
-    []
-  );
+  const handleUpdate = useCallback((ideaId: string, field: string, value: string) => {
+    setCategories((prev) =>
+      prev.map((cat) => ({
+        ...cat,
+        ideas: cat.ideas.map((idea) =>
+          idea.id === ideaId ? { ...idea, [field]: value } : idea
+        ),
+      }))
+    );
+  }, []);
 
   const handleAddIdea = useCallback((catKey: string) => {
     const newId = `ai-new-${++clientIdCounter}`;
     const newIdea: AutomationIdea = {
-      id: newId,
-      idea: "New automation idea",
-      solves: "",
-      phase: "Quick Wins",
-      krs: [4],
-      impact: "M",
-      confidence: "M",
-      ease: "M",
-      status: "Not Started",
-      source: "",
-      notes: "",
+      id: newId, idea: "New automation idea", solves: "", phase: "Quick Wins",
+      krs: [4], impact: "M", confidence: "M", ease: "M", status: "Not Started", source: "", notes: "",
     };
     setCategories((prev) =>
-      prev.map((cat) =>
-        cat.key === catKey ? { ...cat, ideas: [...cat.ideas, newIdea] } : cat
-      )
+      prev.map((cat) => cat.key === catKey ? { ...cat, ideas: [...cat.ideas, newIdea] } : cat)
     );
   }, []);
 
   return (
     <div>
       <SectionTitle>Automation Ideas</SectionTitle>
-
       <SummaryBar categories={categories} />
       <PhaseLegend />
+      <FilterBar filters={filters} setFilters={setFilters} />
 
       <Tabs defaultValue="tams" className="w-full">
         <TabsList className="mb-6 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
@@ -329,11 +360,7 @@ const AutomationIdeasPage = () => {
 
         {categories.map((cat) => (
           <TabsContent key={cat.key} value={cat.key}>
-            <DepartmentTable
-              ideas={cat.ideas}
-              onUpdate={handleUpdate}
-              onAddIdea={() => handleAddIdea(cat.key)}
-            />
+            <DepartmentTable ideas={cat.ideas} onUpdate={handleUpdate} onAddIdea={() => handleAddIdea(cat.key)} filters={filters} />
           </TabsContent>
         ))}
       </Tabs>
