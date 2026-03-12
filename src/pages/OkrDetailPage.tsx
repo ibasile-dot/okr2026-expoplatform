@@ -4,6 +4,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Okr4Metrics } from "@/components/Okr4Metrics";
 import { EditableCell } from "@/components/EditableCell";
 import { useMetricValues } from "@/hooks/useMetricValues";
+import { useOkrAssignments } from "@/hooks/useOkrAssignments";
+import { useAuth } from "@/hooks/useAuth";
 import OkrRoadmap from "@/components/OkrRoadmap";
 import OkrUpdates from "@/components/OkrUpdates";
 import Okr4Findings from "@/components/Okr4Findings";
@@ -11,29 +13,26 @@ import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
 import ActionPlanPage from "@/pages/ActionPlanPage";
 import EditableTemplateTable from "@/components/EditableTemplateTable";
 
-// Section keys (stored as kr_number) for template tables
 const SECTION_ROADMAP = 100;
 const SECTION_FINDINGS = 200;
 const SECTION_ACTION_PLAN = 300;
-
-const statusColors: Record<string, string> = {
-  "on-track": "bg-success/15 text-success border-success/30",
-  "at-risk": "bg-warning/15 text-warning border-warning/30",
-  "behind": "bg-destructive/15 text-destructive border-destructive/30",
-  "not-started": "bg-muted text-muted-foreground border-border",
-};
 
 const tdClass = "p-3 text-sm border-b border-border";
 const thClass = "text-left p-3 font-semibold text-foreground whitespace-nowrap text-xs";
 const metricColumns = ["dept", "measurement", "source", "q1", "q2", "q3", "q4", "notes"];
 const metricHeaders = ["Department", "Measurement", "Source", "Q1 Baseline", "Q2 Results", "Q3 Results", "Q4 Results", "Notes"];
 
-const OkrTemplateMetrics = ({ okrId }: { okrId: number }) => {
+const OkrTemplateMetrics = ({ okrId, readOnly }: { okrId: number; readOnly: boolean }) => {
   const { getValue, saveValue } = useMetricValues(okrId, 1);
   const rows = [0, 1, 2];
 
   return (
     <div className="section-card p-6">
+      {readOnly && (
+        <div className="bg-muted/50 border border-border rounded-md px-4 py-2.5 mb-4 text-xs text-muted-foreground">
+          🔒 View only — you are not assigned to this OKR.
+        </div>
+      )}
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -52,6 +51,7 @@ const OkrTemplateMetrics = ({ okrId }: { okrId: number }) => {
                     value={getValue(rowIdx, col)}
                     onSave={(v) => saveValue(rowIdx, col, v)}
                     className={tdClass}
+                    readOnly={readOnly}
                   />
                 ))}
               </tr>
@@ -63,20 +63,14 @@ const OkrTemplateMetrics = ({ okrId }: { okrId: number }) => {
   );
 };
 
-const statusLabels: Record<string, string> = {
-  "on-track": "On Track",
-  "at-risk": "At Risk",
-  "behind": "Behind",
-  "not-started": "Not Started",
-};
-
 const OkrDetailPage = () => {
   const { okrId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const { profile } = useAuth();
+  const { canEdit } = useOkrAssignments();
   const okr = okrData.find((o) => o.id === Number(okrId));
 
-  // Derive active tab from URL path
   const pathSegments = location.pathname.split("/");
   const lastSegment = pathSegments[pathSegments.length - 1];
   const tabMap: Record<string, string> = {
@@ -97,12 +91,22 @@ const OkrDetailPage = () => {
     );
   }
 
+  const isAdmin = profile?.is_admin ?? false;
+  const readOnly = !isAdmin && !canEdit(okr.id);
+
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          OKR {okr.id}: {okr.shortTitle}
-        </h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
+            OKR {okr.id}: {okr.shortTitle}
+          </h1>
+          {readOnly && (
+            <span className="text-[10px] font-bold uppercase bg-muted text-muted-foreground px-2 py-1 rounded">
+              View Only
+            </span>
+          )}
+        </div>
         <p className="text-sm text-muted-foreground mt-1">{okr.objective}</p>
       </div>
 
@@ -131,11 +135,9 @@ const OkrDetailPage = () => {
           })}
         </TabsList>
 
-        {/* Overview Tab */}
         <TabsContent value="overview" className="mt-6">
           <div className="section-card p-6">
             <h2 className="text-lg font-semibold text-foreground mb-4">{okr.shortTitle}</h2>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Owner</p>
@@ -150,10 +152,8 @@ const OkrDetailPage = () => {
                 <p className="text-sm text-foreground">{okr.objective}</p>
               </div>
             </div>
-
             <h3 className="text-base font-semibold text-foreground mt-6 mb-3">Why it Matters</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{okr.whyItMatters}</p>
-
             <h3 className="text-base font-semibold text-foreground mt-6 mb-3">
               Key Results ({okr.keyResults.length})
             </h3>
@@ -168,18 +168,17 @@ const OkrDetailPage = () => {
           </div>
         </TabsContent>
 
-        {/* Metrics Tab */}
         <TabsContent value="metrics" className="mt-6">
           {okr.id === 4 ? (
-            <Okr4Metrics />
+            <Okr4Metrics readOnly={readOnly} />
           ) : (
-            <OkrTemplateMetrics okrId={okr.id} />
+            <OkrTemplateMetrics okrId={okr.id} readOnly={readOnly} />
           )}
         </TabsContent>
 
         <TabsContent value="roadmap" className="mt-6">
           {okr.id === 4 ? (
-            <OkrRoadmap />
+            <OkrRoadmap readOnly={readOnly} />
           ) : (
             <EditableTemplateTable
               okrNumber={okr.id}
@@ -187,15 +186,15 @@ const OkrDetailPage = () => {
               columns={["month", "initiative", "owner", "status", "notes"]}
               headers={["Month", "Initiative", "Owner", "Status", "Notes"]}
               color={okr.color}
-              emptyMessage={'No roadmap items yet. Click "+ Add Row" to start planning.'}
+              emptyMessage={'No roadmap items yet.'}
+              readOnly={readOnly}
             />
           )}
         </TabsContent>
 
-        {/* Findings Tab */}
         <TabsContent value="findings" className="mt-6">
           {okr.id === 4 ? (
-            <Okr4Findings />
+            <Okr4Findings readOnly={readOnly} />
           ) : (
             <EditableTemplateTable
               okrNumber={okr.id}
@@ -203,15 +202,15 @@ const OkrDetailPage = () => {
               columns={["area", "finding", "source", "impact", "recommendation"]}
               headers={["Area", "Finding", "Source", "Impact", "Recommendation"]}
               color={okr.color}
-              emptyMessage={'No findings yet. Click "+ Add Row" to start documenting.'}
+              emptyMessage={'No findings yet.'}
+              readOnly={readOnly}
             />
           )}
         </TabsContent>
 
-        {/* Action Plan Tab */}
         <TabsContent value="action-plan" className="mt-6">
           {okr.id === 4 ? (
-            <ActionPlanPage />
+            <ActionPlanPage readOnly={readOnly} />
           ) : (
             <EditableTemplateTable
               okrNumber={okr.id}
@@ -219,19 +218,19 @@ const OkrDetailPage = () => {
               columns={["phase", "initiative", "owner", "status", "notes"]}
               headers={["Phase", "Initiative", "Owner", "Status", "Notes"]}
               color={okr.color}
-              emptyMessage={'No action items yet. Click "+ Add Row" to start planning.'}
+              emptyMessage={'No action items yet.'}
+              readOnly={readOnly}
             />
           )}
         </TabsContent>
-        {/* Updates Tab */}
+
         <TabsContent value="updates" className="mt-6">
-          <OkrUpdates okrNumber={okr.id} color={okr.color} />
+          <OkrUpdates okrNumber={okr.id} color={okr.color} readOnly={readOnly} />
         </TabsContent>
 
-        {/* Automation Ideas Tab (OKR 4 only) */}
         {okr.id === 4 && (
           <TabsContent value="automation-ideas" className="mt-6">
-            <AutomationIdeasPage />
+            <AutomationIdeasPage readOnly={readOnly} />
           </TabsContent>
         )}
       </Tabs>
