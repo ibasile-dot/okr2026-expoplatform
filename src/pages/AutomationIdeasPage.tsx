@@ -208,7 +208,7 @@ const DepartmentTable = ({
     let result = ideas;
     if (filters.priority) result = result.filter((i) => getPriority(iceTotal(i.impact, i.confidence, i.ease)) === filters.priority);
     if (filters.phase) result = result.filter((i) => i.phase === filters.phase);
-    if (filters.kr) result = result.filter((i) => i.krs.includes(filters.kr!));
+    if (filters.krs.length > 0) result = result.filter((i) => filters.krs.some(kr => i.krs.includes(kr)));
     return result;
   }, [ideas, filters]);
 
