@@ -348,9 +348,9 @@ const AutomationIdeasPage = () => {
     const loadSavedUpdates = async () => {
       const { data } = await supabase
         .from("automation_idea_updates")
-        .select("idea_id, status, notes");
+        .select("idea_id, status, notes, idea, solves, impact, confidence, ease, phase");
       if (data && data.length > 0) {
-        const updatesMap = new Map(data.map((d) => [d.idea_id, d]));
+        const updatesMap = new Map(data.map((d: any) => [d.idea_id, d]));
         setCategories((prev) =>
           prev.map((cat) => ({
             ...cat,
@@ -359,8 +359,14 @@ const AutomationIdeasPage = () => {
               if (saved) {
                 return {
                   ...idea,
+                  ...(saved.idea ? { idea: saved.idea } : {}),
+                  ...(saved.solves ? { solves: saved.solves } : {}),
                   ...(saved.status ? { status: saved.status as IdeaStatus } : {}),
-                  ...(saved.notes !== null ? { notes: saved.notes } : {}),
+                  ...(saved.notes !== null && saved.notes !== undefined ? { notes: saved.notes } : {}),
+                  ...(saved.impact ? { impact: saved.impact as IceScore } : {}),
+                  ...(saved.confidence ? { confidence: saved.confidence as IceScore } : {}),
+                  ...(saved.ease ? { ease: saved.ease as IceScore } : {}),
+                  ...(saved.phase ? { phase: saved.phase as AutomationIdea["phase"] } : {}),
                 };
               }
               return idea;
