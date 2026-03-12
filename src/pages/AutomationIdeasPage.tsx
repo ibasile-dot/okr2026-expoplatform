@@ -208,7 +208,7 @@ const DepartmentTable = ({
     return result;
   }, [ideas, filters]);
 
-  const sorted = [...filtered].sort((a, b) => iceTotal(b.impact, b.confidence, b.ease) - iceTotal(a.impact, a.confidence, a.ease));
+  const sorted = filtered;
 
   const handleAdd = () => {
     if (!newIdea.idea.trim()) return;
