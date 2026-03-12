@@ -385,10 +385,9 @@ const AutomationIdeasPage = () => {
   const persistUpdate = useCallback(async (ideaId: string, field: string, value: string) => {
     if (!initialLoadDone.current) return;
     if (field !== "status" && field !== "notes") return;
-    const updateData: Record<string, string> = { idea_id: ideaId, [field]: value };
     await supabase
       .from("automation_idea_updates")
-      .upsert(updateData, { onConflict: "idea_id" });
+      .upsert({ idea_id: ideaId, [field]: value } as { idea_id: string; status?: string; notes?: string }, { onConflict: "idea_id" });
   }, []);
 
   const handleUpdate = useCallback((ideaId: string, field: string, value: string) => {
