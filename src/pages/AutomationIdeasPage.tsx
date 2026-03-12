@@ -451,34 +451,49 @@ const AutomationIdeasPage = () => {
         )}
       </div>
 
-      <Tabs defaultValue="tams" className="w-full">
-        <TabsList className="mb-4 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
+      {searchQuery.trim() ? (
+        <>
+          <div className="text-xs text-muted-foreground mb-3">Showing results across all departments for "{searchQuery}"</div>
+          <FilterBar filters={filters} setFilters={setFilters} />
           {categories.map((cat) => {
             const q = searchQuery.toLowerCase();
-            const matchCount = q ? cat.ideas.filter(i => i.idea.toLowerCase().includes(q) || i.solves.toLowerCase().includes(q) || i.notes.toLowerCase().includes(q)).length : cat.ideas.length;
+            const filteredIdeas = cat.ideas.filter(i => i.idea.toLowerCase().includes(q) || i.solves.toLowerCase().includes(q) || i.notes.toLowerCase().includes(q));
+            if (filteredIdeas.length === 0) return null;
             return (
+              <div key={cat.key} className="mb-6">
+                <h3 className="text-sm font-semibold text-foreground mb-2">{cat.label} ({filteredIdeas.length})</h3>
+                <DepartmentTable
+                  ideas={filteredIdeas}
+                  onUpdate={handleUpdate}
+                  onAddIdea={(idea) => handleAddIdea(cat.key, idea)}
+                  onDeleteIdea={handleDeleteIdea}
+                  onUpdateKrs={handleUpdateKrs}
+                  filters={filters}
+                />
+              </div>
+            );
+          })}
+        </>
+      ) : (
+        <Tabs defaultValue="tams" className="w-full">
+          <TabsList className="mb-4 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
+            {categories.map((cat) => (
               <TabsTrigger
                 key={cat.key}
                 value={cat.key}
                 className="text-xs rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none border border-border px-3 py-1"
               >
-                {cat.label} ({matchCount})
+                {cat.label} ({cat.ideas.length})
               </TabsTrigger>
-            );
-          })}
-        </TabsList>
+            ))}
+          </TabsList>
 
-        <FilterBar filters={filters} setFilters={setFilters} />
+          <FilterBar filters={filters} setFilters={setFilters} />
 
-        {categories.map((cat) => {
-          const q = searchQuery.toLowerCase();
-          const filteredIdeas = q
-            ? cat.ideas.filter(i => i.idea.toLowerCase().includes(q) || i.solves.toLowerCase().includes(q) || i.notes.toLowerCase().includes(q))
-            : cat.ideas;
-          return (
+          {categories.map((cat) => (
             <TabsContent key={cat.key} value={cat.key}>
               <DepartmentTable
-                ideas={filteredIdeas}
+                ideas={cat.ideas}
                 onUpdate={handleUpdate}
                 onAddIdea={(idea) => handleAddIdea(cat.key, idea)}
                 onDeleteIdea={handleDeleteIdea}
@@ -486,9 +501,9 @@ const AutomationIdeasPage = () => {
                 filters={filters}
               />
             </TabsContent>
-          );
-        })}
-      </Tabs>
+          ))}
+        </Tabs>
+      )}
     </div>
   );
 };
