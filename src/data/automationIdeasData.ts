@@ -11,6 +11,7 @@ export interface AutomationIdea {
   confidence: IceScore;
   ease: IceScore;
   status: IdeaStatus;
+  source: string;
   notes: string;
 }
 
