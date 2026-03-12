@@ -293,7 +293,7 @@ const ActionPlanPage = () => {
     }));
     await supabase
       .from("automation_idea_updates")
-      .upsert({ idea_id: ideaId, notes: note }, { onConflict: "idea_id" });
+      .upsert({ idea_id: ideaId, action_plan_notes: note } as any, { onConflict: "idea_id" });
   };
 
   // Count totals using DB status overrides
