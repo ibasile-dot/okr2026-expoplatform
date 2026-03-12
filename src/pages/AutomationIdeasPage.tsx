@@ -336,11 +336,9 @@ const AutomationIdeasPage = () => {
     <div>
       <SectionTitle>Automation Ideas</SectionTitle>
       <SummaryBar categories={categories} />
-      <PhaseLegend />
-      <FilterBar filters={filters} setFilters={setFilters} />
 
       <Tabs defaultValue="tams" className="w-full">
-        <TabsList className="mb-6 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
+        <TabsList className="mb-4 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
           {categories.map((cat) => (
             <TabsTrigger
               key={cat.key}
@@ -351,6 +349,8 @@ const AutomationIdeasPage = () => {
             </TabsTrigger>
           ))}
         </TabsList>
+
+        <FilterBar filters={filters} setFilters={setFilters} />
 
         {categories.map((cat) => (
           <TabsContent key={cat.key} value={cat.key}>
