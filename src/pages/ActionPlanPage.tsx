@@ -267,11 +267,11 @@ const ActionPlanPage = () => {
   // Load overrides from DB (automation_idea_updates)
   useEffect(() => {
     const load = async () => {
-      const { data } = await supabase.from("automation_idea_updates").select("idea_id, notes, status");
+      const { data } = await supabase.from("automation_idea_updates").select("idea_id, action_plan_notes, status");
       if (data) {
         const map: Record<string, { notes?: string; status?: string }> = {};
         data.forEach((r) => {
-          map[r.idea_id] = { notes: r.notes ?? undefined, status: r.status ?? undefined };
+          map[r.idea_id] = { notes: (r as any).action_plan_notes ?? undefined, status: r.status ?? undefined };
         });
         setDbOverrides(map);
       }
