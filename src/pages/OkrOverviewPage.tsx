@@ -1,10 +1,25 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { okrData } from "@/data/okrData";
-import { useRoadmapProgress } from "@/hooks/useRoadmapProgress";
+import { useOkrProgress } from "@/hooks/useOkrProgress";
 
 const OkrOverviewPage = () => {
   const navigate = useNavigate();
-  const { progressByOkr, overallProgress } = useRoadmapProgress();
+  const { progressMap, overallProgress, saveProgress } = useOkrProgress();
+  const [editingOkr, setEditingOkr] = useState<number | null>(null);
+  const [editValue, setEditValue] = useState("");
+
+  const handleStartEdit = (okrId: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingOkr(okrId);
+    setEditValue(String(progressMap[okrId] ?? 0));
+  };
+
+  const handleSave = (okrId: number) => {
+    const val = parseInt(editValue, 10);
+    if (!isNaN(val)) saveProgress(okrId, val);
+    setEditingOkr(null);
+  };
 
   return (
     <div>
@@ -28,7 +43,7 @@ const OkrOverviewPage = () => {
           />
         </div>
         <p className="text-xs font-semibold text-muted-foreground">
-          Combined progress across all OKRs
+          Combined progress across all OKRs (average of individual OKR progress)
         </p>
       </div>
 
@@ -37,7 +52,7 @@ const OkrOverviewPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {okrData.map((okr) => {
-          const progressPct = progressByOkr[okr.id] ?? 0;
+          const progressPct = progressMap[okr.id] ?? 0;
 
           return (
             <div
@@ -77,7 +92,35 @@ const OkrOverviewPage = () => {
                     style={{ width: `${Math.max(progressPct, 2)}%` }}
                   />
                 </div>
-                <p className="text-xs font-semibold text-muted-foreground">{progressPct}%</p>
+                <div className="flex items-center gap-2">
+                  {editingOkr === okr.id ? (
+                    <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                      <input
+                        type="number"
+                        min={0}
+                        max={100}
+                        value={editValue}
+                        onChange={(e) => setEditValue(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") handleSave(okr.id);
+                          if (e.key === "Escape") setEditingOkr(null);
+                        }}
+                        onBlur={() => handleSave(okr.id)}
+                        autoFocus
+                        className="w-14 px-1.5 py-0.5 text-xs font-semibold border border-border rounded bg-background text-foreground"
+                      />
+                      <span className="text-xs text-muted-foreground">%</span>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={(e) => handleStartEdit(okr.id, e)}
+                      className="text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
+                      title="Click to edit progress"
+                    >
+                      {progressPct}%
+                    </button>
+                  )}
+                </div>
               </div>
 
               <button
