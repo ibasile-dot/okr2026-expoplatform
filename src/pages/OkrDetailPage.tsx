@@ -9,6 +9,12 @@ import OkrUpdates from "@/components/OkrUpdates";
 import Okr4Findings from "@/components/Okr4Findings";
 import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
 import ActionPlanPage from "@/pages/ActionPlanPage";
+import EditableTemplateTable from "@/components/EditableTemplateTable";
+
+// Section keys (stored as kr_number) for template tables
+const SECTION_ROADMAP = 100;
+const SECTION_FINDINGS = 200;
+const SECTION_ACTION_PLAN = 300;
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
@@ -175,31 +181,14 @@ const OkrDetailPage = () => {
           {okr.id === 4 ? (
             <OkrRoadmap />
           ) : (
-            <div className="section-card p-6">
-              <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
-                <span className="text-xs font-semibold text-muted-foreground">Template Mode</span>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-secondary/50 border-b-2 border-border">
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Month/Week</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Initiative</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Owner</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Status</th>
-                      <th className="text-left p-3 font-semibold text-foreground whitespace-nowrap">Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-border hover:bg-secondary/30">
-                      {Array(5).fill(null).map((_, i) => (
-                        <td key={i} className="p-3 text-muted-foreground italic">—</td>
-                      ))}
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <EditableTemplateTable
+              okrNumber={okr.id}
+              sectionKey={SECTION_ROADMAP}
+              columns={["month", "initiative", "owner", "status", "notes"]}
+              headers={["Month", "Initiative", "Owner", "Status", "Notes"]}
+              color={okr.color}
+              emptyMessage={'No roadmap items yet. Click "+ Add Row" to start planning.'}
+            />
           )}
         </TabsContent>
 
@@ -208,12 +197,14 @@ const OkrDetailPage = () => {
           {okr.id === 4 ? (
             <Okr4Findings />
           ) : (
-            <div className="section-card p-6">
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
-                <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>Findings</p>
-                <p className="text-sm text-muted-foreground italic">Findings will be added as data is collected</p>
-              </div>
-            </div>
+            <EditableTemplateTable
+              okrNumber={okr.id}
+              sectionKey={SECTION_FINDINGS}
+              columns={["area", "finding", "source", "impact", "recommendation"]}
+              headers={["Area", "Finding", "Source", "Impact", "Recommendation"]}
+              color={okr.color}
+              emptyMessage={'No findings yet. Click "+ Add Row" to start documenting.'}
+            />
           )}
         </TabsContent>
 
@@ -222,32 +213,14 @@ const OkrDetailPage = () => {
           {okr.id === 4 ? (
             <ActionPlanPage />
           ) : (
-            <div className="section-card p-6">
-              <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
-                <span className="text-xs font-semibold text-muted-foreground">0 / 0 items completed</span>
-              </div>
-              <h3 className="text-base font-semibold text-foreground mb-3">Phase 1 — Core Initiatives</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-secondary/50 border-b-2 border-border">
-                      <th className="text-left p-3 font-semibold text-foreground">#</th>
-                      <th className="text-left p-3 font-semibold text-foreground">Initiative</th>
-                      <th className="text-left p-3 font-semibold text-foreground">Owner</th>
-                      <th className="text-left p-3 font-semibold text-foreground">Status</th>
-                      <th className="text-left p-3 font-semibold text-foreground">Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-border hover:bg-secondary/30">
-                      {Array(5).fill(null).map((_, i) => (
-                        <td key={i} className="p-3 text-muted-foreground italic">—</td>
-                      ))}
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <EditableTemplateTable
+              okrNumber={okr.id}
+              sectionKey={SECTION_ACTION_PLAN}
+              columns={["phase", "initiative", "owner", "status", "notes"]}
+              headers={["Phase", "Initiative", "Owner", "Status", "Notes"]}
+              color={okr.color}
+              emptyMessage={'No action items yet. Click "+ Add Row" to start planning.'}
+            />
           )}
         </TabsContent>
         {/* Updates Tab */}
