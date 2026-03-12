@@ -374,12 +374,14 @@ const AutomationIdeasPage = () => {
   }, []);
 
   // Persist notes/status to database
+  const persistableFields = ["status", "notes", "idea", "solves", "impact", "confidence", "ease", "phase"];
+
   const persistUpdate = useCallback(async (ideaId: string, field: string, value: string) => {
     if (!initialLoadDone.current) return;
-    if (field !== "status" && field !== "notes") return;
+    if (!persistableFields.includes(field)) return;
     await supabase
       .from("automation_idea_updates")
-      .upsert({ idea_id: ideaId, [field]: value } as { idea_id: string; status?: string; notes?: string }, { onConflict: "idea_id" });
+      .upsert({ idea_id: ideaId, [field]: value } as any, { onConflict: "idea_id" });
   }, []);
 
   const handleUpdate = useCallback((ideaId: string, field: string, value: string) => {
