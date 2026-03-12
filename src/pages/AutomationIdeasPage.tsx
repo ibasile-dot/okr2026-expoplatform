@@ -255,7 +255,13 @@ const DepartmentTable = ({
                     <PhaseDropdown value={idea.phase} onChange={(v) => onUpdate(idea.id, "phase", v)} />
                   </td>
                   <td className="p-2.5">
-                    <KrToggle krs={idea.krs} onChange={(krs) => onUpdateKrs(idea.id, krs)} />
+                    <div className="flex flex-wrap gap-1">
+                      {idea.krs.map((kr) => (
+                        <span key={kr} className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold ${krColors[kr]}`}>
+                          KR{kr}
+                        </span>
+                      ))}
+                    </div>
                   </td>
                   <td className="p-2.5"><IceDropdown value={idea.impact} onChange={(v) => onUpdate(idea.id, "impact", v)} /></td>
                   <td className="p-2.5"><IceDropdown value={idea.confidence} onChange={(v) => onUpdate(idea.id, "confidence", v)} /></td>
