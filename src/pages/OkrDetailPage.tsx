@@ -106,8 +106,9 @@ const OkrDetailPage = () => {
       }} className="w-full">
         <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-border rounded-none gap-0 flex-wrap">
           {[
-            "Overview", "Metrics", "Roadmap", "Findings", "Action Plan", "New Initiatives",
+            "Overview", "Metrics", "Roadmap", "Findings", "Action Plan",
             ...(okr.id === 4 ? ["Automation Ideas"] : []),
+            "Updates",
           ].map((tab) => {
             const tabValue = tab.toLowerCase().replace(/ /g, "-");
             const isActive = activeTab === tabValue;
