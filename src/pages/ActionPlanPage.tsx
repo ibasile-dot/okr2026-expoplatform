@@ -310,7 +310,7 @@ const ActionPlanPage = () => {
       .upsert({ idea_id: ideaId, action_plan_notes: note } as any, { onConflict: "idea_id" });
   };
 
-  const getStatus = (idea: AutomationIdea) => savedStatus[idea.id] ?? idea.status;
+  const getStatus = (idea: AutomationIdea) => idea.status;
 
   return (
     <div>
