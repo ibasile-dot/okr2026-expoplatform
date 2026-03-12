@@ -203,7 +203,7 @@ const OkrDetailPage = () => {
               columns={["area", "finding", "source", "impact", "recommendation"]}
               headers={["Area", "Finding", "Source", "Impact", "Recommendation"]}
               color={okr.color}
-              emptyMessage="No findings yet. Click \"+ Add Row\" to start documenting."
+              emptyMessage={'No findings yet. Click "+ Add Row" to start documenting.'}
             />
           )}
         </TabsContent>
