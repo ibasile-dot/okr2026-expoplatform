@@ -20,8 +20,8 @@ const phaseOptions: AutomationIdea["phase"][] = ["Primary Focus", "Quick Wins", 
 
 const phaseStyle: Record<string, string> = {
   "Primary Focus": "bg-[hsl(263,70%,95%)] text-[hsl(263,70%,45%)]",
-  "Quick Wins": "bg-success/15 text-success",
-  "Secondary Focus": "bg-warning/15 text-warning",
+  "Quick Wins": "bg-[hsl(200,80%,92%)] text-[hsl(200,60%,38%)]",
+  "Secondary Focus": "bg-[hsl(30,80%,92%)] text-[hsl(30,60%,38%)]",
 };
 
 const priorityColors: Record<string, string> = {
