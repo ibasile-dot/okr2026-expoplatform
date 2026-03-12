@@ -167,7 +167,7 @@ const ActionCard = ({
   const { idea } = entry;
 
   const currentNote = savedNotes[idea.id] ?? "";
-  const currentStatus = savedStatus[idea.id] ?? idea.status;
+  const currentStatus = idea.status;
 
   const startEditNote = (e: React.MouseEvent) => {
     e.stopPropagation();
