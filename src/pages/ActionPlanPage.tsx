@@ -136,7 +136,7 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
   // Include DB-only ideas (e.g. ai-new-* added via Automation Ideas page)
   for (const [ideaId, saved] of Object.entries(dbOverrides)) {
     if (coveredIds.has(ideaId)) continue;
-    if (!saved.idea && !saved.phase) continue; // skip empty stubs
+    if (!saved.idea) continue; // skip DB-only entries without a proper idea name
 
     const idea: AutomationIdea = {
       id: ideaId,
