@@ -88,7 +88,6 @@ function getArea(idea: AutomationIdea, dept: string): string {
     if (dept === "finance" || dept === "Finance") return "Finance";
     return dept;
   }
-  }
   return dept;
 }
 
