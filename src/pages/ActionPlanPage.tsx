@@ -300,12 +300,10 @@ const ActionPlanPage = () => {
 
   return (
     <div>
-      {/* Header — matching roadmap style */}
-      <div className="flex items-center justify-between mb-4 p-3 bg-secondary/50 rounded">
-        <div>
-          <h2 className="text-sm font-bold text-foreground">Action Plan</h2>
-          <p className="text-xs text-muted-foreground">Prioritised by findings and ICE scoring</p>
-        </div>
+      {/* Header */}
+      <div className="mb-10">
+        <h1 className="text-2xl font-bold tracking-tight text-primary">Action Plan</h1>
+        <p className="text-sm text-muted-foreground mt-1">Prioritised by findings and ICE scoring</p>
       </div>
 
       {/* Phases */}
