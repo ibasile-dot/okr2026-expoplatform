@@ -158,7 +158,7 @@ const SummaryBar = ({ categories }: { categories: DepartmentCategory[] }) => {
 const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: Filters) => void }) => {
   const priorityOpts = ["High", "Medium", "Low"];
   const krOpts = [1, 2, 3, 4, 5];
-  const hasFilters = filters.priority || filters.phase || filters.kr;
+  const hasFilters = filters.priority || filters.phase || filters.krs.length > 0;
 
   return (
     <div className="flex items-center gap-2 mb-4 flex-wrap">
