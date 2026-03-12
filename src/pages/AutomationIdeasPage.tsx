@@ -424,13 +424,15 @@ const AutomationIdeasPage = () => {
     );
   }, []);
 
-  const handleDeleteIdea = useCallback((ideaId: string) => {
+  const handleDeleteIdea = useCallback(async (ideaId: string) => {
     setCategories((prev) =>
       prev.map((cat) => ({
         ...cat,
         ideas: cat.ideas.filter((idea) => idea.id !== ideaId),
       }))
     );
+    // Also delete from DB so the deletion persists
+    await supabase.from("automation_idea_updates").delete().eq("idea_id", ideaId);
   }, []);
 
   return (
