@@ -250,14 +250,9 @@ const OkrDetailPage = () => {
             </div>
           )}
         </TabsContent>
-        {/* New Initiatives Tab */}
-        <TabsContent value="new-initiatives" className="mt-6">
-          <div className="section-card p-6">
-            <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
-              <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>New Initiatives</p>
-              <p className="text-sm text-muted-foreground italic">New initiatives will be added as they are identified</p>
-            </div>
-          </div>
+        {/* Updates Tab */}
+        <TabsContent value="updates" className="mt-6">
+          <OkrUpdates okrNumber={okr.id} color={okr.color} />
         </TabsContent>
 
         {/* Automation Ideas Tab (OKR 4 only) */}
