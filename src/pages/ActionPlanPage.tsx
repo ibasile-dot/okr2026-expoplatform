@@ -9,53 +9,53 @@ import {
   ExternalLink,
   StickyNote,
   Check,
-  X,
-} from "lucide-react";
+  X } from
+"lucide-react";
 
 /* ── Phase config ── */
 const phases = ["Primary Focus", "Quick Wins", "Secondary Focus"] as const;
 type Phase = (typeof phases)[number];
 
-const phaseConfig: Record<Phase, { color: string; icon: string; number: string }> = {
+const phaseConfig: Record<Phase, {color: string;icon: string;number: string;}> = {
   "Primary Focus": { color: "hsl(280, 50%, 50%)", icon: "🎯", number: "1" },
   "Quick Wins": { color: "hsl(200, 60%, 45%)", icon: "⚡", number: "2" },
-  "Secondary Focus": { color: "hsl(44, 100%, 45%)", icon: "📋", number: "3" },
+  "Secondary Focus": { color: "hsl(44, 100%, 45%)", icon: "📋", number: "3" }
 };
 
 /* ── Area ordering per phase ── */
 const areaOrder: Record<Phase, string[]> = {
   "Primary Focus": [
-    "Admin Panel — Back-end Configuration",
-    "Website Builder",
-    "Admin Panel — Usability & Onboarding",
-    "Support & Ticket Automation",
-    "Finance",
-    "HR",
-    "Data",
-    "Sales",
-    "Engineering",
-    "Marketing",
-  ],
+  "Admin Panel — Back-end Configuration",
+  "Website Builder",
+  "Admin Panel — Usability & Onboarding",
+  "Support & Ticket Automation",
+  "Finance",
+  "HR",
+  "Data",
+  "Sales",
+  "Engineering",
+  "Marketing"],
+
   "Quick Wins": [
-    "TAMs / Operations",
-    "HR",
-    "Engineering",
-    "Marketing",
-    "Product / Design",
-    "Finance",
-    "Data",
-  ],
+  "TAMs / Operations",
+  "HR",
+  "Engineering",
+  "Marketing",
+  "Product / Design",
+  "Finance",
+  "Data"],
+
   "Secondary Focus": [
-    "TAMs / Operations",
-    "Website Builder — Phase 2",
-    "Sales",
-    "Product / Design",
-    "Engineering",
-    "HR",
-    "Finance",
-    "Marketing",
-    "Data",
-  ],
+  "TAMs / Operations",
+  "Website Builder — Phase 2",
+  "Sales",
+  "Product / Design",
+  "Engineering",
+  "HR",
+  "Finance",
+  "Marketing",
+  "Data"]
+
 };
 
 /* ── Map automation idea to an area name within each phase ── */
@@ -64,14 +64,14 @@ function getArea(idea: AutomationIdea, dept: string): string {
   if (idea.phase === "Primary Focus") {
     if (dept === "product" || dept === "Product / Design") {
       if (t.includes("website builder") || t.includes("css preview") || t.includes("css template") || t.includes("css generation") || t.includes("ai-generated css") || t.includes("ai-assisted css"))
-        return "Website Builder";
+      return "Website Builder";
       if (t.includes("hover text") || t.includes("usability") || t.includes("setup wizard") || t.includes("guided setup"))
-        return "Admin Panel — Usability & Onboarding";
+      return "Admin Panel — Usability & Onboarding";
       return "Admin Panel — Usability & Onboarding";
     }
     if (dept === "tams" || dept === "TAMs / Operations") {
       if (t.includes("jsm") || t.includes("ticket") || t.includes("customer response") || t.includes("expo assistant") || t.includes("incident triage"))
-        return "Support & Ticket Automation";
+      return "Support & Ticket Automation";
       return "Admin Panel — Back-end Configuration";
     }
     if (dept === "finance" || dept === "Finance") return "Finance";
@@ -108,7 +108,7 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
   const map: Record<Phase, Record<string, ActionEntry[]>> = {
     "Primary Focus": {},
     "Quick Wins": {},
-    "Secondary Focus": {},
+    "Secondary Focus": {}
   };
 
   // Track which DB ids are covered by static data
@@ -127,7 +127,7 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
         ...(saved.impact ? { impact: saved.impact } : {}),
         ...(saved.confidence ? { confidence: saved.confidence } : {}),
         ...(saved.ease ? { ease: saved.ease } : {}),
-        ...(saved.phase ? { phase: saved.phase } : {}),
+        ...(saved.phase ? { phase: saved.phase } : {})
       } : origIdea;
 
       const phase = idea.phase as Phase;
@@ -147,14 +147,14 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
       id: ideaId,
       idea: saved.idea || "Untitled",
       solves: saved.solves || "",
-      phase: (saved.phase as Phase) || "Quick Wins",
+      phase: saved.phase as Phase || "Quick Wins",
       krs: [],
       impact: saved.impact || "M",
       confidence: saved.confidence || "M",
       ease: saved.ease || "M",
       status: saved.status || "Not Started",
       source: "",
-      notes: saved.notes || "",
+      notes: saved.notes || ""
     };
 
     const phase = idea.phase as Phase;
@@ -186,27 +186,27 @@ const statusStyle: Record<string, string> = {
   "In Progress": "bg-warning/15 text-warning border border-warning/30",
   Done: "bg-success/15 text-success border border-success/30",
   Blocked: "bg-destructive/15 text-destructive border border-destructive/30",
-  Cancelled: "bg-muted text-muted-foreground line-through",
+  Cancelled: "bg-muted text-muted-foreground line-through"
 };
 
-const KrBadge = ({ kr }: { kr: number }) => (
-  <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded border bg-primary/10 text-primary border-primary/20">
+const KrBadge = ({ kr }: {kr: number;}) =>
+<span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded border bg-primary/10 text-primary border-primary/20">
     KR{kr}
-  </span>
-);
+  </span>;
+
 
 /* ── Single action card ── */
 const ActionCard = ({
   entry,
   savedStatus,
   savedNotes,
-  onSaveNote,
-}: {
-  entry: ActionEntry;
-  savedStatus: Record<string, string>;
-  savedNotes: Record<string, string>;
-  onSaveNote: (id: string, note: string) => void;
-}) => {
+  onSaveNote
+
+
+
+
+
+}: {entry: ActionEntry;savedStatus: Record<string, string>;savedNotes: Record<string, string>;onSaveNote: (id: string, note: string) => void;}) => {
   const [expanded, setExpanded] = useState(false);
   const [editingNote, setEditingNote] = useState(false);
   const [noteText, setNoteText] = useState("");
@@ -242,59 +242,59 @@ const ActionCard = ({
           </div>
           <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">{idea.solves}</p>
           <div className="flex items-center gap-1.5 mt-2 flex-wrap">
-            {idea.krs.map((kr) => (
-              <KrBadge key={kr} kr={kr} />
-            ))}
+            {idea.krs.map((kr) =>
+            <KrBadge key={kr} kr={kr} />
+            )}
           </div>
         </div>
       </div>
 
-      {expanded && (
-        <div className="ml-5 mt-3 space-y-3">
+      {expanded &&
+      <div className="ml-5 mt-3 space-y-3">
           {/* Notes */}
           <div className="bg-secondary/50 rounded-md p-3">
             <div className="flex items-center justify-between mb-1">
               <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1">
                 <StickyNote className="w-3 h-3" /> Notes & Progress
               </p>
-              {!editingNote && (
-                <button
-                  onClick={startEditNote}
-                  className="text-[10px] text-primary hover:underline font-medium"
-                >
+              {!editingNote &&
+            <button
+              onClick={startEditNote}
+              className="text-[10px] text-primary hover:underline font-medium">
+              
                   Edit
                 </button>
-              )}
+            }
             </div>
-            {editingNote ? (
-              <div className="space-y-2">
+            {editingNote ?
+          <div className="space-y-2">
                 <textarea
-                  value={noteText}
-                  onChange={(e) => setNoteText(e.target.value)}
-                  className="w-full text-[11px] bg-background border border-border rounded p-2 min-h-[60px] text-foreground"
-                  autoFocus
-                  onClick={(e) => e.stopPropagation()}
-                />
+              value={noteText}
+              onChange={(e) => setNoteText(e.target.value)}
+              className="w-full text-[11px] bg-background border border-border rounded p-2 min-h-[60px] text-foreground"
+              autoFocus
+              onClick={(e) => e.stopPropagation()} />
+            
                 <div className="flex gap-2">
                   <button
-                    onClick={(e) => { e.stopPropagation(); saveNote(); }}
-                    className="flex items-center gap-1 text-[10px] font-medium px-2 py-1 rounded bg-primary text-primary-foreground hover:bg-primary/90"
-                  >
+                onClick={(e) => {e.stopPropagation();saveNote();}}
+                className="flex items-center gap-1 text-[10px] font-medium px-2 py-1 rounded bg-primary text-primary-foreground hover:bg-primary/90">
+                
                     <Check className="w-3 h-3" /> Save
                   </button>
                   <button
-                    onClick={(e) => { e.stopPropagation(); setEditingNote(false); }}
-                    className="flex items-center gap-1 text-[10px] font-medium px-2 py-1 rounded bg-muted text-muted-foreground hover:bg-muted/80"
-                  >
+                onClick={(e) => {e.stopPropagation();setEditingNote(false);}}
+                className="flex items-center gap-1 text-[10px] font-medium px-2 py-1 rounded bg-muted text-muted-foreground hover:bg-muted/80">
+                
                     <X className="w-3 h-3" /> Cancel
                   </button>
                 </div>
-              </div>
-            ) : (
-              <p className="text-[11px] text-foreground leading-relaxed whitespace-pre-wrap">
+              </div> :
+
+          <p className="text-[11px] text-foreground leading-relaxed whitespace-pre-wrap">
                 {currentNote || <span className="text-muted-foreground italic">No notes yet — click Edit to add progress updates</span>}
               </p>
-            )}
+          }
           </div>
 
           {/* Meta */}
@@ -304,19 +304,19 @@ const ActionCard = ({
             </span>
             <span className="text-muted-foreground">{idea.source}</span>
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate("/okr/4/automation-ideas");
-              }}
-              className="flex items-center gap-1 text-primary hover:underline font-medium ml-auto"
-            >
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/okr/4/automation-ideas");
+            }}
+            className="flex items-center gap-1 text-primary hover:underline font-medium ml-auto">
+            
               <ExternalLink className="w-3 h-3" /> View in Automation Ideas
             </button>
           </div>
         </div>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 };
 
 /* ── Main page ── */
@@ -326,9 +326,9 @@ const ActionPlanPage = () => {
   // Load overrides from DB (automation_idea_updates) — all fields
   useEffect(() => {
     const load = async () => {
-      const { data } = await supabase
-        .from("automation_idea_updates")
-        .select("idea_id, action_plan_notes, status, idea, solves, impact, confidence, ease, phase");
+      const { data } = await supabase.
+      from("automation_idea_updates").
+      select("idea_id, action_plan_notes, status, idea, solves, impact, confidence, ease, phase");
       if (data) {
         const map: Record<string, any> = {};
         data.forEach((r: any) => {
@@ -350,11 +350,11 @@ const ActionPlanPage = () => {
   const handleSaveNote = async (ideaId: string, note: string) => {
     setDbOverrides((prev) => ({
       ...prev,
-      [ideaId]: { ...prev[ideaId], action_plan_notes: note },
+      [ideaId]: { ...prev[ideaId], action_plan_notes: note }
     }));
-    await supabase
-      .from("automation_idea_updates")
-      .upsert({ idea_id: ideaId, action_plan_notes: note } as any, { onConflict: "idea_id" });
+    await supabase.
+    from("automation_idea_updates").
+    upsert({ idea_id: ideaId, action_plan_notes: note } as any, { onConflict: "idea_id" });
   };
 
   const getStatus = (idea: AutomationIdea) => idea.status;
@@ -363,7 +363,7 @@ const ActionPlanPage = () => {
     <div>
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-2xl font-bold tracking-tight text-primary">Action Plan</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">Action Plan</h1>
         <p className="text-sm text-muted-foreground mt-1">Prioritised by findings and ICE scoring</p>
       </div>
 
@@ -383,8 +383,8 @@ const ActionPlanPage = () => {
               <div className="flex items-center gap-3 mb-4">
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
-                  style={{ backgroundColor: cfg.color }}
-                >
+                  style={{ backgroundColor: cfg.color }}>
+                  
                   {cfg.number}
                 </div>
                 <div className="flex items-center gap-3">
@@ -412,26 +412,26 @@ const ActionPlanPage = () => {
                         </h3>
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                        {entries.map((entry) => (
-                          <ActionCard
-                            key={entry.idea.id}
-                            entry={entry}
-                            savedStatus={{}}
-                            savedNotes={savedNotes}
-                            onSaveNote={handleSaveNote}
-                          />
-                        ))}
+                        {entries.map((entry) =>
+                        <ActionCard
+                          key={entry.idea.id}
+                          entry={entry}
+                          savedStatus={{}}
+                          savedNotes={savedNotes}
+                          onSaveNote={handleSaveNote} />
+
+                        )}
                       </div>
-                    </div>
-                  );
+                    </div>);
+
                 })}
               </div>
-            </div>
-          );
+            </div>);
+
         })}
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default ActionPlanPage;
