@@ -62,6 +62,30 @@ export type Database = {
         }
         Relationships: []
       }
+      okr_assignments: {
+        Row: {
+          created_at: string
+          id: string
+          okr_number: number
+          role: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          okr_number: number
+          role?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          okr_number?: number
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       okr_metric_values: {
         Row: {
           column_key: string
@@ -128,12 +152,36 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string
+          email: string
+          id: string
+          is_admin: boolean
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string
+          email?: string
+          id: string
+          is_admin?: boolean
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          email?: string
+          id?: string
+          is_admin?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
