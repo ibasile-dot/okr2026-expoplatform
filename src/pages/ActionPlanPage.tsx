@@ -303,7 +303,7 @@ const ActionPlanPage = () => {
   const handleSaveNote = async (ideaId: string, note: string) => {
     setDbOverrides((prev) => ({
       ...prev,
-      [ideaId]: { ...prev[ideaId], notes: note },
+      [ideaId]: { ...prev[ideaId], action_plan_notes: note },
     }));
     await supabase
       .from("automation_idea_updates")
