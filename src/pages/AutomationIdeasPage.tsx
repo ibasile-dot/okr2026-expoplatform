@@ -97,10 +97,11 @@ const DepartmentTable = ({
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border bg-secondary/50">
-              <th className="text-left p-2.5 font-medium text-muted-foreground w-[28%]">Idea</th>
-              <th className="text-left p-2.5 font-medium text-muted-foreground w-[16%]">What it Solves</th>
-              <th className="text-left p-2.5 font-medium text-muted-foreground w-[8%]">Phase</th>
-              <th className="text-left p-2.5 font-medium text-muted-foreground w-[6%]">KR(s)</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[24%]">Idea</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[14%]">What it Solves</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[7%]">Phase</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[5%]">KR(s)</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[8%]">Source</th>
               <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]">Impact</th>
               <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]">Confidence</th>
               <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]">Ease</th>
@@ -124,6 +125,7 @@ const DepartmentTable = ({
                   <td className="p-2.5 text-muted-foreground">
                     {idea.krs.map((kr) => `KR${kr}`).join(", ")}
                   </td>
+                  <td className="p-2.5 text-muted-foreground text-[11px]">{idea.source}</td>
                   <td className="p-2.5">
                     <IceDropdown
                       value={idea.impact}
