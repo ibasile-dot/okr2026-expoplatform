@@ -113,7 +113,9 @@ const SummaryBar = ({ categories }: { categories: DepartmentCategory[] }) => {
       <div className="text-[11px] opacity-70 text-right leading-relaxed">
         ICE: Impact · Confidence · Ease<br />
         S = 1 &nbsp;|&nbsp; M = 2 &nbsp;|&nbsp; L = 3 &nbsp;|&nbsp; Max = 9<br />
-        <span className="text-[hsl(44,90%,80%)]">All ICE scores, status &amp; notes are editable ↓</span>
+        <span className="text-[hsl(44,90%,80%)] text-[10px]">
+          Impact: how much it will solve the problem · Confidence: how likely it is to work · Ease: how easy to implement
+        </span>
       </div>
     </div>
   );
