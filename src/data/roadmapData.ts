@@ -37,6 +37,7 @@ export const roadmapData: RoadmapItem[] = [
   { id: 47, month: "March", week: "", okr: 3, action: "Continue building new onboarding/training materials", owner: "Julia, Jonathan, Matheus, Josua, Susan", defaultStatus: "In Progress", defaultNotes: "" },
   { id: 22, month: "March", week: "w/c March 2", okr: 5, action: "Collect baseline data about current time spent", owner: "Susan, Bartek, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 23, month: "March", week: "After automation days?", okr: 5, action: "Conduct survey around current state and opportunities", owner: "Susan, Bartek, Olga", defaultStatus: "To Do", defaultNotes: "" },
+  { id: 46, month: "April", week: "", okr: 3, action: "Build granular customer journey end-to-end roadmap to assess opportunities for each step", owner: "Ilaria, Shafa", defaultStatus: "In Progress", defaultNotes: "" },
   { id: 13, month: "April", week: "", okr: 1, action: "Create automations for easy wins and high value automation targets during Automation Days. Complete any spillover work as needed.", owner: "All Automation Days Participants", defaultStatus: "To Do", defaultNotes: "" },
   { id: 14, month: "April", week: "early April", okr: 1, action: "Reassess and use scoring to assess remaining automation candidates following Automation Days", owner: "Olga, Susan, Bartek, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 24, month: "April", week: "w/c 1st April", okr: 1, action: "Determine next steps based on analysis", owner: "Susan, Bartek, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
@@ -51,7 +52,6 @@ export const roadmapData: RoadmapItem[] = [
   { id: 32, month: "April", week: "Mid to late April", okr: 5, action: "Execute quick wins", owner: "Ilaria, Susan, Bartek", defaultStatus: "To Do", defaultNotes: "" },
   { id: 45, month: "April", week: "", okr: 3, action: "Investigate creating AI-Powered support chatbot", owner: "Susan, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
   { id: 52, month: "April", week: "", okr: 4, action: "Investigate creating AI-Powered support chatbot", owner: "Susan, Ilaria", defaultStatus: "To Do", defaultNotes: "" },
-  { id: 46, month: "April", week: "", okr: 3, action: "Build granular customer journey end-to-end roadmap to assess opportunities for each step", owner: "Ilaria, Shafa", defaultStatus: "In Progress", defaultNotes: "" },
   
   { id: 33, month: "May", week: "", okr: 2, action: "Collect data on effort reductions from implementation of quick wins", owner: "Ilaria, Yuriy", defaultStatus: "To Do", defaultNotes: "" },
   { id: 34, month: "May", week: "", okr: 2, action: "Analyse and prioritise longer-term opportunities", owner: "Ilaria, Susan", defaultStatus: "To Do", defaultNotes: "" },
