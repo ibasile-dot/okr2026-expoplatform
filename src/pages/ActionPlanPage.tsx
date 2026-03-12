@@ -96,8 +96,12 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
     "Secondary Focus": {},
   };
 
+  // Track which DB ids are covered by static data
+  const coveredIds = new Set<string>();
+
   for (const cat of automationCategories) {
     for (const origIdea of cat.ideas) {
+      coveredIds.add(origIdea.id);
       // Apply DB overrides to get the current truth
       const saved = dbOverrides[origIdea.id];
       const idea: AutomationIdea = saved ? {
@@ -117,6 +121,34 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
       if (!map[phase][area]) map[phase][area] = [];
       map[phase][area].push({ idea, deptKey: cat.key, deptLabel: cat.label, area });
     }
+  }
+
+  // Include DB-only ideas (e.g. ai-new-* added via Automation Ideas page)
+  for (const [ideaId, saved] of Object.entries(dbOverrides)) {
+    if (coveredIds.has(ideaId)) continue;
+    if (!saved.idea && !saved.phase) continue; // skip empty stubs
+
+    const idea: AutomationIdea = {
+      id: ideaId,
+      idea: saved.idea || "Untitled",
+      solves: saved.solves || "",
+      phase: (saved.phase as Phase) || "Quick Wins",
+      krs: [],
+      impact: saved.impact || "M",
+      confidence: saved.confidence || "M",
+      ease: saved.ease || "M",
+      status: saved.status || "Not Started",
+      source: "",
+      notes: saved.notes || "",
+    };
+
+    const phase = idea.phase as Phase;
+    if (!map[phase]) continue;
+    // Try to determine department from the idea context
+    const deptLabel = "General";
+    const area = deptLabel;
+    if (!map[phase][area]) map[phase][area] = [];
+    map[phase][area].push({ idea, deptKey: "general", deptLabel, area });
   }
 
   // Sort entries within each area by ICE total (descending) for priority
