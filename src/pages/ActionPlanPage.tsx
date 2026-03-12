@@ -81,13 +81,13 @@ function getArea(idea: AutomationIdea, dept: string): string {
     if (t.includes("website") || t.includes("in-builder")) return "Website Builder — Phase 2";
     if (dept === "sales" || dept === "Sales") return "Sales";
     if (dept === "engineering" || dept === "Engineering") return "Engineering";
-    if (dept === "marketing" || dept === "Marketing") return "Marketing & Data";
-    if (dept === "data" || dept === "Data") return "Marketing & Data";
+    if (dept === "marketing" || dept === "Marketing") return "Marketing";
+    if (dept === "data" || dept === "Data") return "Data";
     if (dept === "tams" || dept === "TAMs / Operations") return "TAMs / Operations";
     if (dept === "hr" || dept === "HR") return "HR";
     if (dept === "finance" || dept === "Finance") return "Finance";
-    if (t.includes("unified") || t.includes("project management")) return "Unified Tools";
     return dept;
+  }
   }
   return dept;
 }
