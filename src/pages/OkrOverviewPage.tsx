@@ -37,8 +37,7 @@ const OkrOverviewPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {okrData.map((okr) => {
-          // Progress will come from Roadmap data
-          const progressPct = 0;
+          const progressPct = progressByOkr[okr.id] ?? 0;
 
           return (
             <div
