@@ -121,25 +121,6 @@ const SummaryBar = ({ categories }: { categories: DepartmentCategory[] }) => {
   );
 };
 
-const PhaseLegend = () => (
-  <div className="flex gap-4 mb-5 flex-wrap items-center">
-    <span className="text-xs text-muted-foreground font-semibold">Phase:</span>
-    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-      <span className={`px-2.5 py-0.5 rounded-full font-semibold text-[11px] ${phaseStyle["Primary Focus"]}`}>Primary Focus</span>
-      <span>Core bottlenecks — do first</span>
-    </div>
-    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-      <span className={`px-2.5 py-0.5 rounded-full font-semibold text-[11px] ${phaseStyle["Quick Wins"]}`}>Quick Wins</span>
-      <span>Fast to implement</span>
-    </div>
-    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-      <span className={`px-2.5 py-0.5 rounded-full font-semibold text-[11px] ${phaseStyle["Secondary Focus"]}`}>Secondary Focus</span>
-      <span>After Phase 1</span>
-    </div>
-  </div>
-);
-
-
 const FilterBar = ({ filters, setFilters }: { filters: Filters; setFilters: (f: Filters) => void }) => {
   const priorityOpts = ["High", "Medium", "Low"];
   const krOpts = [1, 2, 3, 4, 5];
@@ -336,11 +317,9 @@ const AutomationIdeasPage = () => {
     <div>
       <SectionTitle>Automation Ideas</SectionTitle>
       <SummaryBar categories={categories} />
-      <PhaseLegend />
-      <FilterBar filters={filters} setFilters={setFilters} />
 
       <Tabs defaultValue="tams" className="w-full">
-        <TabsList className="mb-6 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
+        <TabsList className="mb-4 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
           {categories.map((cat) => (
             <TabsTrigger
               key={cat.key}
@@ -351,6 +330,8 @@ const AutomationIdeasPage = () => {
             </TabsTrigger>
           ))}
         </TabsList>
+
+        <FilterBar filters={filters} setFilters={setFilters} />
 
         {categories.map((cat) => (
           <TabsContent key={cat.key} value={cat.key}>
