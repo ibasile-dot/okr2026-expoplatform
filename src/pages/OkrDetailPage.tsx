@@ -5,6 +5,7 @@ import { Okr4Metrics } from "@/components/Okr4Metrics";
 import { EditableCell } from "@/components/EditableCell";
 import { useMetricValues } from "@/hooks/useMetricValues";
 import OkrRoadmap from "@/components/OkrRoadmap";
+import OkrUpdates from "@/components/OkrUpdates";
 import Okr4Findings from "@/components/Okr4Findings";
 import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
 import ActionPlanPage from "@/pages/ActionPlanPage";
@@ -77,7 +78,7 @@ const OkrDetailPage = () => {
     roadmap: "roadmap",
     findings: "findings",
     "action-plan": "action-plan",
-    "new-initiatives": "new-initiatives",
+    updates: "updates",
     "automation-ideas": "automation-ideas",
   };
   const activeTab = tabMap[lastSegment] || "overview";
@@ -105,8 +106,9 @@ const OkrDetailPage = () => {
       }} className="w-full">
         <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-border rounded-none gap-0 flex-wrap">
           {[
-            "Overview", "Metrics", "Roadmap", "Findings", "Action Plan", "New Initiatives",
+            "Overview", "Metrics", "Roadmap", "Findings", "Action Plan",
             ...(okr.id === 4 ? ["Automation Ideas"] : []),
+            "Updates",
           ].map((tab) => {
             const tabValue = tab.toLowerCase().replace(/ /g, "-");
             const isActive = activeTab === tabValue;
@@ -248,14 +250,9 @@ const OkrDetailPage = () => {
             </div>
           )}
         </TabsContent>
-        {/* New Initiatives Tab */}
-        <TabsContent value="new-initiatives" className="mt-6">
-          <div className="section-card p-6">
-            <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
-              <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>New Initiatives</p>
-              <p className="text-sm text-muted-foreground italic">New initiatives will be added as they are identified</p>
-            </div>
-          </div>
+        {/* Updates Tab */}
+        <TabsContent value="updates" className="mt-6">
+          <OkrUpdates okrNumber={okr.id} color={okr.color} />
         </TabsContent>
 
         {/* Automation Ideas Tab (OKR 4 only) */}

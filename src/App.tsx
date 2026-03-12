@@ -24,7 +24,7 @@ const App = () => (
             <Route path="/okr/:okrId/roadmap" element={<OkrDetailPage />} />
             <Route path="/okr/:okrId/findings" element={<OkrDetailPage />} />
             <Route path="/okr/:okrId/action-plan" element={<OkrDetailPage />} />
-            <Route path="/okr/:okrId/new-initiatives" element={<OkrDetailPage />} />
+            <Route path="/okr/:okrId/updates" element={<OkrDetailPage />} />
             <Route path="/okr/:okrId/automation-ideas" element={<OkrDetailPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -24,8 +24,9 @@ const defaultSubItems = [
   { suffix: "/roadmap", label: "Roadmap", icon: Map },
   { suffix: "/findings", label: "Findings", icon: Search },
   { suffix: "/action-plan", label: "Action Plan", icon: ListChecks },
-  { suffix: "/new-initiatives", label: "New Initiatives", icon: Rocket },
 ];
+
+const updatesItem = { suffix: "/updates", label: "Updates", icon: Rocket };
 
 const okr4ExtraItems = [
   { suffix: "/automation-ideas", label: "Automation Ideas", icon: Lightbulb },
@@ -116,7 +117,7 @@ const AppSidebar = () => {
 
               {isExpanded && (
                 <div className="ml-6 pl-3 border-l border-sidebar-border/50 space-y-0.5 mt-0.5">
-                  {[...defaultSubItems, ...(okr.id === 4 ? okr4ExtraItems : [])].map((sub) => (
+                  {[...defaultSubItems, ...(okr.id === 4 ? okr4ExtraItems : []), updatesItem].map((sub) => (
                     <RouterNavLink
                       key={sub.suffix}
                       to={`${basePath}${sub.suffix}`}
