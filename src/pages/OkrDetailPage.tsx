@@ -219,7 +219,7 @@ const OkrDetailPage = () => {
               columns={["phase", "initiative", "owner", "status", "notes"]}
               headers={["Phase", "Initiative", "Owner", "Status", "Notes"]}
               color={okr.color}
-              emptyMessage="No action items yet. Click \"+ Add Row\" to start planning."
+              emptyMessage={'No action items yet. Click "+ Add Row" to start planning.'}
             />
           )}
         </TabsContent>
