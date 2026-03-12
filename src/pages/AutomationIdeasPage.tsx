@@ -1,89 +1,212 @@
+import { useState, useCallback } from "react";
 import { PageHeader } from "@/components/DashboardWidgets";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  automationCategories,
+  iceTotal,
+  iceValue,
+  getPriority,
+  type AutomationIdea,
+  type IceScore,
+  type IdeaStatus,
+  type DepartmentCategory,
+} from "@/data/automationIdeasData";
+import { EditableCell } from "@/components/EditableCell";
 
-interface Idea {
-  idea: string;
-  solves: string;
-  area: string;
-  priority: "High" | "Medium" | "Low";
-}
+const iceOptions: IceScore[] = ["S", "M", "L"];
+const iceLabel: Record<IceScore, string> = { S: "Small", M: "Medium", L: "Large" };
+const statusOptions: IdeaStatus[] = ["Not Started", "In Progress", "Done", "Blocked", "Cancelled"];
 
-const categories: { label: string; key: string; ideas: Idea[] }[] = [
-  {
-    label: "TAM Workflow", key: "tam",
-    ideas: [
-      { idea: "JSM AI triage — neutral sentiment → AI responds, escalate urgent only", solves: "TAMs on routine queries", area: "Phase 1 — Support Tickets", priority: "High" },
-      { idea: "AI Digital Twin — AI replies from TAM email for routine, escalates complex", solves: "Personalised per TAM", area: "Phase 1 — Support Tickets", priority: "Medium" },
-      { idea: "N8N email triage workflow — classify → auto-respond FAQ → log → escalate", solves: "First-line support", area: "Phase 1 — Support Tickets", priority: "Medium" },
-      { idea: "Standardised Asset Collection Forms with Automated Reminders", solves: "No pre-built collection forms, multiple follow-ups", area: "Phase 1 — Admin Panel", priority: "High" },
-      { idea: "Automated pre-launch health checks", solves: "Every launch = massive manual checklist", area: "Phase 1 — Admin Panel", priority: "High" },
-      { idea: "SLA timezone-based — JSM 24hr SLA per client", solves: "Inconsistent SLAs across regions", area: "Phase 2 — Quick Wins", priority: "Low" },
-      { idea: "Agentic AI preparing for meetings: wash-ups, kick offs", solves: "Manual prep taking lots of TAMs time", area: "Phase 2 — Quick Wins", priority: "Medium" },
-      { idea: "Fathom & Claude integration for client journey automation", solves: "Manual kick-off prep, PM board creation", area: "Phase 2 — Quick Wins", priority: "Medium" },
-      { idea: "Planhat automated onboarding — welcome materials auto-sent on deal close", solves: "Sales-to-TAM handover is manual and lossy", area: "Phase 3 — Second Priorities", priority: "Low" },
-    ],
-  },
-  {
-    label: "Product & Design", key: "product",
-    ideas: [
-      { idea: "Website ready templates — swap colours/fonts, layout stays fixed", solves: "TAM setup time per event + organiser website creation", area: "Phase 1 — Website Builder", priority: "High" },
-      { idea: "AI Agent on module setup (registration conditional logic)", solves: "Complex and un-user-friendly registration pipelines", area: "Phase 1 — Back-end Config", priority: "High" },
-      { idea: "Direct Client Feedback — in-product surveys, NPS", solves: "Product feedback currently indirect via TAMs", area: "Phase 3 — Second Priorities", priority: "Medium" },
-      { idea: "Auto-Clone Environment with Smart Defaults for repeat events", solves: "First-time ~15 days, repeat ~11 days", area: "Phase 1 — Admin Panel", priority: "High" },
-      { idea: "Feature-Based Admin Panel Wizard — organiser selects features, UI adapts", solves: "~50% of features unused per event but all shown", area: "Phase 1 — Admin Panel", priority: "High" },
-      { idea: "Automated data validation on import with error flagging", solves: "Manual data checks, inconsistent field formats", area: "Phase 2 — Quick Wins", priority: "Medium" },
-    ],
-  },
-  {
-    label: "Sales & Marketing", key: "sales",
-    ideas: [
-      { idea: "Sales admin automation", solves: "Sales team admin burden", area: "Phase 3 — Second Priorities", priority: "Medium" },
-      { idea: "Pipedrive restructure", solves: "Outdated automations (Maria's 60+ need restructure)", area: "Phase 3 — Second Priorities", priority: "Medium" },
-      { idea: "Auto data export from backend dashboards for analytics", solves: "TAMs skip washup analytics — manual copy-paste", area: "Phase 3 — Second Priorities", priority: "Low" },
-      { idea: "AI Generated marketing videos", solves: "Human needed for all marketing material", area: "Phase 3 — Second Priorities", priority: "Low" },
-      { idea: "Automate outbound sales process", solves: "Replaces manual Pipedrive follow-ups", area: "Phase 3 — Second Priorities", priority: "Medium" },
-      { idea: "Centralized asset library with self-service access", solves: "Repeated requests for assets, manual sharing", area: "Phase 3 — Second Priorities", priority: "Low" },
-    ],
-  },
-  {
-    label: "Engineering", key: "engineering",
-    ideas: [
-      { idea: "Legacy Backlog Purge — close tickets >18 months without 90-day update", solves: "178 bugs from 2022–2024 still open", area: "Phase 2 — Engineering Quick Wins", priority: "High" },
-      { idea: "QA N8N bug context/prioritisation", solves: "Bug triage time", area: "Phase 2 — Engineering Quick Wins", priority: "Medium" },
-      { idea: "Automated testing framework (Playwright/Cypress)", solves: "QA runs manual regression 8–15hrs per release cycle", area: "Phase 2 — Engineering Quick Wins", priority: "Medium" },
-      { idea: "Integration monitoring & API health dashboards", solves: "Limited API visibility, manual reconciliation across systems", area: "Phase 2 — Engineering Quick Wins", priority: "Medium" },
-      { idea: "Auto-generated project timelines from kickoff data", solves: "Manual timeline creation for every project", area: "Phase 2 — Engineering Quick Wins", priority: "Low" },
-    ],
-  },
-  {
-    label: "HR & People", key: "hr",
-    ideas: [
-      { idea: "HR onboarding via Claude Co-Work — browser automation", solves: "Olga does this manually", area: "Phase 2 — HR Support", priority: "High" },
-      { idea: "Structured TAM Onboarding & Shadowing Programme", solves: "Junior TAMs lack structured onboarding, attrition", area: "Phase 2 — Quick Wins", priority: "Medium" },
-      { idea: "ATS integration or AI-assisted screening & interview coordination", solves: "Manual screening hours + email scheduling", area: "Phase 2 — HR Support", priority: "Medium" },
-    ],
-  },
-  {
-    label: "Data & Finance", key: "data",
-    ideas: [
-      { idea: "Jira Team field enforcement across all tasks", solves: "400–500 hrs/month lost to non-attributed work", area: "Phase 2 — Engineering Quick Wins", priority: "High" },
-      { idea: "API-based sync via n8n between billing and reporting", solves: "Finance ~80% manual reconciliation work", area: "Phase 3 — Second Priorities", priority: "Medium" },
-    ],
-  },
-];
+const phaseStyle: Record<string, string> = {
+  "Primary Focus": "tag-dark",
+  "Quick Wins": "tag",
+  "Secondary Focus": "inline-flex items-center px-2 py-0.5 text-[11px] font-medium rounded-full border border-border text-muted-foreground bg-transparent",
+};
 
-const priorityStyle: Record<string, string> = {
-  High: "tag-dark",
-  Medium: "tag",
-  Low: "inline-flex items-center px-2 py-0.5 text-[11px] font-medium rounded-full border border-border text-muted-foreground bg-transparent",
+const priorityColors: Record<string, string> = {
+  High: "bg-success/15 text-success border-success/30",
+  Medium: "bg-warning/15 text-warning border-warning/30",
+  Low: "bg-muted text-muted-foreground border-border",
+};
+
+const statusColors: Record<string, string> = {
+  "Not Started": "bg-muted text-muted-foreground",
+  "In Progress": "bg-primary/10 text-primary",
+  Done: "bg-success/15 text-success",
+  Blocked: "bg-destructive/15 text-destructive",
+  Cancelled: "bg-muted text-muted-foreground line-through",
+};
+
+const IceDropdown = ({
+  value,
+  onChange,
+}: {
+  value: IceScore;
+  onChange: (v: IceScore) => void;
+}) => (
+  <select
+    value={value}
+    onChange={(e) => onChange(e.target.value as IceScore)}
+    className="w-full bg-transparent border border-border rounded px-1.5 py-1 text-xs font-medium cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/50 appearance-none text-center"
+  >
+    {iceOptions.map((o) => (
+      <option key={o} value={o}>
+        {iceLabel[o]} ({iceValue[o]})
+      </option>
+    ))}
+  </select>
+);
+
+const StatusDropdown = ({
+  value,
+  onChange,
+}: {
+  value: IdeaStatus;
+  onChange: (v: IdeaStatus) => void;
+}) => (
+  <select
+    value={value}
+    onChange={(e) => onChange(e.target.value as IdeaStatus)}
+    className={`w-full border-0 rounded-full px-2 py-1 text-[11px] font-medium cursor-pointer focus:outline-none ${statusColors[value]}`}
+  >
+    {statusOptions.map((o) => (
+      <option key={o} value={o}>
+        {o}
+      </option>
+    ))}
+  </select>
+);
+
+const DepartmentTable = ({
+  ideas,
+  onUpdate,
+}: {
+  ideas: AutomationIdea[];
+  onUpdate: (id: string, field: string, value: string) => void;
+}) => {
+  // Sort by total descending
+  const sorted = [...ideas].sort((a, b) => {
+    const totalA = iceTotal(a.impact, a.confidence, a.ease);
+    const totalB = iceTotal(b.impact, b.confidence, b.ease);
+    return totalB - totalA;
+  });
+
+  return (
+    <div className="section-card overflow-hidden">
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b border-border bg-secondary/50">
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[28%]">Idea</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[16%]">What it Solves</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[8%]">Phase</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[6%]">KR(s)</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]">Impact</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]">Confidence</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]">Ease</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[4%]">Total</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]">Priority</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[7%]">Status</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[11%]">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((idea) => {
+              const total = iceTotal(idea.impact, idea.confidence, idea.ease);
+              const priority = getPriority(total);
+              return (
+                <tr key={idea.id} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
+                  <td className="p-2.5 font-medium text-foreground">{idea.idea}</td>
+                  <td className="p-2.5 text-muted-foreground">{idea.solves}</td>
+                  <td className="p-2.5">
+                    <span className={phaseStyle[idea.phase]}>{idea.phase}</span>
+                  </td>
+                  <td className="p-2.5 text-muted-foreground">
+                    {idea.krs.map((kr) => `KR${kr}`).join(", ")}
+                  </td>
+                  <td className="p-2.5">
+                    <IceDropdown
+                      value={idea.impact}
+                      onChange={(v) => onUpdate(idea.id, "impact", v)}
+                    />
+                  </td>
+                  <td className="p-2.5">
+                    <IceDropdown
+                      value={idea.confidence}
+                      onChange={(v) => onUpdate(idea.id, "confidence", v)}
+                    />
+                  </td>
+                  <td className="p-2.5">
+                    <IceDropdown
+                      value={idea.ease}
+                      onChange={(v) => onUpdate(idea.id, "ease", v)}
+                    />
+                  </td>
+                  <td className="p-2.5 text-center">
+                    <span className="font-bold text-sm text-foreground">{total}</span>
+                  </td>
+                  <td className="p-2.5 text-center">
+                    <span className={`inline-flex items-center px-2 py-0.5 text-[11px] font-medium rounded-full border ${priorityColors[priority]}`}>
+                      {priority}
+                    </span>
+                  </td>
+                  <td className="p-2.5">
+                    <StatusDropdown
+                      value={idea.status}
+                      onChange={(v) => onUpdate(idea.id, "status", v)}
+                    />
+                  </td>
+                  <EditableCell
+                    value={idea.notes}
+                    onSave={(v) => onUpdate(idea.id, "notes", v)}
+                    className="p-2.5"
+                    placeholder="Add notes..."
+                  />
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 const AutomationIdeasPage = () => {
+  const [categories, setCategories] = useState<DepartmentCategory[]>(automationCategories);
+
+  const handleUpdate = useCallback(
+    (ideaId: string, field: string, value: string) => {
+      setCategories((prev) =>
+        prev.map((cat) => ({
+          ...cat,
+          ideas: cat.ideas.map((idea) =>
+            idea.id === ideaId ? { ...idea, [field]: value } : idea
+          ),
+        }))
+      );
+    },
+    []
+  );
+
+  const totalIdeas = categories.reduce((sum, c) => sum + c.ideas.length, 0);
+  const doneCount = categories.reduce(
+    (sum, c) => sum + c.ideas.filter((i) => i.status === "Done").length,
+    0
+  );
+  const inProgressCount = categories.reduce(
+    (sum, c) => sum + c.ideas.filter((i) => i.status === "In Progress").length,
+    0
+  );
+
   return (
     <div>
-      <PageHeader title="Automation Ideas" description="40+ ideas collected across 7 departments from interviews, surveys, and discovery." />
+      <PageHeader
+        title="Automation Ideas"
+        description={`${totalIdeas} ideas across ${categories.length} departments. ${doneCount} done, ${inProgressCount} in progress. Sourced from interviews, surveys, discovery, and AI Automation Spring programme.`}
+      />
 
-      <Tabs defaultValue="tam" className="w-full">
+      <Tabs defaultValue="tams" className="w-full">
         <TabsList className="mb-6 flex-wrap h-auto gap-1 bg-transparent border-b border-border rounded-none p-0 pb-2">
           {categories.map((cat) => (
             <TabsTrigger
@@ -98,30 +221,7 @@ const AutomationIdeasPage = () => {
 
         {categories.map((cat) => (
           <TabsContent key={cat.key} value={cat.key}>
-            <div className="section-card overflow-hidden">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="border-b border-border bg-secondary/50">
-                    <th className="text-left p-3 font-medium text-muted-foreground">Idea</th>
-                    <th className="text-left p-3 font-medium text-muted-foreground w-48">What it Solves</th>
-                    <th className="text-left p-3 font-medium text-muted-foreground w-48">Action Plan Area</th>
-                    <th className="text-left p-3 font-medium text-muted-foreground w-20">Priority</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cat.ideas.map((idea, i) => (
-                    <tr key={i} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
-                      <td className="p-3 font-medium text-foreground">{idea.idea}</td>
-                      <td className="p-3 text-muted-foreground">{idea.solves}</td>
-                      <td className="p-3 text-muted-foreground">{idea.area}</td>
-                      <td className="p-3">
-                        <span className={priorityStyle[idea.priority]}>{idea.priority}</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <DepartmentTable ideas={cat.ideas} onUpdate={handleUpdate} />
           </TabsContent>
         ))}
       </Tabs>
