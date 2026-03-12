@@ -299,6 +299,12 @@ export const automationCategories: DepartmentCategory[] = [
     key: "product",
     ideas: [
       {
+        id: nextId(), idea: "Website builder improvements: ready templates and customisation, CSS easy creation with claude, overlay AI Agent, Confluence KB",
+        solves: "TAM setup time per event; organiser website creation from scratch each time",
+        phase: "Primary Focus", krs: [1, 2], impact: "L", confidence: "L", ease: "M", status: "Not Started",
+        source: "KR1 Analysis, Survey", notes: "Susan rank #10. Talk to TAMs and Max about previous template event"
+      },
+      {
         id: nextId(), idea: "Admin Panel hover text + usability improvements — make UI self-explanatory to reduce training sessions",
         solves: "Organisers need marathon training sessions because admin panel is hard to understand",
         phase: "Primary Focus", krs: [2, 4], impact: "L", confidence: "L", ease: "M", status: "Not Started",
