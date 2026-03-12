@@ -39,11 +39,11 @@ const statusColors: Record<string, string> = {
 };
 
 const krColors: Record<number, string> = {
-  1: "bg-[hsl(237,68%,33%)] text-white",
-  2: "bg-[hsl(44,100%,58%)] text-white",
-  3: "bg-[hsl(330,70%,55%)] text-white",
-  4: "bg-[hsl(200,60%,45%)] text-white",
-  5: "bg-[hsl(152,60%,40%)] text-white",
+  1: "bg-[hsl(237,68%,33%)]/15 text-[hsl(237,68%,33%)] border border-[hsl(237,68%,33%)]/30",
+  2: "bg-[hsl(44,100%,58%)]/15 text-[hsl(44,100%,40%)] border border-[hsl(44,100%,58%)]/30",
+  3: "bg-[hsl(152,60%,40%)]/15 text-[hsl(152,60%,40%)] border border-[hsl(152,60%,40%)]/30",
+  4: "bg-[hsl(200,60%,45%)]/15 text-[hsl(200,60%,45%)] border border-[hsl(200,60%,45%)]/30",
+  5: "bg-[hsl(280,50%,50%)]/15 text-[hsl(280,50%,50%)] border border-[hsl(280,50%,50%)]/30",
 };
 
 interface Filters {
