@@ -10,7 +10,8 @@ export function useRoadmapProgress() {
     const fetch = async () => {
       const { data } = await supabase
         .from("okr_metric_values")
-        .select("row_index, value, okr_number")
+        .select("row_index, value")
+        .eq("okr_number", 4)
         .eq("kr_number", 0)
         .eq("column_key", "roadmap_status");
 
