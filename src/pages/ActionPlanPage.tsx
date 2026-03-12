@@ -153,7 +153,7 @@ const ActionCard = ({
   const navigate = useNavigate();
   const { idea } = entry;
 
-  const currentNote = savedNotes[idea.id] ?? idea.notes;
+  const currentNote = savedNotes[idea.id] ?? "";
   const currentStatus = savedStatus[idea.id] ?? idea.status;
 
   const startEditNote = (e: React.MouseEvent) => {
@@ -267,11 +267,11 @@ const ActionPlanPage = () => {
   // Load overrides from DB (automation_idea_updates)
   useEffect(() => {
     const load = async () => {
-      const { data } = await supabase.from("automation_idea_updates").select("idea_id, notes, status");
+      const { data } = await supabase.from("automation_idea_updates").select("idea_id, action_plan_notes, status");
       if (data) {
         const map: Record<string, { notes?: string; status?: string }> = {};
         data.forEach((r) => {
-          map[r.idea_id] = { notes: r.notes ?? undefined, status: r.status ?? undefined };
+          map[r.idea_id] = { notes: (r as any).action_plan_notes ?? undefined, status: r.status ?? undefined };
         });
         setDbOverrides(map);
       }
@@ -293,15 +293,10 @@ const ActionPlanPage = () => {
     }));
     await supabase
       .from("automation_idea_updates")
-      .upsert({ idea_id: ideaId, notes: note }, { onConflict: "idea_id" });
+      .upsert({ idea_id: ideaId, action_plan_notes: note } as any, { onConflict: "idea_id" });
   };
 
-  // Count totals using DB status overrides
-  const allIdeas = automationCategories.flatMap((c) => c.ideas);
   const getStatus = (idea: AutomationIdea) => savedStatus[idea.id] ?? idea.status;
-  const totalItems = allIdeas.length;
-  const doneItems = allIdeas.filter((i) => getStatus(i) === "Done").length;
-  const inProgressItems = allIdeas.filter((i) => getStatus(i) === "In Progress").length;
 
   return (
     <div>
@@ -310,24 +305,6 @@ const ActionPlanPage = () => {
         <div>
           <h2 className="text-sm font-bold text-foreground">Action Plan</h2>
           <p className="text-xs text-muted-foreground">Prioritised by findings and ICE scoring</p>
-        </div>
-        <div className="flex gap-4 text-xs">
-          <div className="text-center">
-            <p className="text-base font-bold text-foreground">{totalItems}</p>
-            <p className="text-muted-foreground">Total</p>
-          </div>
-          <div className="text-center">
-            <p className="text-base font-bold text-foreground">{doneItems}</p>
-            <p className="text-muted-foreground">Done</p>
-          </div>
-          <div className="text-center">
-            <p className="text-base font-bold text-foreground">{inProgressItems}</p>
-            <p className="text-muted-foreground">In Progress</p>
-          </div>
-          <div className="text-center">
-            <p className="text-base font-bold text-foreground">{totalItems - doneItems - inProgressItems}</p>
-            <p className="text-muted-foreground">Not Started</p>
-          </div>
         </div>
       </div>
 
