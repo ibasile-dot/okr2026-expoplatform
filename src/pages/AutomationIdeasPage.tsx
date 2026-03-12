@@ -121,31 +121,34 @@ const SummaryBar = ({ categories }: { categories: DepartmentCategory[] }) => {
   return (
     <div className="flex items-center gap-5 px-6 py-4 bg-gradient-to-r from-[hsl(237,40%,15%)] to-[hsl(237,50%,25%)] rounded-xl mb-5 text-white flex-wrap">
       <div className="text-center">
-        <div className="text-2xl font-bold">{totalIdeas}</div>
+        <div className="text-2xl font-bold text-white">{totalIdeas}</div>
         <div className="text-[11px] opacity-75 uppercase tracking-wider">Total Ideas</div>
       </div>
       <div className="w-px h-10 bg-white/20" />
       <div className="text-center">
-        <div className="text-2xl font-bold text-[hsl(185,80%,80%)]">{doneCount}</div>
+        <div className="text-2xl font-bold text-white">{doneCount}</div>
         <div className="text-[11px] opacity-75 uppercase tracking-wider">DONE</div>
       </div>
       <div className="w-px h-10 bg-white/20" />
       <div className="text-center">
-        <div className="text-2xl font-bold text-[hsl(44,90%,80%)]">{inProgressCount}</div>
+        <div className="text-2xl font-bold text-white">{inProgressCount}</div>
         <div className="text-[11px] opacity-75 uppercase tracking-wider">IN PROGRESS</div>
       </div>
       <div className="w-px h-10 bg-white/20" />
       <div className="text-center">
-        <div className="text-2xl font-bold text-[hsl(260,70%,80%)]">{toDoCount}</div>
+        <div className="text-2xl font-bold text-white">{toDoCount}</div>
         <div className="text-[11px] opacity-75 uppercase tracking-wider">TO DO</div>
       </div>
-      <div className="flex-1 min-w-[120px]" />
+      <div className="flex-1 min-w-[80px]" />
       <div className="text-[11px] opacity-70 text-right leading-relaxed">
-        ICE: Impact · Confidence · Ease<br />
-        S = 1 &nbsp;|&nbsp; M = 2 &nbsp;|&nbsp; L = 3 &nbsp;|&nbsp; Max = 9<br />
-        <span className="text-[hsl(44,90%,80%)] text-[10px]">
-          Impact: how much it will solve the problem · Confidence: how likely it is to work · Ease: how easy to implement
-        </span>
+        S = 1 &nbsp;|&nbsp; M = 2 &nbsp;|&nbsp; L = 3 &nbsp;|&nbsp; Max = 9
+      </div>
+      <div className="w-px h-10 bg-white/20" />
+      <div className="text-[11px] text-right leading-relaxed">
+        <div className="font-semibold opacity-90">ICE Scoring</div>
+        <div className="opacity-60 text-[10px]">Impact: how much it solves the problem</div>
+        <div className="opacity-60 text-[10px]">Confidence: how likely it is to work</div>
+        <div className="opacity-60 text-[10px]">Ease: how easy to implement</div>
       </div>
     </div>
   );
