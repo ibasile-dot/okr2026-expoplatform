@@ -166,15 +166,209 @@ const IceFootnote = () => (
   </div>
 );
 
+interface Filters {
+  priority: string | null;
+  phase: string | null;
+  kr: number | null;
+}
+
+const FilterBar = ({
+  filters,
+  setFilters,
+}: {
+  filters: Filters;
+  setFilters: (f: Filters) => void;
+}) => {
+  const priorityOpts = ["High", "Medium", "Low"];
+  const phaseOpts: AutomationIdea["phase"][] = ["Primary Focus", "Quick Wins", "Secondary Focus"];
+  const krOpts = [1, 2, 3, 4, 5];
+
+  const hasFilters = filters.priority || filters.phase || filters.kr;
+
+  return (
+    <div className="flex items-center gap-2 mb-4 flex-wrap">
+      <Filter className="w-3.5 h-3.5 text-muted-foreground" />
+      <span className="text-xs text-muted-foreground font-medium mr-1">Filter:</span>
+
+      {priorityOpts.map((p) => (
+        <button
+          key={p}
+          onClick={() => setFilters({ ...filters, priority: filters.priority === p ? null : p })}
+          className={`text-[11px] px-2.5 py-1 rounded-full border transition-colors ${
+            filters.priority === p
+              ? "bg-primary text-primary-foreground border-primary"
+              : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+          }`}
+        >
+          {p}
+        </button>
+      ))}
+
+      <span className="text-border">|</span>
+
+      {phaseOpts.map((p) => (
+        <button
+          key={p}
+          onClick={() => setFilters({ ...filters, phase: filters.phase === p ? null : p })}
+          className={`text-[11px] px-2.5 py-1 rounded-full border transition-colors ${
+            filters.phase === p
+              ? "bg-primary text-primary-foreground border-primary"
+              : `bg-transparent border-border hover:border-primary/50 ${phaseStyle[p].split(" ")[1]}`
+          }`}
+        >
+          {p}
+        </button>
+      ))}
+
+      <span className="text-border">|</span>
+
+      {krOpts.map((kr) => (
+        <button
+          key={kr}
+          onClick={() => setFilters({ ...filters, kr: filters.kr === kr ? null : kr })}
+          className={`text-[11px] px-2 py-1 rounded border transition-colors font-bold ${
+            filters.kr === kr
+              ? `${krColors[kr]} border-transparent`
+              : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+          }`}
+        >
+          KR{kr}
+        </button>
+      ))}
+
+      {hasFilters && (
+        <button
+          onClick={() => setFilters({ priority: null, phase: null, kr: null })}
+          className="text-[11px] px-2 py-1 rounded-full text-destructive hover:bg-destructive/10 transition-colors flex items-center gap-1"
+        >
+          <X className="w-3 h-3" /> Clear
+        </button>
+      )}
+    </div>
+  );
+};
+
 const DepartmentTable = ({
   ideas,
   onUpdate,
   onAddIdea,
+  filters,
 }: {
   ideas: AutomationIdea[];
   onUpdate: (id: string, field: string, value: string) => void;
   onAddIdea: () => void;
+  filters: Filters;
 }) => {
+  const filtered = useMemo(() => {
+    let result = ideas;
+    if (filters.priority) {
+      result = result.filter((i) => getPriority(iceTotal(i.impact, i.confidence, i.ease)) === filters.priority);
+    }
+    if (filters.phase) {
+      result = result.filter((i) => i.phase === filters.phase);
+    }
+    if (filters.kr) {
+      result = result.filter((i) => i.krs.includes(filters.kr!));
+    }
+    return result;
+  }, [ideas, filters]);
+
+  const sorted = [...filtered].sort((a, b) => {
+    const totalA = iceTotal(a.impact, a.confidence, a.ease);
+    const totalB = iceTotal(b.impact, b.confidence, b.ease);
+    return totalB - totalA;
+  });
+
+  return (
+    <div className="section-card overflow-hidden">
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b border-border bg-secondary/50">
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[24%]">Idea</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[16%]">What it Solves</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[9%]">Phase</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[7%]">KR(s)</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]" title="Impact: how much it will solve the problem (S=1, M=2, L=3)">Impact</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]" title="Confidence: how likely it is to work (S=1, M=2, L=3)">Conf.</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]" title="Ease: how easy to implement (S=1, M=2, L=3)">Ease</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[4%]">Total</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[5%]">Priority</th>
+              <th className="text-center p-2.5 font-medium text-muted-foreground w-[9%]">Status</th>
+              <th className="text-left p-2.5 font-medium text-muted-foreground w-[11%]">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.length === 0 && (
+              <tr>
+                <td colSpan={11} className="p-6 text-center text-muted-foreground text-sm">No ideas match the current filters</td>
+              </tr>
+            )}
+            {sorted.map((idea) => {
+              const total = iceTotal(idea.impact, idea.confidence, idea.ease);
+              const priority = getPriority(total);
+              return (
+                <tr key={idea.id} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
+                  <td className="p-2.5 font-medium text-foreground">{idea.idea}</td>
+                  <td className="p-2.5 text-muted-foreground">{idea.solves}</td>
+                  <td className="p-2.5">
+                    <PhaseDropdown
+                      value={idea.phase}
+                      onChange={(v) => onUpdate(idea.id, "phase", v)}
+                    />
+                  </td>
+                  <td className="p-2.5">
+                    <div className="flex flex-wrap gap-1">
+                      {idea.krs.map((kr) => (
+                        <span key={kr} className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold ${krColors[kr] || "bg-muted text-muted-foreground"}`}>
+                          KR{kr}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="p-2.5">
+                    <IceDropdown value={idea.impact} onChange={(v) => onUpdate(idea.id, "impact", v)} />
+                  </td>
+                  <td className="p-2.5">
+                    <IceDropdown value={idea.confidence} onChange={(v) => onUpdate(idea.id, "confidence", v)} />
+                  </td>
+                  <td className="p-2.5">
+                    <IceDropdown value={idea.ease} onChange={(v) => onUpdate(idea.id, "ease", v)} />
+                  </td>
+                  <td className="p-2.5 text-center">
+                    <span className="font-bold text-sm text-foreground">{total}</span>
+                  </td>
+                  <td className="p-2.5 text-center">
+                    <span className={`inline-flex items-center px-2 py-0.5 text-[11px] font-medium rounded-full border ${priorityColors[priority]}`}>
+                      {priority}
+                    </span>
+                  </td>
+                  <td className="p-2.5">
+                    <StatusDropdown value={idea.status} onChange={(v) => onUpdate(idea.id, "status", v)} />
+                  </td>
+                  <EditableCell
+                    value={idea.notes}
+                    onSave={(v) => onUpdate(idea.id, "notes", v)}
+                    className="p-2.5 text-[11px]"
+                    placeholder="Add notes..."
+                  />
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <button
+        onClick={onAddIdea}
+        className="w-full flex items-center justify-center gap-2 py-2.5 text-xs text-muted-foreground hover:text-primary hover:bg-secondary/50 transition-colors border-t border-border"
+      >
+        <Plus className="w-3.5 h-3.5" />
+        Add new idea
+      </button>
+      <IceFootnote />
+    </div>
+  );
+};
   const sorted = [...ideas].sort((a, b) => {
     const totalA = iceTotal(a.impact, a.confidence, a.ease);
     const totalB = iceTotal(b.impact, b.confidence, b.ease);
