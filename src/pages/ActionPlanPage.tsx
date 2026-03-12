@@ -48,8 +48,8 @@ const areaOrder: Record<Phase, string[]> = {
     "Engineering",
     "HR",
     "Finance",
-    "Marketing & Data",
-    "Unified Tools",
+    "Marketing",
+    "Data",
   ],
 };
 
