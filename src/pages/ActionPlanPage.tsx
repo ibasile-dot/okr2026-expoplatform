@@ -41,10 +41,13 @@ const areaOrder: Record<Phase, string[]> = {
     "Data",
   ],
   "Secondary Focus": [
+    "TAMs / Operations",
     "Website Builder — Phase 2",
     "Sales",
     "Product / Design",
     "Engineering",
+    "HR",
+    "Finance",
     "Marketing & Data",
     "Unified Tools",
   ],
@@ -67,7 +70,12 @@ function getArea(idea: AutomationIdea, dept: string): string {
       return "Admin Panel — Back-end Configuration";
     }
     if (dept === "finance" || dept === "Finance") return "Finance";
-    return "Support & Ticket Automation";
+    if (dept === "hr" || dept === "HR") return "HR";
+    if (dept === "engineering" || dept === "Engineering") return "Engineering";
+    if (dept === "marketing" || dept === "Marketing") return "Marketing";
+    if (dept === "data" || dept === "Data") return "Data";
+    if (dept === "sales" || dept === "Sales") return "Sales";
+    return dept;
   }
   if (idea.phase === "Secondary Focus") {
     if (t.includes("website") || t.includes("in-builder")) return "Website Builder — Phase 2";
@@ -75,8 +83,11 @@ function getArea(idea: AutomationIdea, dept: string): string {
     if (dept === "engineering" || dept === "Engineering") return "Engineering";
     if (dept === "marketing" || dept === "Marketing") return "Marketing & Data";
     if (dept === "data" || dept === "Data") return "Marketing & Data";
+    if (dept === "tams" || dept === "TAMs / Operations") return "TAMs / Operations";
+    if (dept === "hr" || dept === "HR") return "HR";
+    if (dept === "finance" || dept === "Finance") return "Finance";
     if (t.includes("unified") || t.includes("project management")) return "Unified Tools";
-    return "Product / Design";
+    return dept;
   }
   return dept;
 }
