@@ -197,12 +197,14 @@ const OkrDetailPage = () => {
           {okr.id === 4 ? (
             <Okr4Findings />
           ) : (
-            <div className="section-card p-6">
-              <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
-                <p className="text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: okr.color }}>Findings</p>
-                <p className="text-sm text-muted-foreground italic">Findings will be added as data is collected</p>
-              </div>
-            </div>
+            <EditableTemplateTable
+              okrNumber={okr.id}
+              sectionKey={SECTION_FINDINGS}
+              columns={["area", "finding", "source", "impact", "recommendation"]}
+              headers={["Area", "Finding", "Source", "Impact", "Recommendation"]}
+              color={okr.color}
+              emptyMessage="No findings yet. Click \"+ Add Row\" to start documenting."
+            />
           )}
         </TabsContent>
 
