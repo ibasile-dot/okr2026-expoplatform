@@ -6,6 +6,7 @@ import { EditableCell } from "@/components/EditableCell";
 import { useMetricValues } from "@/hooks/useMetricValues";
 import OkrRoadmap from "@/components/OkrRoadmap";
 import Okr4Findings from "@/components/Okr4Findings";
+import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
 
 const statusColors: Record<string, string> = {
   "on-track": "bg-success/15 text-success border-success/30",
