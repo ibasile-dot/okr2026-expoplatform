@@ -352,29 +352,34 @@ const AutomationIdeasPage = () => {
     const loadSavedUpdates = async () => {
       const { data } = await supabase
         .from("automation_idea_updates")
-        .select("idea_id, status, notes, idea, solves, impact, confidence, ease, phase");
+        .select("idea_id, status, notes, idea, solves, impact, confidence, ease, phase, deleted");
       if (data && data.length > 0) {
         const updatesMap = new Map(data.map((d: any) => [d.idea_id, d]));
         setCategories((prev) =>
           prev.map((cat) => ({
             ...cat,
-            ideas: cat.ideas.map((idea) => {
-              const saved = updatesMap.get(idea.id);
-              if (saved) {
-                return {
-                  ...idea,
-                  ...(saved.idea ? { idea: saved.idea } : {}),
-                  ...(saved.solves ? { solves: saved.solves } : {}),
-                  ...(saved.status ? { status: saved.status as IdeaStatus } : {}),
-                  ...(saved.notes !== null && saved.notes !== undefined ? { notes: saved.notes } : {}),
-                  ...(saved.impact ? { impact: saved.impact as IceScore } : {}),
-                  ...(saved.confidence ? { confidence: saved.confidence as IceScore } : {}),
-                  ...(saved.ease ? { ease: saved.ease as IceScore } : {}),
-                  ...(saved.phase ? { phase: saved.phase as AutomationIdea["phase"] } : {}),
-                };
-              }
-              return idea;
-            }),
+            ideas: cat.ideas
+              .filter((idea) => {
+                const saved = updatesMap.get(idea.id);
+                return !(saved && saved.deleted);
+              })
+              .map((idea) => {
+                const saved = updatesMap.get(idea.id);
+                if (saved) {
+                  return {
+                    ...idea,
+                    ...(saved.idea ? { idea: saved.idea } : {}),
+                    ...(saved.solves ? { solves: saved.solves } : {}),
+                    ...(saved.status ? { status: saved.status as IdeaStatus } : {}),
+                    ...(saved.notes !== null && saved.notes !== undefined ? { notes: saved.notes } : {}),
+                    ...(saved.impact ? { impact: saved.impact as IceScore } : {}),
+                    ...(saved.confidence ? { confidence: saved.confidence as IceScore } : {}),
+                    ...(saved.ease ? { ease: saved.ease as IceScore } : {}),
+                    ...(saved.phase ? { phase: saved.phase as AutomationIdea["phase"] } : {}),
+                  };
+                }
+                return idea;
+              }),
           }))
         );
       }
@@ -431,8 +436,10 @@ const AutomationIdeasPage = () => {
         ideas: cat.ideas.filter((idea) => idea.id !== ideaId),
       }))
     );
-    // Also delete from DB so the deletion persists
-    await supabase.from("automation_idea_updates").delete().eq("idea_id", ideaId);
+    // Soft-delete in DB so it persists across pages and reloads
+    await supabase
+      .from("automation_idea_updates")
+      .upsert({ idea_id: ideaId, deleted: true } as any, { onConflict: "idea_id" });
   }, []);
 
   return (

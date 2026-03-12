@@ -117,8 +117,10 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
   for (const cat of automationCategories) {
     for (const origIdea of cat.ideas) {
       coveredIds.add(origIdea.id);
-      // Apply DB overrides to get the current truth
+      // Skip soft-deleted ideas
       const saved = dbOverrides[origIdea.id];
+      if (saved && saved.deleted) continue;
+      // Apply DB overrides to get the current truth
       const idea: AutomationIdea = saved ? {
         ...origIdea,
         ...(saved.idea ? { idea: saved.idea } : {}),
@@ -141,7 +143,7 @@ function buildPhaseMap(dbOverrides: Record<string, any>): Record<Phase, Record<s
   // Include DB-only ideas (e.g. ai-new-* added via Automation Ideas page)
   for (const [ideaId, saved] of Object.entries(dbOverrides)) {
     if (coveredIds.has(ideaId)) continue;
-    if (!saved.idea) continue; // skip DB-only entries without a proper idea name
+    if (!saved.idea || saved.deleted) continue; // skip deleted or entries without a proper idea name
 
     const idea: AutomationIdea = {
       id: ideaId,
@@ -328,7 +330,7 @@ const ActionPlanPage = () => {
     const load = async () => {
       const { data } = await supabase.
       from("automation_idea_updates").
-      select("idea_id, action_plan_notes, status, idea, solves, impact, confidence, ease, phase");
+      select("idea_id, action_plan_notes, status, idea, solves, impact, confidence, ease, phase, deleted");
       if (data) {
         const map: Record<string, any> = {};
         data.forEach((r: any) => {

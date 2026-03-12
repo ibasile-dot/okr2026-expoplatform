@@ -1,0 +1,1 @@
+ALTER TABLE public.automation_idea_updates ADD COLUMN deleted boolean NOT NULL DEFAULT false;
