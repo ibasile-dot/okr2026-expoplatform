@@ -5,6 +5,7 @@ import { Okr4Metrics } from "@/components/Okr4Metrics";
 import { EditableCell } from "@/components/EditableCell";
 import { useMetricValues } from "@/hooks/useMetricValues";
 import OkrRoadmap from "@/components/OkrRoadmap";
+import OkrUpdates from "@/components/OkrUpdates";
 import Okr4Findings from "@/components/Okr4Findings";
 import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
 import ActionPlanPage from "@/pages/ActionPlanPage";
