@@ -75,8 +75,11 @@ function getArea(idea: AutomationIdea, dept: string): string {
     if (dept === "engineering" || dept === "Engineering") return "Engineering";
     if (dept === "marketing" || dept === "Marketing") return "Marketing & Data";
     if (dept === "data" || dept === "Data") return "Marketing & Data";
+    if (dept === "tams" || dept === "TAMs / Operations") return "TAMs / Operations";
+    if (dept === "hr" || dept === "HR") return "HR";
+    if (dept === "finance" || dept === "Finance") return "Finance";
     if (t.includes("unified") || t.includes("project management")) return "Unified Tools";
-    return "Product / Design";
+    return dept;
   }
   return dept;
 }
