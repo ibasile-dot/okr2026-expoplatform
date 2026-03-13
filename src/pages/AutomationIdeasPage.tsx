@@ -141,15 +141,14 @@ const SummaryBar = ({ categories }: { categories: DepartmentCategory[] }) => {
         <div className="text-[11px] opacity-75 uppercase tracking-wider">TO DO</div>
       </div>
       <div className="flex-1 min-w-[80px]" />
-      <div className="text-[11px] opacity-70 text-right leading-relaxed">
-        S = 1 &nbsp;|&nbsp; M = 2 &nbsp;|&nbsp; L = 3 &nbsp;|&nbsp; Max = 9
-      </div>
-      <div className="w-px h-10 bg-white/20" />
       <div className="text-[11px] text-right leading-relaxed">
         <div className="font-semibold opacity-90">ICE Scoring</div>
         <div className="opacity-60 text-[10px]">Impact: how much it solves the problem</div>
         <div className="opacity-60 text-[10px]">Confidence: how likely it is to work</div>
         <div className="opacity-60 text-[10px]">Ease: how easy to implement</div>
+        <div className="opacity-70 text-[10px] mt-1">
+          S = 1 &nbsp;|&nbsp; M = 2 &nbsp;|&nbsp; L = 3 &nbsp;|&nbsp; Max = 9
+        </div>
       </div>
     </div>
   );
