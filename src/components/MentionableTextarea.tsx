@@ -39,7 +39,25 @@ export const MentionableTextarea = ({
   useEffect(() => {
     const fetchProfiles = async () => {
       const { data } = await supabase.from("profiles").select("id, display_name, email");
-      if (data) setProfiles(data);
+      const dbProfiles: Profile[] = data || [];
+      const dbNames = new Set(dbProfiles.map((p) => p.display_name.toLowerCase()));
+
+      // Add OKR owners/co-owners who haven't signed up yet
+      const ownerProfiles: Profile[] = [];
+      okrData.forEach((okr) => {
+        okr.owners.forEach((name) => {
+          if (!dbNames.has(name.toLowerCase())) {
+            dbNames.add(name.toLowerCase());
+            ownerProfiles.push({
+              id: `placeholder-${name}`,
+              display_name: name,
+              email: "Not yet registered",
+            });
+          }
+        });
+      });
+
+      setProfiles([...dbProfiles, ...ownerProfiles]);
     };
     fetchProfiles();
   }, []);
