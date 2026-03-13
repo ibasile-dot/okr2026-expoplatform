@@ -144,8 +144,10 @@ const OkrDetailPage = () => {
                 <p className="text-sm text-foreground">{okr.owners[0]}</p>
               </div>
               <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Co-Owner</p>
-                <p className="text-sm text-foreground">{okr.owners[1] || "TBC"}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+                  {okr.owners.length > 2 ? "Co-Owners" : "Co-Owner"}
+                </p>
+                <p className="text-sm text-foreground">{okr.owners.slice(1).join(", ") || "TBC"}</p>
               </div>
               <div className="bg-secondary/50 p-4 rounded-md border-l-4" style={{ borderLeftColor: okr.color }}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Objective</p>
