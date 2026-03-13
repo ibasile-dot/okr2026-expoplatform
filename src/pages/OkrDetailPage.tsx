@@ -183,13 +183,10 @@ const OkrDetailPage = () => {
           {okr.id === 4 ? (
             <OkrRoadmap readOnly={readOnly} />
           ) : (
-            <EditableTemplateTable
+            <EditableRoadmapTable
               okrNumber={okr.id}
               sectionKey={SECTION_ROADMAP}
-              columns={["month", "initiative", "owner", "status", "notes"]}
-              headers={["Month", "Initiative", "Owner", "Status", "Notes"]}
               color={okr.color}
-              emptyMessage={'No roadmap items yet.'}
               readOnly={readOnly}
             />
           )}
