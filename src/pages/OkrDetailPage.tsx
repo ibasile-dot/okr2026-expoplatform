@@ -12,6 +12,7 @@ import Okr4Findings from "@/components/Okr4Findings";
 import AutomationIdeasPage from "@/pages/AutomationIdeasPage";
 import ActionPlanPage from "@/pages/ActionPlanPage";
 import EditableTemplateTable from "@/components/EditableTemplateTable";
+import EditableRoadmapTable from "@/components/EditableRoadmapTable";
 
 const SECTION_ROADMAP = 100;
 const SECTION_FINDINGS = 200;
@@ -182,13 +183,10 @@ const OkrDetailPage = () => {
           {okr.id === 4 ? (
             <OkrRoadmap readOnly={readOnly} />
           ) : (
-            <EditableTemplateTable
+            <EditableRoadmapTable
               okrNumber={okr.id}
               sectionKey={SECTION_ROADMAP}
-              columns={["month", "initiative", "owner", "status", "notes"]}
-              headers={["Month", "Initiative", "Owner", "Status", "Notes"]}
               color={okr.color}
-              emptyMessage={'No roadmap items yet.'}
               readOnly={readOnly}
             />
           )}
