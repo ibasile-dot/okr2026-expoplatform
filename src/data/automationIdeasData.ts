@@ -77,13 +77,13 @@ export const automationCategories: DepartmentCategory[] = [
         source: "KR1 Analysis, Trello Audit", notes: "Susan rank #12. Complements EI-148 (real-time validator)"
       },
       {
-        id: nextId(), idea: "Panel configuration validator — real-time detection of misconfigurations, missing steps & pre-launch risk flagging",
+        id: "ai-ei148", idea: "Panel configuration validator — real-time detection of misconfigurations, missing steps & pre-launch risk flagging",
         solves: "40% of support tickets (~100/month) trace back to admin panel misconfigurations; no real-time feedback during setup — errors only surface at launch",
         phase: "Primary Focus", krs: [1, 3, 4], impact: "L", confidence: "L", ease: "S", status: "Not Started",
         source: "EI-148, KR1 Analysis, Support Ticket Themes", notes: "Complements Launch Readiness Dashboard — shifts from reactive (pre-launch) to proactive (real-time). AI-powered rule engine + anomaly detection. Target: 80% misconfiguration detection, <5s warning display, <10% false positives"
       },
       {
-        id: nextId(), idea: "Recurring event intelligence report — automated delta analysis and recommendations for repeat organisers",
+        id: "ai-ei150", idea: "Recurring event intelligence report — automated delta analysis and recommendations for repeat organisers",
         solves: "Recurring events lack carry-forward intelligence; TAMs manually reconstruct event history from Jira, Fathom, ClickUp, notes",
         phase: "Primary Focus", krs: [1, 2, 4], impact: "L", confidence: "M", ease: "S", status: "Not Started",
         source: "EI-150, KR1 Analysis, Discovery Findings", notes: "Compares editions, cross-references platform changelog + historical issues, generates AI recommendations. Complements Auto-Clone. Target: report within 10 mins, validated against 2-3 real recurring events"
