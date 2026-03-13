@@ -46,7 +46,7 @@ export const okrData: OKR[] = [
     title: "OKR 2 — Meetings & Networks",
     shortTitle: "Meetings & Networks",
     objective: "Make meetings the company's core specialisation and growth driver",
-    owners: ["Tanya Pinchuk", "Céline Laukemann"],
+    owners: ["Tanya Pinchuk", "Céline Laukemann", "Tetiana Melnyk"],
     whyItMatters: "This creates category focus and a sharp narrative in the market — not a generic 'event tech' story",
     color: "hsl(44, 100%, 58%)",
     keyResults: [
